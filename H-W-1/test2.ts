@@ -1,4 +1,4 @@
 //comments
-let test2: string = "test2";
+let test2: string = 'test2';
 
 console.log(test2);
