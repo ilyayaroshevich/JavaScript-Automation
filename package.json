@@ -1,0 +1,20 @@
+{
+  "name": "module_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test1": "tsc ./H-W-1_and_H-W-2/test1.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
+    "test2": "tsc ./H-W-1_and_H-W-2/test2.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
+    "test3": "tsc ./H-W-1_and_H-W-2/test3.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
+    "format": "npx prettier --write ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
