@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "removeComments": true,
+    "outDir": "Compiled"
+  },
+  "files": ["test1.ts", "test2.ts", "test3.ts"]
+}
