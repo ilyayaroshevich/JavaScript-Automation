@@ -7,6 +7,7 @@
   "files": [
     "./H-W-1_and_H-W-2/test1.ts",
     "./H-W-1_and_H-W-2/test2.ts",
-    "./H-W-1_and_H-W-2/test3.ts"
+    "./H-W-1_and_H-W-2/test3.ts",
+    "./H-W-3/Normal_level.ts"
   ]
 }
