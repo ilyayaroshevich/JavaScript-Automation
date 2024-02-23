@@ -10,7 +10,7 @@ console.log('Task number 1');
     let x: number = 20;
     let y: number = 58;
     let z: number = 42;
-    console.log(`Sum is ${x + y + z}\n`);
+    console.log(`Sum is ${x + y + z}`);
 }
 /*
                                                             [Task 2]
@@ -29,7 +29,7 @@ console.log('Task number 2');
     let daysInYear: number = 365;
     let myAge: number = 27;
     let myAgeInSecond: number = myAge * daysInYear * hoursInDay * minuteInHour * secondsInMinute;
-    console.log(`My age in seconds =  ${myAgeInSecond} sec.\n`);
+    console.log(`My age in seconds =  ${myAgeInSecond} sec.`);
 }
 /*
                                                             [Task 3]
@@ -49,7 +49,7 @@ console.log('Task number 3');
 
         let username: string = "42";
         let strtoNum: number = +username;
-        console.log(`Type of ${strtoNum} is: ${typeof strtoNum}\n`);
+        console.log(`Type of ${strtoNum} is: ${typeof strtoNum}`);
     }
     console.log("2nd variant:");
     {
@@ -60,7 +60,7 @@ console.log('Task number 3');
 
         let username: string = "42";
         let strtoNum: number = Number.parseInt(username);
-        console.log(`Type of ${strtoNum} is: ${typeof strtoNum}\n`);
+        console.log(`Type of ${strtoNum} is: ${typeof strtoNum}`);
     }
 }
 /*
@@ -78,7 +78,7 @@ console.log("Task number 4:");
         let a: number = 1;
         let b: number = 2;
         let c: string = "белых медведей";
-        console.log(`${a}${b} ${c}\n`);
+        console.log(`${a}${b} ${c}`);
     }
     console.log('2nd variant:')
     {
@@ -88,7 +88,6 @@ console.log("Task number 4:");
         let b1: string = b.toString();
         let c: string = "белых медведей";
         console.log(a1 + b1 + ' ' + c);
-        console.log(`\n`);
     }
 }
 /*
@@ -113,7 +112,7 @@ console.log("Task number 5:");
     The length of the word "Наледь": ${c.length}
     The length of the word "Попрек": ${d.length}
     The length of the word "Рубило": ${e.length}`;
-    console.log(`${lengthWords}\n`);
+    console.log(`${lengthWords}`);
 }
 /*
                                                             [Task 6]
@@ -122,12 +121,12 @@ console.log("Task number 5:");
 */
 console.log("Task number 6:");
 {
-    let a: number = 1;
-    let b: string = 'String';
-    let c: number[] = [2, 3, 4, 5, 6];
-    console.log(`   Variable: ${a} have type: ${typeof a}`);
-    console.log(`   Variable: ${b} have type: ${typeof b}`);
-    console.log(`   Variable: ${c} have type: ${typeof c}\n`);
+    let NumVar: number = 1;
+    let StrVar: string = 'String';
+    let ArrVar: number[] = [2, 3, 4, 5, 6];
+    console.log(`   Variable: NumVar have type: ${typeof NumVar}`);
+    console.log(`   Variable: StrVar have type: ${typeof StrVar}`);
+    console.log(`   Variable: ArrVar have type: ${typeof ArrVar}`);
 }
 /*
                                                             [Task 7]
@@ -151,7 +150,7 @@ console.log('Task number 7:');
     Variable: ${c} have type: ${typeof c}
     Variable: ${d} have type: ${typeof d}
     Variable: ${e} have type: ${typeof e}`;
-    console.log(`${type}\n`);
+    console.log(`${type}`);
 }
 /*
                                                             [Task 8]
@@ -170,7 +169,6 @@ console.log('Task number 8:');
     else {
         console.log(width);
     }
-    console.log(`\n`);
 }
 /*
                                                             [Task 9]
@@ -179,18 +177,16 @@ console.log('Task number 8:');
 */
 console.log('Task number 9:');
 {
-    let i: number;
-    for (i = 1; i <= 20; i++) {
+    for (let i: number = 1; i <= 20; i++) {
         if (i % 3 == 0) {
             console.log(i);
         }
     }
-    console.log(`\n`);
 }
 /*
                                                             [Task 10]
 Нам надо идти на работу, но нужно проверить все ли мы взяли или нет?
-Нам точно нужны ключи документы и ручка, но из еды нам надо яблоко или апельсин. 
+Нам точно нужны ключи, документы и ручка, но из еды нам надо яблоко или апельсин. 
 Для решения этой задачи нам помогут логические операторы **`|| &&`**.
 let key = true
 let documents = true
@@ -201,17 +197,15 @@ let orange = true
 */
 console.log('Task number 10:');
 {
-    let key: boolean = true;
-    let documents: boolean = true;
-    let pen: boolean = true;
-    let apple: boolean = false;
-    let orange: boolean = true;
-    let shouldGoToWork: any = key && documents && pen && apple || orange;
-    if (shouldGoToWork == true) {
-        console.log(`Идём на любимую работу!\n`)
-    } else {
-        console.log(`Мы не всё взяли. На работу не идём!\n`);
-    }
+    let key: boolean = true,
+        documents: boolean = true,
+        pen: boolean = true,
+        apple: boolean = true,
+        orange: boolean = false;
+    if (key && documents && pen && (apple || orange)) {
+        let shouldGoToWork: any = "Мы всё взяли!"
+        console.log(shouldGoToWork);
+    } else { console.log(`Мы что-то не взяли`); }
 }
 /*
                                                             [Task 11]
@@ -222,11 +216,13 @@ console.log('Task number 10:');
 */
 console.log('Task number 11:');
 {
-    let a: number = 15;
-    if (a % 5 == 0 && a % 3 !== 0) console.log(`Fiz\n`);
-    if (a % 5 !== 0 && a % 3 == 0) console.log(`Buz\n`);
-    if (a % 5 == 0 && a % 3 == 0) console.log(`FizBuz\n`);
-    if (a % 5 !== 0 && a % 3 !== 0) console.log(`Something went wrong!\n`);
+    {
+        let a: number = 3;
+        if (a % 5 == 0 && a % 3 == 0) console.log(`FizBuz`);
+        else if (a % 5 == 0) console.log(`Fiz`);
+        else if (a % 3 == 0) console.log(`Buz`);
+        else { console.log(`Something went wrong!`); }
+    }
 }
 /*
                                                             [Task 12]
@@ -241,7 +237,7 @@ console.log('Task number 12:');
     if (myAge > 18) console.log('Попей пивка');
     if (myAge < 18) console.log(`Пей колу`);
     if (myAge >= 16 && myAge <= 18) {
-        console.log(`Можешь выкурить сигаретку, только маме не говори!\n`)
+        console.log(`Можешь выкурить сигаретку, только маме не говори!`)
     }
 }
 /*
@@ -260,19 +256,19 @@ console.log('Task number 13:');
     let i: string = `восток`;
     switch (i) {
         case 'юг':
-            console.log(`На юг пойдёшь - счастье найдёшь\n`);
+            console.log(`На юг пойдёшь - счастье найдёшь`);
             break;
         case `север`:
-            console.log(`На север пойдёшь - много денег найдёшь\n`);
+            console.log(`На север пойдёшь - много денег найдёшь`);
             break;
         case `запад`:
-            console.log(`На запад пойдёшь - верного друга найдёшь\n`);
+            console.log(`На запад пойдёшь - верного друга найдёшь`);
             break;
         case `восток`:
-            console.log(`На восток пойдёшь - разработчиком станешь\n`);
+            console.log(`На восток пойдёшь - разработчиком станешь`);
             break;
         default:
-            console.log(`Попробуй ещё раз :(\n`);
+            console.log(`Попробуй ещё раз :(`);
     }
 }
 /*
@@ -289,7 +285,7 @@ console.log('Task number 1: ADVANCED LEVEL');
     b = a - b;
     a = a - b;
     console.log(`Variavle a: ${a}`);
-    console.log(`Variable b: ${b}\n`);
+    console.log(`Variable b: ${b}`);
 }
 /*
                                                             [Task 2] ADVANCED LEVEL
@@ -318,7 +314,7 @@ console.log('Task number 2: ADVANCED LEVEL');
     let d: number = 10;
     console.log(`Разделить предыдущее число на ${d}`);
     console.log(`Ваша формула:((((x - y) + u) * i) / d)`);
-    console.log(`На основе введённых Вами чисел, мы получаем следующее: ${((((x - y) + u) * i) / d)}\n`)
+    console.log(`На основе введённых Вами чисел, мы получаем следующее: ${((((x - y) + u) * i) / d)}`)
 }
 /*
                                                             [Task 3] ADVANCED LEVEL
