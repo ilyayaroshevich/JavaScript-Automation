@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test1": "tsc ./H-W-1_and_H-W-2/test1.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
-    "test2": "tsc ./H-W-1_and_H-W-2/test2.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
-    "test3": "tsc ./H-W-1_and_H-W-2/test3.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
+    "hw1_1": "tsc ./H-W-1_and_H-W-2/test1.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
+    "hw1_2": "tsc ./H-W-1_and_H-W-2/test2.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
+    "hw1_3": "tsc ./H-W-1_and_H-W-2/test3.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
+    "hw3": "ts-node ./H-W-3/Normal_And_advanced_levels.ts",
+    "hw4": "ts-node ./H-W-4/Normal_level.ts",
     "format": "npx prettier --write ."
   },
   "author": "",

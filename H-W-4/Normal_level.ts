@@ -11,7 +11,7 @@ console.log('Task 2:');
 console.log('Task 2. Вариант 1:');
 {
     let str: string = "Я учу typescript!";
-    (~str.indexOf('учу')) ? console.log(str.indexOf('учу')) : console.log('Данной строки нет');
+    (~str.indexOf('учу')) ? console.log(`Позиция подстроки: ${str.indexOf('учу')}`) : console.log('Данной строки нет');
 }
 console.log('Task 2. Вариант 2:');
 {
@@ -23,10 +23,9 @@ console.log('Task 2. Вариант 2:');
 console.log('Task 3:');
 {
     let str1: any = "Random String";
-    // console.log(str1.at(0));
+    
     console.log(`Длина строки ${str1} =  ${str1.length} символов`);
     function SymbolPosition(num: number) {
-
         return (num > str1.length || num < 0) ? console.log(`Упс, Вы ввели ${num} и вышли за границу строки`) : console.log('Всё ок')
     }
     let test = SymbolPosition(0);
@@ -36,7 +35,7 @@ console.log('Task 3:');
 console.log('Task 4:');
 {
     function dotChecher(str: string) {
-        return str.endsWith(`.`) ? console.log('Даненое предложение закончено') : console.log(`В конце предложения не хватает точки`)
+        return str.endsWith(`.`) ? console.log('Данное предложение закончено') : console.log(`В конце предложения не хватает точки`)
     }
     let cheker = dotChecher('Случайная строка.');
 }
@@ -94,7 +93,7 @@ console.log('Task 10:');
     console.log(`Округляем до ближайшего целого числа ${Math.round(s3)}`);
 }
 //[Task 11] Дана произвольное число с плавающей точкой. Реализовать методы округления данного числа до ближайшего меньшего, большего аргумента и ближайшего целого числа.
-console.log('Task 11:');
+console.log('Task 11 is the same as Task 10:');
 {
 }
 //[Task 12] Дана произвольное число. Реализовать метод возводящий число в степень. Степень возведения указывается как параметр к методу.
@@ -107,7 +106,7 @@ console.log('Task 12:');
     console.log(`Результат возведения в степень = ${pow}`);
 }
 //[Task 13] Дана произвольное число. Реализовать метод возводящий число в степень. Степень возведения указывается как параметр к методу.
-console.log('Task 12:');
+console.log('Task 13 is the same as Task 12:');
 {
 }
 //[Task 14] Реализовать метод получения рандомного целочисленного числа в заданном диапазоне. Диапазон задается аргументами фунции.
@@ -131,8 +130,12 @@ console.log('Task 15:');
 //[Task 16] Выведите дату сегоднешнего дня в формате: "текущая дата: месяц/год/день. Текущее время часы:минуты:секунды.". Использовать только внутренние методы Date.
 console.log('Task 16:');
 {
-    let nowDate = new Date();
-    console.log(nowDate.getTimezoneOffset());
-
+    let date: Date = new Date();
+    let month: any = date.getMonth() + 1,
+        year: any = date.getFullYear(),
+        day: any = date.getDate(),
+        time: any = date.toLocaleTimeString();
+    let formdate = month + "/" + year + "/" + day;
+    console.log(`Текущая дата: ${formdate}. Текущее время ${time}`);
 }
 
