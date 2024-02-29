@@ -42,8 +42,11 @@ console.log('Task 5:');
 {
     let str: string = "я учу typescript!";
     console.log(str.substring(2, 5));
-    console.log(str.slice(-15, -12));
+    console.log(str.substring(6, 16));
+    console.log(str.slice(-15, -1));
+    console.log(str.slice(-11, -1));
     console.log(str.slice(2, 5));
+    console.log(str.slice(2, 16));
 }
 //[Task 6] Дана строка 'я учу typescript!'. С помощью метода split запишите каждое слово этой строки в отдельный элемент массива.
 console.log('Task 6:');
