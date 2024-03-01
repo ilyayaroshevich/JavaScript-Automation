@@ -26,7 +26,7 @@ console.log('Task 3:');
     function getPositionOfSymbol(posOfSymb: number): string {
         return posOfSymb > str.length || posOfSymb < 0 ? `Упс, Вы ввели ${posOfSymb} и вышли за границу строки` : 'Всё ок';
     }
-    let position = console.log(getPositionOfSymbol(150));
+    console.log(getPositionOfSymbol(150));
 }
 //[Task 4] Дана произвольная строка. Реализуйте метод, который проверяет заканчивается ли предложение точкой или нет. 
 //Если оканчивается, вывести предложение - `Данное предложение закончено`, если нет, то `В конце предложения не хватает точки`
@@ -35,7 +35,7 @@ console.log('Task 4:');
     function checkDotInString(str: string): string {
         return str.endsWith(`.`) ? 'Данное предложение закончено' : `В конце предложения не хватает точки`;
     }
-    let stringForCheck = console.log(checkDotInString('Случайная строка.'));
+    console.log(checkDotInString('Случайная строка.'));
 }
 //[Task 5] Дана строка 'я учу typescript!'. Вырежите из нее слово 'учу' и слово 'typescript' разными способами (через substring, slice).
 console.log('Task 5:');
@@ -73,7 +73,7 @@ console.log('Task 9:');
     function checkNumberIsInteger(num: number): number {
         return Number.isInteger(num) ? num : Math.round(num);
     }
-    let anyNumber = console.log(checkNumberIsInteger(5.4));
+    console.log(checkNumberIsInteger(5.4));
 }
 //[Task 10] Дана произвольное число с плавающей точкой. Реализовать методы округления данного числа до ближайшего меньшего, большего аргумента и ближайшего целого числа.
 console.log('Task 10:');
@@ -87,12 +87,9 @@ console.log('Task 10:');
     function getRoundNumberToIntegerOne(floatNum3: number): number {
         return Math.round(floatNum3);
     }
-    let anyFloatNumber1 = getRoundNumberToSmallerOne(5.6);
-    let anyFloatNumber2 = getRoundNumberToLargerOne(5.4);
-    let anyFloatNumber3 = getRoundNumberToIntegerOne(5.5);
-    console.log(`Округляем до ближайшего меньшего ${anyFloatNumber1}`);
-    console.log(`Округляем до ближайшего большего ${anyFloatNumber2}`);
-    console.log(`Округляем до ближайшего целого числа ${anyFloatNumber3}`);
+    console.log(`Округляем до ближайшего меньшего ${getRoundNumberToSmallerOne(5.6)}`);
+    console.log(`Округляем до ближайшего большего ${getRoundNumberToLargerOne(5.4)}`);
+    console.log(`Округляем до ближайшего целого числа ${getRoundNumberToIntegerOne(5.5)}`);
 }
 //[Task 11] Дана произвольное число с плавающей точкой. Реализовать методы округления данного числа до ближайшего меньшего, большего аргумента и ближайшего целого числа.
 console.log('Task 11 is the same as Task 10:');
@@ -104,7 +101,7 @@ console.log('Task 12:');
     function getNumberRaisedToPower(anyNum: number, power: number): number {
         return Math.pow(anyNum, power);
     }
-    let anyNumbers = console.log(`Результат возведения в степень = ${getNumberRaisedToPower(10, 2)}`);
+    console.log(`Результат возведения в степень = ${getNumberRaisedToPower(10, 2)}`);
 }
 //[Task 13] Дана произвольное число. Реализовать метод возводящий число в степень. Степень возведения указывается как параметр к методу.
 console.log('Task 13 is the same as Task 12:');
@@ -117,10 +114,10 @@ console.log('Task 14 and Task 15:');
 function getRandomNumber(minNum: number, maxNum: number): number {
     return Math.random() * (maxNum - minNum) + minNum;
 }
-{
-    let rangeOfNumbersForRoundToInt = console.log(`Случайное целочисленное число: ${Math.round(getRandomNumber(100, 1000))}`);
-    let rangeOfNumbersForGetFloat = console.log(`Случайноe число с плавающей точкой: ${getRandomNumber(100, 1000)}`);
-}
+
+console.log(`Случайное целочисленное число: ${Math.round(getRandomNumber(100, 1000))}`);
+console.log(`Случайноe число с плавающей точкой: ${getRandomNumber(100, 1000)}`);
+
 //[Task 16] Выведите дату сегоднешнего дня в формате: "текущая дата: месяц/год/день. Текущее время часы:минуты:секунды.". Использовать только внутренние методы Date.
 console.log('Task 16:');
 {
