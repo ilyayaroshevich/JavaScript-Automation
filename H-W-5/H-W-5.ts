@@ -61,7 +61,7 @@ console.log(`TASK_4`);
 */
 console.log(`TASK_5`);
 {
-    function GetSumOfNUmbersInRange(num1: number, num2: number): any {
+    function GetSumOfNUmbersInRange(num1: number, num2: number): number {
         let sum: number = 0;
         if (num1 < num2 && num1 != num2) {
             for (num1; num1 <= num2; num1++) {
@@ -78,9 +78,31 @@ console.log(`TASK_5`);
 
         }
         else if (num1 == num2) {
-            return sum = num1; //поправить
-        }
 
+        }
+        return num1;
     }
-    console.log(GetSumOfNUmbersInRange(-1, -1));
+    console.log(GetSumOfNUmbersInRange(1, 1));
 }
+/*------------------------------------------------------------[TASK_6]------------------------------------------------------------------------------------------------
+Напишите функцию fooboo которая принимает в качестве аргумента три параметра:
++булевое значение
++функцию foo//callback1 которая выводит в консоль свое имя
++функцию boo//callback2 которая выводит в консоль свое имя
+Если переданное булевое значение **true** запускаем функцию foo/callback1 иначе **boo/callback2
+*/
+console.log(`TASK_6`);
+{
+    let getBooleanFunc1Func2 = (bool: boolean, func1: Function, func2: Function) => (bool == true) ? func1('func1') : func2('func2');
+
+    let func1 = (fun1Name: string) => console.log(`${fun1Name}`);
+
+    let func2 = (fun2name: string) => console.log(`${fun2name}`);
+    getBooleanFunc1Func2(false, func1, func2);
+}
+
+
+
+
+
+
