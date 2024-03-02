@@ -140,45 +140,13 @@ console.log(`TASK_1.ADVANCED LEVEL`);
 console.log(`TASK_2.ADVANCED LEVEL`);
 
 function getAmountOfChocolateSpread(a: number, b: number, side: Function): void {
-    let aSize = side(a);
-    let bSize = side(b);
-    if (aSize == bSize) {
-        console.log(`Минимальное количество разломов: ${(aSize)}`)
-    }
-    if (aSize == 0 || bSize == 0) {
-        console.log(`Шоколада нет`)
-
-    }
+    let minNumOfSpreads = side(a, b);
+    minNumOfSpreads > 0 ? console.log(`Минимальное количество разломов: ${(minNumOfSpreads)}`) :
+                          console.log(`Входные данные недействительны: 0`)
 };
-getAmountOfChocolateSpread(3, 1, side);
+getAmountOfChocolateSpread(1, 1, side);
 
-function side(n: number): number {
-    let iteration_num = 0;
-    for (n; n > 1; n--) {
-        iteration_num++;
-    }
-    return iteration_num
-}
-
-
-
-
-
-// function funM(m: number): number {
-//     let iteration_num1 = 0;
-//     if (m / 1 !== 1) {
-//         for (m; m > 1; m--) {
-//             iteration_num1++;
-//         }
-//     }
-
-//     return iteration_num1;
-// };
-
-
-
-
-
-
-
+function side(a: number, b: number): number {
+    return ((a * b) - 1);
+};
 
