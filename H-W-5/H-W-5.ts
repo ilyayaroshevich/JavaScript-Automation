@@ -142,11 +142,71 @@ console.log(`TASK_2.ADVANCED LEVEL`);
 function getAmountOfChocolateSpread(a: number, b: number, side: Function): void {
     let minNumOfSpreads = side(a, b);
     minNumOfSpreads > 0 ? console.log(`Минимальное количество разломов: ${(minNumOfSpreads)}`) :
-                          console.log(`Входные данные недействительны: 0`)
+        console.log(`Входные данные недействительны: 0`)
 };
 getAmountOfChocolateSpread(1, 1, side);
 
 function side(a: number, b: number): number {
     return ((a * b) - 1);
 };
+/*------------------------------------------------------------[TASK_3.ADVANCED_LEVEL]------------------------------------------------------------------------------------------------
+Напишите программу для вычисления общей стоимости покупки телефонов. 
+Вы будете продолжать покупать телефоны (подсказка: циклы!), пока у вас не закончатся деньги на банковском счете. 
+Вы также будете покупать аксессуары для каждого из телефонов.
+После того, как вы посчитаете сумму покупки, прибавьте налог, затем выведите на экран вычисленную сумму покупки, правильно отформатировав её.
+Наконец, сверьте сумму с балансом вашего банковского счета, чтобы понять можете вы себе это позволить или нет.
+Вы должны настроить некоторые константы для «ставки налога», «цены телефона», «цены аксессуара», также как и переменную для вашего «баланса банковского счета».
+Вам следует определить функции для вычисления налога и для форматирования цены со знаком валюты и округлением до двух знаков после запятой.
+*/
+console.log('`TASK_3.ADVANCED LEVEL`');
+{
+    function buyingPhoneAndStaf(myAccount: number, tax: number, minPriceOfPhone: number, maxPriceOfPhone: number, minPriceOfStaff: number, maxPriceOfStaff: number,
+        getBalanceOfAccount: Function, getTax: Function, getPriceOfPhone: Function, getPriceOfStaff: Function) {
 
+        let myBalance = getBalanceOfAccount(myAccount);
+        let mytax = getTax(tax);
+        let phonePrice = getPriceOfPhone(minPriceOfPhone, maxPriceOfPhone);
+        let staffPrice = getPriceOfStaff(minPriceOfStaff, maxPriceOfStaff);
+        let totalSumReceipt = 0;
+
+        for (let i = phonePrice + staffPrice; i <= myBalance; i++) {
+            totalSumReceipt = i++
+        }
+        let totalSumReceiptWithTax: number = totalSumReceipt + ((totalSumReceipt / 100) * mytax);
+        return totalSumReceiptWithTax <= myBalance ? console.log(`Вы купили телефонов и аксессуаров на сумму: ${totalSumReceiptWithTax.toFixed(2)} BYN`) : console.log(`У Вас недостаточно средств`);
+    }
+    buyingPhoneAndStaf(10000, 20, 1000, 2000, 100, 200, getBalanceOfAccount, getTax, getPriceOfPhone, getPriceOfStaff);
+
+    function getPriceOfPhone(minPriceOfphone: number, maxPriceOfPhone: number): number {
+        let random1 = (Math.random() * (maxPriceOfPhone - minPriceOfphone) + minPriceOfphone).toFixed(2);
+        return +random1;
+    }
+
+    function getPriceOfStaff(minStaffOfphone: number, maxStaffOfPhone: number): number {
+        let random2 = (Math.random() * (maxStaffOfPhone - minStaffOfphone) + minStaffOfphone).toFixed(2);
+        return +random2;
+    }
+
+    function getBalanceOfAccount(balance: number) {
+        return balance;
+    }
+
+    function getTax(tax: number) {
+        return tax;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
