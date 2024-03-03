@@ -171,11 +171,18 @@ console.log('`TASK_3.ADVANCED LEVEL`');
 
         for (let i = phonePrice + staffPrice; i <= myBalance; i++) {
             totalSumReceipt = i++
+            
         }
-        let totalSumReceiptWithTax: number = totalSumReceipt + ((totalSumReceipt / 100) * mytax);
-        return totalSumReceiptWithTax <= myBalance ? console.log(`Вы купили телефонов и аксессуаров на сумму: ${totalSumReceiptWithTax.toFixed(2)} BYN`) : console.log(`У Вас недостаточно средств`);
+        let totalSumReceiptWithTax: string = (totalSumReceipt + ((totalSumReceipt / 100) * mytax)).toFixed(2);
+        console.log(`Окончательная сумма покупки: ${totalSumReceiptWithTax} BYN`);
+        console.log(`Ваш баланс: ${myBalance} BYN`);
+        return +totalSumReceiptWithTax <= myBalance ? console.log(`Вы купили телефонов и аксессуаров на сумму: ${totalSumReceiptWithTax} BYN`) : console.log(`У Вас недостаточно средств`);
     }
-    buyingPhoneAndStaf(10000, 20, 1000, 2000, 100, 200, getBalanceOfAccount, getTax, getPriceOfPhone, getPriceOfStaff);
+    buyingPhoneAndStaf(10000, 20, 2000, 3000, 253, 299, getBalanceOfAccount, getTax, getPriceOfPhone, getPriceOfStaff);
+
+
+
+
 
     function getPriceOfPhone(minPriceOfphone: number, maxPriceOfPhone: number): number {
         let random1 = (Math.random() * (maxPriceOfPhone - minPriceOfphone) + minPriceOfphone).toFixed(2);
