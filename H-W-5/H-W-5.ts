@@ -1,5 +1,3 @@
-import { FunctionBody } from "typescript";
-
 /*------------------------------------------------------------[TASK_1]------------------------------------------------------------------------------------------------
 Написать функцию **getSum**, которая будет высчитывать сумму чисел от нуля, до параметра, который мы в неё передаем. 
 > Если передадим число 100 то, надо вычислить сумму чисел от 0 до 100 (должно получится 5050)*/
@@ -135,7 +133,7 @@ console.log(`TASK_7`);
 console.log(`TASK_1.ADVANCED LEVEL`);
 {
     function getThreeSidesOfTriangle(a: number, b: number, c: number): boolean {
-        return (a + b > c) && (a + c > b) && (b + c > a)
+        return (a + b > c) && (a + c > b) && (b + c > a);
     };
     console.log(getThreeSidesOfTriangle(2, 2, 3));
     console.log(getThreeSidesOfTriangle(-1, 2, 3));
@@ -147,10 +145,10 @@ console.log(`TASK_1.ADVANCED LEVEL`);
 Если входные данные недействительны, вы должны вернуть 0 (поскольку надломы не требуются, если у нас нет шоколада для разделения). Ввод всегда будет неотрицательным целым числом.
 */
 console.log(`TASK_2.ADVANCED LEVEL`);
-function getAmountOfChocolateSpread(a: number, b: number, side: Function): void {
-    let minNumOfSpreads = side(a, b);
-    minNumOfSpreads > 0 ? console.log(`Минимальное количество разломов: ${(minNumOfSpreads)}`) :
-        console.log(`Входные данные недействительны: 0`);
+function getAmountOfChocolateSpread(a: number, b: number, side: Function) {
+    let minNumOfSpreads: any = side(a, b);
+    console.log((minNumOfSpreads > 0) ? `Минимальное количество разломов: ${(minNumOfSpreads)}` : `Входные данные недействительны: 0`);
+
 };
 getAmountOfChocolateSpread(1, 1, side);
 function side(a: number, b: number): number {
@@ -173,7 +171,7 @@ console.log('`TASK_3.ADVANCED LEVEL`');
     function getFinallyFormattedPrice(myAccount: number, minPriceOfPhone: number, maxPriceOfPhone: number, minPriceOfStaff: number, maxPriceOfStaff: number, tax: number,
         getPriceOfPhoneAndStaff: Function, getCalcTax: Function, buyingPhoneAndStaff: Function) {
         let finPrice = buyingPhoneAndStaff(myAccount, minPriceOfPhone, maxPriceOfPhone, minPriceOfStaff, maxPriceOfStaff, tax, getPriceOfPhoneAndStaff, getCalcTax);
-        return (finPrice < myAccount) ? console.log(`Окончательная цена покупки: ${finPrice.toFixed(2)} BYN`) : (`У вас недостаточно редств`);
+        console.log((finPrice < myAccount) ? `Окончательная цена покупки: ${finPrice.toFixed(2)} BYN` : `У вас недостаточно редств`);
     };
     // -----------------------Функция процесса покупки пока не закончатся деньги------------------------------------------
     function buyingPhoneAndStaff(myAccount: number, minPriceOfPhone: number, maxPriceOfPhone: number, minPriceOfStaff: number, maxPriceOfStaff: number, tax: number,
