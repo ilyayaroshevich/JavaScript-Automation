@@ -77,11 +77,10 @@ console.log(`TASK_5.Вариант 1.`);
             };
             return sum;
         }
-        else if (num1 == num2) {
-        };
-        return num1;
+        else { return num1 };
+
     };
-    console.log(GetSumOfNUmbersInRange(0, 5));
+    console.log(GetSumOfNUmbersInRange(10, 10));
 }
 //Второй вариант задачи номер 5.
 console.log(`TASK_5.Вариант 2.`);
@@ -95,9 +94,8 @@ console.log(`TASK_5.Вариант 2.`);
         }
         else { return num3 };
     };
-    console.log(GetSumOfNUmbersInRange2(5, 0));
+    console.log(GetSumOfNUmbersInRange2(-10, 20));
 }
-
 /*------------------------------------------------------------[TASK_6]------------------------------------------------------------------------------------------------
 Напишите функцию fooboo которая принимает в качестве аргумента три параметра:
 +булевое значение
