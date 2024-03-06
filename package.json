@@ -9,6 +9,7 @@
     "hw1_3": "tsc ./H-W-1_and_H-W-2/test3.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
     "hw3": "ts-node ./H-W-3/Normal_And_advanced_levels.ts",
     "hw4": "ts-node ./H-W-4/Normal_level.ts",
+    "hw5": "ts-node ./H-W-5/H-W-5.ts",
     "format": "npx prettier --write ."
   },
   "author": "",
@@ -17,6 +18,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2"
   }
