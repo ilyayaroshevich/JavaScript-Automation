@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 /*
 ---------------------------------------------------------------------------------------[TASK 1]
 удалять через деструктуризацию и ...
@@ -10,7 +11,7 @@ console.log("Task 1:");
         potato: 123,
         eggs: 10,
         tomato: 90,
-        'cucumber': 5
+        'cucumber': 5,
     };
     delete bin.potato;
     delete bin['cucumber'];
@@ -29,19 +30,15 @@ console.log("Task 2:");
         huawei: number, iphone: number
     } = {
         huawei: 5000,
-        iphone: 10000
+        iphone: 10000,
     };
-    console.log(`------------------------------`)
+    console.log('iphone' in phonePrice);
     console.log(phonePrice.hasOwnProperty("iphone"));
-    console.log(`------------------------------`)
-    console.log(Object.keys(phonePrice));
-    console.log(`------------------------------`)
+    console.log(Object.keys(phonePrice)); // не знаю как вызвать именно какой-то конкретный ключ, он выводит все :(
     console.log((typeof phonePrice['huawei'] !== "undefined") ? true : false);
-    console.log(`------------------------------`)
-    for (let huawei in phonePrice) {
-        console.log(`${huawei} = ${phonePrice[huawei]}`);
+    for (let particularPhone in phonePrice) {
+        console.log(`${particularPhone} = ${phonePrice[particularPhone]}`); // не знаю как вызвать именно какой-то конкретный ключ, он выводит все :(
     };
-    console.log(`------------------------------`)
 }
 /*
 ---------------------------------------------------------------------------------------[TASK 3]
@@ -56,17 +53,16 @@ C помощью цикла **for in** вывести в консоль снач
 */
 console.log("Task 3:");
 {
-    const student = {
+    let student = {
         name: 'John',
         age: 19,
-        isHappy: true
+        isHappy: true,
     };
 
     for (let studentInfo in student) {
-        console.log(`${studentInfo}`);
-        console.log(`${student[studentInfo]}`);
+        console.log(studentInfo);
+        console.log(student[studentInfo]);
     };
-    console.log(`------------------------------`);
     console.log(Object.keys(student));
     console.log(Object.values(student));
 }
@@ -84,11 +80,11 @@ const colors = {
 */
 console.log("Task 4:");
 {
-    const colors = {
+    let colors = {
         'ru pum pu ru rum': {
             red: 'красный',
             green: 'зеленый',
-            blue: 'синий'
+            blue: 'синий',
         },
     };
     let twoColor = colors['ru pum pu ru rum'];
@@ -116,7 +112,7 @@ console.log("Task 5:");
         sveta: 413,
         anton: 987,
         andrey2: 664,
-        alexandra: 199
+        alexandra: 199,
     };
     let sum = 0;
     let amountOfKeys = Object.keys(salaries).length;
@@ -134,22 +130,102 @@ console.log("Task 5:");
 */
 console.log("Task 6:");
 {
-    let CredentialInDB = {};
+    let CredentialsInDB = {};
     let loginInDB: string = `IlyaLogin`;
     let passwordInDB: string = `IlyaPassword12345`;
-    Object.assign(CredentialInDB, { loginInDB }, { passwordInDB });
+    Object.assign(CredentialsInDB, { loginInDB }, { passwordInDB });
 
     let enteredCredentials = {};
     let enteredLogin: string = `IlyaLogin`;
     let enteredPassword: string = `IlyaPassword12345`;
     Object.assign(enteredCredentials, { enteredLogin }, { enteredPassword });
 
-    let compareLogin = (JSON.stringify(CredentialInDB['loginInDB']) == JSON.stringify(enteredCredentials['enteredLogin']));
-    let comparePassword = (JSON.stringify(CredentialInDB['passwordInDB']) == JSON.stringify(enteredCredentials['enteredPassword']));
-    console.log((compareLogin == comparePassword) ? `Добро пожаловать` : `Вы кто такие?`); 
+    let compareLogin = (JSON.stringify(CredentialsInDB['loginInDB']) == JSON.stringify(enteredCredentials['enteredLogin']));
+    let comparePassword = (JSON.stringify(CredentialsInDB['passwordInDB']) == JSON.stringify(enteredCredentials['enteredPassword']));
+    console.log((compareLogin == comparePassword) ? `Добро пожаловать` : `Вы кто такие?`);
 }
+/*
+---------------------------------------------------------------------------------------[TASK 1.ADVANCED]
+// Формат вывода: Команда А забила X мячей, команда В забила Х мячей
+Мы на футбольном матче, счет забитых голов одной команды не может превышать 9 мячей. 
+Жаль что нам присылают результат матча в формате '2:5', ведь нам надо это вывести в консоль словами. Д
+авайте напишем программу которая будет за нас переводить формат и выводить результат в консоль. 
+*/
+console.log("Task 1.ADVANCED:");
+{
+    let teamA = { name: "Команда А", goals: 0, };
+    let teamB = { name: "Команда Б", goals: 0, };
+    function processMatchResult(matchResult: string) {
+        let [teamAScore, teamBScore] = matchResult.split(":").map(Number);
+        if (teamAScore > 9 || teamBScore > 9) {
+            console.log("Счет не может превышать 9 мячей!");
+            return;
+        }
+        console.log(`${teamA.name} забила ${teamAScore} мячей, ${teamB.name} забила ${teamBScore} мячей`);
+    }
+    // Пример использования
+    processMatchResult("9:9");
+}
+/*
+---------------------------------------------------------------------------------------[TASK 2.ADVANCED]
+//Сравнить не ссылки и сами объекты
+Даны два одинаковых обьекта. Сравните их так чтобы они были равны
 
+```javascript
+    let student1 = {
+        name: 'Polina',
+        age: 27,
+    }
 
+    let student2 = {
+        name: 'Polina',
+        age: 27,
+    }
+```
+*/
+console.log("Task 2.ADVANCED:");
+{
+    let student1 = {
+        name: 'Polina',
+        age: 27,
+    };
+    let student2 = {
+        name: 'Polina',
+        age: 27,
+    };
+    console.log((JSON.stringify(student1) === JSON.stringify(student2)) ? true : false);
+}
+/*
+---------------------------------------------------------------------------------------[TASK 3.ADVANCED]
+Дан объект cat. Склонируйте его 2 способами, и подтвердите, что при изменении поля в 1ом объекте, это же поле не меняется во втором объекте. 
+Объекты должны быть описаны с помощью типа или интерфейса
+const cat = {
+      name: 'Енчик',
+      age: 3,
+   }
+*/
+console.log("Task 3.ADVANCED:");
+{
+    type tempType = {
+        name: string;
+        age: number;
+    };
+    let cat: tempType = {
+        name: 'Енчик',
+        age: 3,
+    };
+    let copyCat: tempType = { ...cat }; //первый способ
+    copyCat.name = "Ilya";
+    console.log(cat);
+    console.log(copyCat);
 
+    let copyCat2: tempType = JSON.parse(JSON.stringify(cat)); //второй вариант
+    copyCat2.name = "Ilya2";
+    console.log(cat);
+    console.log(copyCat2);
 
-
+    let copyCat3: tempType = _.cloneDeep(cat); //третий вариант через lodash
+    copyCat3.name = "Ilya3";
+    console.log(cat);
+    console.log(copyCat3);
+}
