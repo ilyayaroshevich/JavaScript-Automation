@@ -29,16 +29,14 @@ console.log("Task 2:");
     let phonePrice: {
         huawei: number, iphone: number
     } = {
-        huawei: 5000,
+        "huawei": 5000,
         iphone: 10000,
     };
     console.log('iphone' in phonePrice);
     console.log(phonePrice.hasOwnProperty("iphone"));
-    console.log(Object.keys(phonePrice)); // не знаю как вызвать именно какой-то конкретный ключ, он выводит все :(
-    console.log((typeof phonePrice['huawei'] !== "undefined") ? true : false);
-    for (let particularPhone in phonePrice) {
-        console.log(`${particularPhone} = ${phonePrice[particularPhone]}`); // не знаю как вызвать именно какой-то конкретный ключ, он выводит все :(
-    };
+    let partKey = Object.keys(phonePrice);
+    console.log(partKey.includes('huawei'));
+    console.log((typeof phonePrice['huawei'] !== "undefined"));
 }
 /*
 ---------------------------------------------------------------------------------------[TASK 3]
@@ -130,19 +128,17 @@ console.log("Task 5:");
 */
 console.log("Task 6:");
 {
-    let CredentialsInDB = {};
-    let loginInDB: string = `IlyaLogin`;
-    let passwordInDB: string = `IlyaPassword12345`;
-    Object.assign(CredentialsInDB, { loginInDB }, { passwordInDB });
-
-    let enteredCredentials = {};
-    let enteredLogin: string = `IlyaLogin`;
-    let enteredPassword: string = `IlyaPassword12345`;
-    Object.assign(enteredCredentials, { enteredLogin }, { enteredPassword });
-
-    let compareLogin = (JSON.stringify(CredentialsInDB['loginInDB']) == JSON.stringify(enteredCredentials['enteredLogin']));
-    let comparePassword = (JSON.stringify(CredentialsInDB['passwordInDB']) == JSON.stringify(enteredCredentials['enteredPassword']));
-    console.log((compareLogin == comparePassword) ? `Добро пожаловать` : `Вы кто такие?`);
+    validator(`Ilya`, `12345`, `Ilya`, `12345`, enterlogInCred);
+    function validator(loginInBD: string, passwordInBD: string, enteredLogin2: string, enteredPassword2: string, enterlogInCred: Function) {
+        let credInBD = { loginInBD, passwordInBD };
+        let enteredCred = enterlogInCred(enteredLogin2, enteredPassword2);
+        let compareOnlyLogin = (JSON.stringify(credInBD[`loginInBD`]) === JSON.stringify(enteredCred[`enteredLogin2`]));
+        let compareOnlyPassword = (JSON.stringify(credInBD[`passwordInBD`]) === JSON.stringify(enteredCred[`enteredPassword2`]));
+        console.log((compareOnlyLogin == true && compareOnlyPassword == true) ? `Welcome!` : `Who ARE you?`);
+    }
+    function enterlogInCred(enteredLogin2: string, enteredPassword2: string): object {
+        return { enteredLogin2, enteredPassword2 };
+    }
 }
 /*
 ---------------------------------------------------------------------------------------[TASK 1.ADVANCED]
@@ -193,7 +189,7 @@ console.log("Task 2.ADVANCED:");
         name: 'Polina',
         age: 27,
     };
-    console.log((JSON.stringify(student1) === JSON.stringify(student2)) ? true : false);
+    console.log((JSON.stringify(student1) === JSON.stringify(student2)));
 }
 /*
 ---------------------------------------------------------------------------------------[TASK 3.ADVANCED]
