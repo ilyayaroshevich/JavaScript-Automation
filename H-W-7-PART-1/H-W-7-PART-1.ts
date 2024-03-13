@@ -48,7 +48,7 @@ console.log(`TASK 4:`);
     let students: string[] = ['Polina', 'Dasha', 'Masha'];
     let delLastElemAndAdd = students.splice(students.length - 1, students.length - 1, `Borya`);
     console.log(students);
-    let delFirstElemAndAdd = students.splice(1, 1, `Andrey`);
+    let delFirstElemAndAdd = students.splice(0, 1, `Andrey`);
     console.log(students);
 }
 /* [TASK 5] Дан массив:
@@ -88,22 +88,22 @@ const binary = [0, 0, 0, 0]
 */
 console.log(`TASK 7:`);
 {
-    let binary: number[] = [0, 0, 0, 0];
-    let fullBunary: string = binary.map(getFullBunary => getFullBunary === 0 ? `01` : `1`).join('');
-    console.log(fullBunary);
+    let binaryArray: number[] = [0, 0, 0, 0];
+    let binaryString: string = binaryArray.join('1');
+
+    console.log(`Бинарное представление: ${binaryString}`);
 }
 /* [TASK 1. Advanced level] 
 Реализуйте функцию которая будет проверять, является ли слово палиндромом.
 */
 console.log(`TASK 1. Advanced level`);
 {
-    function getStringtoArray(str: string): Array<string> {
+    function isTheWordPolyndromic(str: string): void {
         let arr: string[] = str.split(``);
         let polind: string[] = str.split(``).reverse();
-        console.log(arr.toString() == polind.toString() ? `Your word is polindrom` : `Your word is not polindrom`);
-        return polind;
-    }
-    getStringtoArray(`tenet`);
+        console.log(arr.toString() == polind.toString() ? `Your word is polyndromic` : `Your word is not polyndromic`);
+    };
+    isTheWordPolyndromic(`tenet`);
 }
 /* [TASK 2. Advanced level] 
     const matrix = [
@@ -174,7 +174,7 @@ console.log(`TASK 4. Advanced level`);
         return arraWithFiveRandNum;
     };
     let myArrayFromFunc = getArrayWithRandNum(200, 100);
-    let newArr = myArrayFromFunc.map(test => Math.pow(test,3));
+    let newArr = myArrayFromFunc.map(test => Math.pow(test, 3));
     console.log(myArrayFromFunc);
     console.log(newArr);
 }
