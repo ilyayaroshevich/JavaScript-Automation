@@ -81,3 +81,61 @@ console.log(`TASK 4:`);
     };
     showArrayElements1([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]);
 }
+/*
+#### Task 5 🖥
+Используя метод **`find`** найдите в массиве первое четное число.
+    const numbers = [5, 9, 13, 24, 54, 10, 13, 99, 1, 5]
+*/
+console.log(`TASK 5:`);
+{
+    const numbers = [5, 9, 13, 24, 54, 10, 13, 99, 1, 5];
+    const found = numbers.find((element) => element % 2 === 0);
+    console.log(found);
+}
+/*
+#### Task 6 🖥
+Используя метод **`some`** проверьте то, в массиве есть элемент кратный 3 и 5.
+> Реализуйте решение двумя способами, используя `function declaration` & `arrow function`.
+Реализуйте оба варианта, когда результирущее значение true или false
+*/
+console.log(`TASK 6:`);
+{
+    function findMultiplesElements(myArray: number[]): boolean {
+        const value = myArray.some(element => element % 3 === 0 && element % 5 === 0);
+        return value;
+    };
+    console.log(findMultiplesElements([5, 9, 13, 24, 54, 10, 13, 99, 1, 5, 15])); //TRUE
+
+    let findMultiplesElements1 = (myArray1: number[]): boolean => {
+        const value1 = myArray1.some(element1 => element1 % 3 === 0 && element1 % 5 === 0);
+        return value1;
+    };
+    console.log(findMultiplesElements1([5, 9, 13, 24, 54, 10, 13, 99, 1, 5])); //FALSE
+}
+/*
+#### Task 7 🖥
+Используя метод **`every`** проверьте то, в массиве сумма цифр квадратов значений четная.
+> Реализуйте решение двумя способами, используя `function declaration` & `arrow function`. 
+Реализуйте оба варианта, когда результирущее значение true или false
+*/
+console.log(`TASK 7:`);
+{
+    function checkFiguresMultiples(myArray: number[]): boolean {
+        const sumOfSquaredDigits = myArray.map(num => {
+            const squared = num ** 2;
+            return String(squared).split('').reduce((acc, digit) => acc + Number(digit), 0);
+        });
+        return sumOfSquaredDigits.every(sum => sum % 2 === 0);
+    }
+    console.log(checkFiguresMultiples([5, 9, 13, 99, 1, 5])); // Вернет false
+
+
+    let checkFiguresMultiples1 = (myArray: number[]): boolean => {
+        const sumOfSquaredDigits = myArray.map(num => {
+            const squared = num ** 2;
+            return String(squared).split('').reduce((acc, digit) => acc + Number(digit), 0);
+        });
+        return sumOfSquaredDigits.every(sum => sum % 2 === 0);
+    }
+    console.log(checkFiguresMultiples1([13, 99, 13, 99, 13, 99])); // Вернет true
+}
