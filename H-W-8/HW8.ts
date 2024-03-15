@@ -7,13 +7,13 @@ const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 
 */
 console.log(`TASK 1:`);
 {
-    function showArrayElements(array: number[]): void {                         //function declaration
+    function getArrayElements(array: number[]): void {                         //function declaration
         array.forEach((elements) => console.log(elements))
     };
-    showArrayElements([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]);
+    getArrayElements([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]);
     console.log(`------------------------`);
-    let showArrayElements1 = (array1: number[]): void => array1.forEach((elements1) => console.log(elements1)); //arrow function
-    showArrayElements1([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]);
+    let getshowArrayElements1 = (array1: number[]): void => array1.forEach((elements1) => console.log(elements1)); //arrow function
+    getshowArrayElements1([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]);
 }
 /*
 #### Task 2 🖥
@@ -24,13 +24,13 @@ const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
 */
 console.log(`TASK 2:`);
 {
-    function createNewUsersArray(userArray: string[]): void {                                   //function declaration
+    function createNewUsersArray(userArray: string[]): void {                                           //function declaration
         const newUsersArray = userArray.map((user, index) => `member ${index + 1}: ${user}`);
         console.log(newUsersArray);
     };
     createNewUsersArray(['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']);
     console.log(`------------------------`);
-    let createNewUsersArray1 = (userArray1: string[]): void => {                                //arrow function
+    let createNewUsersArray1 = (userArray1: string[]): void => {                                        //arrow function
         const newUsersArray1 = userArray1.map((user1, index1) => `member ${index1 + 1}: ${user1}`);
         console.log(newUsersArray1);
     };
@@ -122,10 +122,8 @@ console.log(`TASK 7:`);
         });
         return sumOfSquaredDigits.every(sum => sum % 2 === 0);
     }
-    console.log(checkFiguresMultiples([5, 9, 13, 99, 1, 5])); // Вернет false
-
+    console.log(checkFiguresMultiples([5, 9, 13, 99, 1, 5]));      // Вернет false
     console.log(`------------------------`);
-
     let checkFiguresMultiples1 = (myArray: number[]): boolean => {          //arrow functiob
         const sumOfSquaredDigits = myArray.map(num => {
             const squared = num ** 2;
@@ -322,4 +320,3 @@ console.log(`TASK 3.ADVANCED level:`);
     };
     console.log(isItIsigramOrNot('Dermatoglyphics'));
 }
-
