@@ -80,10 +80,10 @@ console.log(`Task 3:`);
         myCar: "Toyota"
     };
 
-    function Car(amountOfDoors: number, steeringPosition: string) {
+    function getCarInfoCar(amountOfDoors: number, steeringPosition: string) {
         return `${this.myCar} has ${amountOfDoors} doors and this is ${steeringPosition}-hand drive car`
     };
 
-    console.log(Car.call(firstCar, 4, 'left'));
-    console.log(Car.call(secondCar, 3, 'right'));
+    console.log(getCarInfoCar.call(firstCar, 4, 'left'));
+    console.log(getCarInfoCar.call(secondCar, 3, 'right'));
 }
