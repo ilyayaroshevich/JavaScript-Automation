@@ -18,7 +18,7 @@ interface Post {
 }
 type FetchPostFunction = (postId: number) => Promise<Post>;
 {
-    const getPasedJson: FetchPostFunction = (postId: number) => {
+    const getParsedJson: FetchPostFunction = (postId: number) => {
         return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
             .then(response => {
                 if (!response.ok) {
@@ -28,7 +28,7 @@ type FetchPostFunction = (postId: number) => Promise<Post>;
             });
     }
     const IdPosts: number[] = [3, 7, 15, 23];
-    const promiseArray: Promise<Post>[] = IdPosts.map((post) => getPasedJson(post));
+    const promiseArray: Promise<Post>[] = IdPosts.map((post) => getParsedJson(post));
 
     Promise.all(promiseArray)
         .then((iteratingArray) => {
@@ -41,7 +41,7 @@ type FetchPostFunction = (postId: number) => Promise<Post>;
         });
 }
 {
-    const getPasedJson: FetchPostFunction = async (postId: number) => {
+    const getParsedJson: FetchPostFunction = async (postId: number) => {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
         if (!response.ok) {
             throw new Error(`${response.status} (${response.statusText})`);
@@ -53,7 +53,7 @@ type FetchPostFunction = (postId: number) => Promise<Post>;
     const IdPosts: number[] = [3, 7, 15, 23];
 
     const fetchPosts = async () => {
-        const promiseArray = IdPosts.map(async (post) => await getPasedJson(post));
+        const promiseArray = IdPosts.map(async (post) => await getParsedJson(post));
         const iteratedArray: Post[] = await Promise.all(promiseArray);
         iteratedArray.forEach((post: object) => {
             console.log(post);
