@@ -11,53 +11,116 @@ import fetch from 'cross-fetch';
 - Async / await
 */
 {
-    function getPasedJson(postId: number): any {                                            // Создание функции, которая принимает нужный номер поста
-        return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)         // Возвращает Promise
-            .then(response => {                                                      // Работа с вовзращённым Promise
-                if (!response.ok) {                                                  // Используется метод встроенного класса "response".                                                                               
-                    throw new Error(`${response.status} (${response.statusText})`);  // Если статус код response не 2XX, то пробрасываем кастомную ошибку
-                }
-                return response.json();                                              // В ином случае - парсим ответ в JSON
+    function getPasedJson(postId: number): any {                                        
+        return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)            
+            .then(response => {                                                         
+                if (!response.ok) {                                                                                                                                    
+                    throw new Error(`${response.status} (${response.statusText})`);     
+                };
+                return response.json();                                                 
             });
     }
-    const IdPosts: number[] = [3, 7, 15, 23];                                        // Создаём массив из ID, которые нам нужно достать из списка постов
-    const promiseArray = IdPosts.map((post) => getPasedJson(post));                    // Создаём массив Промисов
+    const IdPosts: number[] = [3, 7, 15, 23];                                           
+    const promiseArray = IdPosts.map((post) => getPasedJson(post));                     
 
-    Promise.all(promiseArray)                                                          // Используется метод Promise.all с аргументом в ввиде массива промисов, что бы в случае невыполнения хотя бы одного из них - появилась ошибка.
-        .then((iteratingArray) => {                                                     // С помощью .then и функции arrToFetch работаем с полученным массивом из промисов
-            iteratingArray.forEach(post => {                                          // С помощью "forEach" достаём каждый элемент массива и выводим его в консоль
-                console.log(post);                                                   // Вывод каждого элемента массива в консоль
+    Promise.all(promiseArray)                                                           
+        .then((iteratingArray) => {                                                     
+            iteratingArray.forEach(post => {                                            
+                console.log(post);                                                      
             });
         })
-        .catch(error => {                                                            // .catch помогает обрабатывать ошибки
-            console.error(`Error fetching data:\n`, error);                         // используем метод "console.error" что бы локировать ошибки в консоль
+        .catch(error => {                                                               
+            console.error(`Error fetching data:\n`, error);                             
         });
 }
-
-
-
 {
-    async function getPasedJson(postId: number): Promise<object> {                                   // Используем async функцию, что бы была возможность использовать await вместо .then                     
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)  // С помощью await мы ждём, пока fetch выполнится и только тогда мы идём дальше
-        if (!response.ok) {                                                                     // Обрабатываем ошибку в лсучае, если статус код ответа будет !== 2ХХ
-            throw new Error(`${response.status} (${response.statusText})`);                     // кастомная ошибка
-        }
-        return await response.json();                                                           // С помощью await жёдм пока тело ответа парсится в JSON
-    }
-    const IdPosts: number[] = [3, 7, 15, 23];                                                   // Массив IDs, которые нам нужно достать из сервера
+    const getPasedJson = async (postId: number): Promise<object> => {                                                       
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)        
+        if (!response.ok) {                                                                         
+            throw new Error(`${response.status} (${response.statusText})`);                         
+        };
+        const jsonResponse = await response.json();
+        return jsonResponse;                                                               
+    };
 
-    async function fetchPosts() {                                                               // Используем async функцию, что бы была возможность использовать await вместо .then
-        const promiseArray = IdPosts.map(async (post) => await getPasedJson(post));                      // С помощью метода .map перебираем изначальный массив и создаём новый массив, состоящий из промисов.
-        const iteratedArray = await Promise.all(promiseArray);                                    // С помощью await ждём пока все промисы зарезолвятся
-        iteratedArray.forEach((post: object) => {                                               // С помощью ForEach перебираем все элементы полученного массива и выводим их в консоль
-            console.log(post);                                                                  // Вывод элементов массива в консоль
+    const IdPosts: number[] = [3, 7, 15, 23];                                                       
+
+    const fetchPosts = async () => {                                                                   
+        const promiseArray = IdPosts.map(async (post) => await getPasedJson(post));                 
+        const iteratedArray = await Promise.all(promiseArray);                                      
+        iteratedArray.forEach((post: object) => {                                                  
+            console.log(post);                                                                      
         });
-    }
+    };
 
-    fetchPosts().catch(error => {                                                               // Обрабатываем ошибки, полученные в результате резолва промисов
-        console.error(`Error fetching data:\n`, error);                                         // Вывод ошибок в консоль
+    fetchPosts().catch(error => {                                                                   
+        console.error(`Error fetching data:\n`, error);                                             
     });
-
 }
+/*
+- Реализуйте приложение:
+  - Перейдите по ссылке `https://jsonplaceholder.typicode.com/`
+  - Во вкладке `Resources` лежит ключ `/todos` - Это именно те данные которые нам нужны
+  - Далее напишите две функции `getTodos` & `printTodos`
+    - Функция `getTodos` делает запрос по указанному адресу и забирает данные.
+    - Функция `printTodos` создает массив объектов, объект записывает id и title объекта с делом. Вывести полученный результат в консоль
+*/
+{
+    function getTodos() {                                                                                       
+        return fetch(`https://jsonplaceholder.typicode.com/todos`)                  
+            .then(response => {                                                     
+                if (!response.ok) {                                                 
+                    throw new Error(`${response.status} ${response.statusText}`)    
+                };
+                    return response.json()                                          
+            }) 
+            .catch(error => {                                                       
+                console.error(`Error fetching todos: ${error.message}`);
+            });
+    };
 
+   const printTodos = (todos) => {                                                      
+    const todoList = todos.map(todo => {                                            
+        return {id: todo.id, title: todo.title};                                    
+    });
+       console.log(todoList);                                                       
+    };
 
+getTodos()                                                                          
+  .then(todos => {                                                                   
+    printTodos(todos);                                                              
+  })
+  .catch(error => {                                                                 
+    console.error(error.message);                                                   
+  });
+} 
+{
+    const getTodos= async () => {
+        try {
+        const fetchTodos = await fetch(`https://jsonplaceholder.typicode.com/todos`);
+        if(!fetchTodos.ok) {
+            throw new Error(`Response error: ${fetchTodos.status} ${fetchTodos.statusText}`);
+        };
+        const jsonTodos = await fetchTodos.json();
+        return jsonTodos;
+        } catch (error) {
+            console.log(`Error fetching todos: ${error.message}`)
+        };
+    };
+
+    const printTodos = async () => {
+        try {
+            const todosFunc = await getTodos();
+            if (!todosFunc) {
+                return;
+            };
+        const  newObjects = todosFunc.map(todos => {
+            return {id: todos.id, title: todos.title}
+        });
+        console.log(newObjects)
+    } catch (error) {
+        console.log(`Error printing todos: ${error.message}`);
+    };
+    };
+    printTodos();
+}
