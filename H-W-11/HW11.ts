@@ -27,7 +27,7 @@ type FetchPostFunction = (postId: number) => Promise<Post>;
                 return response.json();
             });
     }
-    const IdPosts: number[] = [3, 7, 15, 23];
+    const IdPosts: number[] = [15, 23, 7, 3];
     const promiseArray: Promise<Post>[] = IdPosts.map((post) => getParsedJson(post));
 
     Promise.all(promiseArray)
@@ -50,7 +50,7 @@ type FetchPostFunction = (postId: number) => Promise<Post>;
         return jsonResponse;
     };
 
-    const IdPosts: number[] = [3, 7, 15, 23];
+    const IdPosts: number[] = [15, 23, 7, 3];
 
     const fetchPosts = async () => {
         const promiseArray = IdPosts.map(async (post) => await getParsedJson(post));
@@ -73,9 +73,12 @@ type FetchPostFunction = (postId: number) => Promise<Post>;
     - Функция `printTodos` создает массив объектов, объект записывает id и title объекта с делом. Вывести полученный результат в консоль
 */
 interface Todo {
+    userId?: number;
     id: number;
     title: string;
+    completed?: boolean;
 }
+
 {
     const getTodos = (): Promise<Todo[]> => {
         return fetch(`https://jsonplaceholder.typicode.com/todos`)
@@ -90,7 +93,7 @@ interface Todo {
             });
     };
 
-    const printTodos = (todos: Todo[]) => {
+    const printTodos = (todos: Todo[]): void => {
         const todoList: Todo[] = todos.map((todo: Todo) => {
             return { id: todo.id, title: todo.title };
         });
@@ -105,10 +108,6 @@ interface Todo {
             console.error(error.message);
         });
 }
-interface Todo {
-    id: number;
-    title: string;
-}
 {
     const getTodos = async (): Promise<Todo[]> => {
         try {
@@ -116,24 +115,26 @@ interface Todo {
             if (!fetchTodos.ok) {
                 throw new Error(`Response error: ${fetchTodos.status} ${fetchTodos.statusText}`);
             };
-            const jsonTodos = await fetchTodos.json();
+            const jsonTodos: Todo[] = await fetchTodos.json();
             return jsonTodos;
         } catch (error) {
             console.error(`Error fetching todos: ${error.message}`);
-            return Promise.reject(`Error fetching todos: ${error.message}`);
+            return[];
         };
     };
 
     const printTodos = async () => {
         try {
-            const todosFunc = await getTodos();
-            if (!todosFunc) {
+            const todosArray: Todo[] = await getTodos();
+            if (!todosArray) {
+                console.error("Error fetching todos: No data returned");
                 return;
             };
-            const newObjects: Todo[] = todosFunc.map(todos => {
-                return { id: todos.id, title: todos.title }
-            });
-            console.log(newObjects)
+            const mappedTodos: Todo[] = todosArray.map(todos => ({
+                id: todos.id, 
+                title: todos.title, 
+            }));
+            console.log(mappedTodos);
         } catch (error) {
             console.error(`Error printing todos: ${error}`);
         };
