@@ -1,5 +1,3 @@
-import { random } from "lodash";
-
 class Car {
     minimumMoney: number;
     maximumMoney: number;
@@ -7,10 +5,6 @@ class Car {
     constructor(myMoneyMin:number, myMoneyMax:number) {
         this.minimumMoney=myMoneyMin;
         this.maximumMoney=myMoneyMax;
-    }
-    getMoneyForCar ():number {
-        const moneyForCar = random(this.minimumMoney, this.maximumMoney);
-        return moneyForCar;
     }
     
 }

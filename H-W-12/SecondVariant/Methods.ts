@@ -1,3 +1,10 @@
+import { random } from "lodash";
+
+export function getMoneyForCar ():number {
+    const moneyForCar = random(this.minimumMoney, this.maximumMoney);
+    return moneyForCar;
+}
+
 export function isEnoughMoney(): string {
     let myWholeMoney: number = this.getMoneyForCar(),
         carPrice = this.carPrice,
