@@ -1,4 +1,4 @@
-import { Car } from "./ParentClass";
+import { Car } from "./class-car";
 
 class Mercedesbenz extends Car {
     carPrice: number;
@@ -19,7 +19,7 @@ class Mercedesbenz extends Car {
         }
         const taxedPrice = this.carPrice * (this.taxRate / 100);
         if (myWholeMoney < taxedPrice) {
-            throw new Error(`Sorry, you are still not have enough money`);
+            throw new Error(`Sorry, You still do not have enough money`);
         }
         return `Congratilations! You can buy a car!`;
     }

@@ -1,4 +1,4 @@
-import { Car } from "./ParentClass";
+import { Car } from "./class-car";
 
 class Lada extends Car {
     carPrice: number;
@@ -19,18 +19,18 @@ class Lada extends Car {
         return `Wow! You can buy ${numberOfCars} car(s)!!`;
     }
 
-    calculateNumberOfCarsWithDiscount(personalDescount: number): string {
-        if (personalDescount < 0 || personalDescount > 100) {
+    calculateNumberOfCarsWithDiscount(personalDiscount: number): string {
+        if (personalDiscount < 0 || personalDiscount > 100) {
             throw new Error('Invalid discount value');
         }
         const myWholeMOney = super.getMoneyForCar();
         let numberOfCars: number = 0;
-        let totalSumWithDiscount: number = this.carPrice * (personalDescount / 100);
+        let totalSumWithDiscount: number = this.carPrice * (personalDiscount / 100);
         for (let i = this.carPrice; i <= myWholeMOney; i += this.carPrice - totalSumWithDiscount) {
             numberOfCars++;
         }
         if (numberOfCars * totalSumWithDiscount > myWholeMOney) {
-            throw new Error(`Sorry, you are not rich enough even with dicount :(`);
+            throw new Error(`Sorry, you are not rich enough even with discount :(`);
         }
         return `Wow! You can buy ${numberOfCars} car(s) with discount!!`;
     }
