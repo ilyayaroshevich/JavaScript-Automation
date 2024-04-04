@@ -3,9 +3,6 @@ import { Car } from "./class-car";
 class Mercedesbenz extends Car {
     carPrice: number;
     taxRate: number;
-    minimumMoney: number;
-    maximumMoney: number;
-
 
     constructor(minimumMoney: number, maximumMoney: number, carPrice: number, taxRate: number) {
         super(minimumMoney, maximumMoney);

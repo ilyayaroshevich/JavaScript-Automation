@@ -1,6 +1,6 @@
 import { random } from "lodash";
 
-export class Car {
+class Car {
     minimumMoney: number;
     maximumMoney: number;
 

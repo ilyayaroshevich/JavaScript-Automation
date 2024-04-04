@@ -2,8 +2,6 @@ import { Car } from "./class-car";
 
 class Lada extends Car {
     carPrice: number;
-    minimumMoney: number;
-    maximumMoney: number;
 
 
     constructor(minimumMoney: number, maximumMoney: number, carPrice: number) {
