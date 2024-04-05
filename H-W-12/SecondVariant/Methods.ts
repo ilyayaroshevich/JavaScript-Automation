@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 
-export function getMoneyForCar(minimumMoney:number,maximumMoney:number): number {
+export function getMoneyForCar(minimumMoney: number, maximumMoney: number): number {
     const moneyForCar = _.random(minimumMoney, maximumMoney);
     return moneyForCar;
 }
@@ -20,7 +20,7 @@ export function isEnoughMoney(): string {
     return `Congratilations! You can buy a car!`;
 }
 
-export function canAffordAdditionalServices(moneyForBlackDay:number): string {
+export function canAffordAdditionalServices(moneyForBlackDay: number): string {
     const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
     const carPrice = this.carPrice;
     const taxRate = this.taxRate;

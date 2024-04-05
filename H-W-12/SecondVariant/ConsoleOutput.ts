@@ -1,6 +1,7 @@
 import * as classes from "./classes";
 import * as methods from "./methods";
 
+
 try {
     const newMercedesbenz = new classes.Mercedesbenz(100, 200, 10, 10);
     console.log(methods.isEnoughMoney.call(newMercedesbenz));
@@ -16,3 +17,4 @@ try {
 } catch (error) {
     console.error(error.message);
 }
+

@@ -3,7 +3,7 @@
     "target": "es2020",
     "removeComments": true,
     "outDir": "Compiled",
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "module": "commonjs",  
     "types": ["node", "lodash"],                         
     "typeRoots": ["./node_modules/@types"],              
