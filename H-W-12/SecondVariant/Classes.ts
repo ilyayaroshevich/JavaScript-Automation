@@ -1,10 +1,10 @@
-class Car {
+export class Car {
     minimumMoney: number;
     maximumMoney: number;
 
-    constructor(myMoneyMin:number, myMoneyMax:number) {
-        this.minimumMoney=myMoneyMin;
-        this.maximumMoney=myMoneyMax;
+    constructor(minimumMoney:number, maximumMoney:number) {
+        this.minimumMoney=minimumMoney;
+        this.maximumMoney=maximumMoney;
     }
     
 }

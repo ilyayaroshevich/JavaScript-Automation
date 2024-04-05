@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es2020",
     "removeComments": true,
-    "outDir": "Compiled"
+    "outDir": "Compiled",
+    "esModuleInterop": true
   },
   "files": [
     "./H-W-1_and_H-W-2/test1.ts",
