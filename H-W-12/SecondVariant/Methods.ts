@@ -1,5 +1,4 @@
 import * as _ from "lodash";
-import { Lada, Mercedesbenz, Car } from "./classes";
 
 export function getMoneyForCar(minimumMoney:number,maximumMoney:number): number {
     const moneyForCar = _.random(minimumMoney, maximumMoney);
