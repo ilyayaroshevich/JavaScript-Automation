@@ -1,15 +1,15 @@
 import * as _ from "lodash";
 import { Lada, Mercedesbenz, Car } from "./classes";
 
-export function getMoneyForCar(car: Mercedesbenz | Car | Lada): number {
-    const moneyForCar = _.random(car.minimumMoney, car.maximumMoney);
+export function getMoneyForCar(minimumMoney:number,maximumMoney:number): number {
+    const moneyForCar = _.random(minimumMoney, maximumMoney);
     return moneyForCar;
 }
 
-export function isEnoughMoney(car: Mercedesbenz): string {
-    const myWholeMoney: number = getMoneyForCar(car);
-    const carPrice = car.carPrice;
-    const taxRate = car.taxRate;
+export function isEnoughMoney(): string {
+    const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
+    const carPrice = this.carPrice;
+    const taxRate = this.taxRate;
 
     if (myWholeMoney < carPrice) {
         throw new Error(`Sorry, you are not rich enough`);
@@ -21,10 +21,10 @@ export function isEnoughMoney(car: Mercedesbenz): string {
     return `Congratilations! You can buy a car!`;
 }
 
-export function canAffordAdditionalServices(car: Mercedesbenz, moneyForBlackDay: number): string {
-    const myWholeMoney: number = getMoneyForCar(car);
-    const carPrice = car.carPrice;
-    const taxRate = car.taxRate;
+export function canAffordAdditionalServices(moneyForBlackDay:number): string {
+    const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
+    const carPrice = this.carPrice;
+    const taxRate = this.taxRate;
     const taxedPrice = carPrice * (taxRate / 100);
     const cashBalance = myWholeMoney - taxedPrice;
     if (cashBalance < myWholeMoney * (moneyForBlackDay / 100)) {
@@ -33,9 +33,9 @@ export function canAffordAdditionalServices(car: Mercedesbenz, moneyForBlackDay:
     return `Oh my, you can buy additional services yet!`;
 }
 
-export function calculateNumberOfCarsWithoutDiscount(car: Lada): string {
-    const myWholeMoney: number = getMoneyForCar(car);
-    const carPrice = car.carPrice;
+export function calculateNumberOfCarsWithoutDiscount(): string {
+    const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
+    const carPrice = this.carPrice;
     let numberOfCars = Math.floor(myWholeMoney / carPrice);
     if (numberOfCars <= 0) {
         throw new Error(`Sorry, you are not rich enough`);
@@ -43,9 +43,9 @@ export function calculateNumberOfCarsWithoutDiscount(car: Lada): string {
     return `Wow! You can buy ${numberOfCars} car(s)!!`;
 }
 
-export function calculateNumberOfCarsWithDiscount(car: Lada, personalDiscount: number): string {
-    const myWholeMoney: number = getMoneyForCar(car);
-    const carPrice = car.carPrice;
+export function calculateNumberOfCarsWithDiscount(personalDiscount: number): string {
+    const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
+    const carPrice = this.carPrice;
     if (personalDiscount < 0 || personalDiscount > 100) {
         throw new Error('Invalid discount value');
     }
