@@ -6,7 +6,7 @@ export function getMoneyForCar(minimumMoney: number, maximumMoney: number): numb
 }
 
 export function isEnoughMoney(): string {
-    const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
+    const myWholeMoney: number = getMoneyForCar.call(this, this.minimumMoney, this.maximumMoney);
     const carPrice = this.carPrice;
     const taxRate = this.taxRate;
 
@@ -21,7 +21,7 @@ export function isEnoughMoney(): string {
 }
 
 export function canAffordAdditionalServices(moneyForBlackDay: number): string {
-    const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
+    const myWholeMoney: number = getMoneyForCar.call(this, this.minimumMoney, this.maximumMoney);
     const carPrice = this.carPrice;
     const taxRate = this.taxRate;
     const taxedPrice = carPrice * (taxRate / 100);
@@ -33,7 +33,7 @@ export function canAffordAdditionalServices(moneyForBlackDay: number): string {
 }
 
 export function calculateNumberOfCarsWithoutDiscount(): string {
-    const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
+    const myWholeMoney: number = getMoneyForCar.call(this, this.minimumMoney, this.maximumMoney);
     const carPrice = this.carPrice;
     let numberOfCars = Math.floor(myWholeMoney / carPrice);
     if (numberOfCars <= 0) {
@@ -43,7 +43,7 @@ export function calculateNumberOfCarsWithoutDiscount(): string {
 }
 
 export function calculateNumberOfCarsWithDiscount(personalDiscount: number): string {
-    const myWholeMoney: number = getMoneyForCar.call(this.minimumMoney, this.maximumMoney);
+    const myWholeMoney: number = getMoneyForCar.call(this, this.minimumMoney, this.maximumMoney);
     const carPrice = this.carPrice;
     if (personalDiscount < 0 || personalDiscount > 100) {
         throw new Error('Invalid discount value');

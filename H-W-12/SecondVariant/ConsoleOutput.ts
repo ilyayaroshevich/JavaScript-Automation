@@ -7,7 +7,7 @@ try {
     console.log(methods.isEnoughMoney.call(newMercedesbenz));
     console.log(methods.canAffordAdditionalServices.call(newMercedesbenz, 5));
 } catch (error) {
-    console.error(error.message);
+    console.error(error);
 }
 
 try {
@@ -15,6 +15,6 @@ try {
     console.log(methods.calculateNumberOfCarsWithoutDiscount.call(newLada));
     console.log(methods.calculateNumberOfCarsWithDiscount.call(newLada, 5));
 } catch (error) {
-    console.error(error.message);
+    console.error(error);
 }
 
