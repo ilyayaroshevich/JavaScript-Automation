@@ -63,7 +63,7 @@ export function calculateNumberOfCarsWithDiscount(personalDiscount: number): str
 }
 
 
-export function write_json_sync(file_name: string, data: any[]) {
+export function writeJsonSync(file_name: string, data: any[]) {
     const file_path = path.join(__dirname, '/../RecorderResult', file_name);
     try {
         console.log('Platform info: ' + os.platform());

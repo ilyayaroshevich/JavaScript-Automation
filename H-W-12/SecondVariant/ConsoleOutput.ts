@@ -25,13 +25,13 @@ try {
         methods.isEnoughMoney.call(newMercedesbenz),
         methods.canAffordAdditionalServices.call(newMercedesbenz, 5),
     ];
-    methods.write_json_sync('mercedesbenz_result.ts', mercedesbenzResults);
+    methods.writeJsonSync('mercedesbenz_result.ts', mercedesbenzResults);
     let newLada = new classes.Lada(200, 300, 5);
     const ladaResults = [
         methods.calculateNumberOfCarsWithoutDiscount.call(newLada),
         methods.calculateNumberOfCarsWithDiscount.call(newLada, 5)
     ];
-    methods.write_json_sync('lada_result.ts', ladaResults);
+    methods.writeJsonSync('lada_result.ts', ladaResults);
 } catch (error) {
     console.error(error);
 }
