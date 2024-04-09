@@ -18,3 +18,21 @@ try {
     console.error(error);
 }
 
+
+try {
+    const newMercedesbenz = new classes.Mercedesbenz(200, 300, 5, 5);
+    const mercedesbenzResults = [
+        methods.isEnoughMoney.call(newMercedesbenz),
+        methods.canAffordAdditionalServices.call(newMercedesbenz, 5),
+    ];
+    methods.writeJsonSync('mercedesbenz_result.ts', mercedesbenzResults);
+    let newLada = new classes.Lada(200, 300, 5);
+    const ladaResults = [
+        methods.calculateNumberOfCarsWithoutDiscount.call(newLada),
+        methods.calculateNumberOfCarsWithDiscount.call(newLada, 5)
+    ];
+    methods.writeJsonSync('lada_result.ts', ladaResults);
+} catch (error) {
+    console.error(error);
+}
+

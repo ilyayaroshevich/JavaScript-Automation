@@ -1,4 +1,7 @@
 import * as _ from "lodash";
+import * as path from 'path';
+import * as fs from 'fs';
+import * as os from 'os';
 
 export function getMoneyForCar(minimumMoney: number, maximumMoney: number): number {
     const moneyForCar = _.random(minimumMoney, maximumMoney);
@@ -57,4 +60,18 @@ export function calculateNumberOfCarsWithDiscount(personalDiscount: number): str
         throw new Error(`Sorry, you are not rich enough even with dicount :(`);
     }
     return `Wow! You can buy ${numberOfCars} car(s) with discount!!`;
+}
+
+
+export function writeJsonSync(file_name: string, data: any[]) {
+    const file_path = path.join(__dirname, '/../RecorderResult', file_name);
+    try {
+        console.log('Platform info: ' + os.platform());
+        console.log('Platform version: ' + os.version());
+        const jsonData = JSON.stringify(data, null, 2);
+        fs.writeFileSync(file_path, jsonData);
+        console.log('> ' + file_path + ' file was successfully created\n');
+    } catch (error) {
+        throw error;
+    }
 }
