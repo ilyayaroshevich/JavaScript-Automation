@@ -5,7 +5,12 @@
     "outDir": "Compiled",
     "esModuleInterop": false,
     "module": "commonjs",  
-    "types": ["node", "lodash"],                         
+    "types": [
+      "node", 
+      "lodash", 
+      "mocha", 
+      "jest"
+    ],                         
     "typeRoots": ["./node_modules/@types"],              
     "resolveJsonModule": true,
     "useDefineForClassFields": true,
@@ -19,12 +24,6 @@
     "forceConsistentCasingInFileNames": true,            
     "strict": true,                                      
     "noImplicitThis": false,                             
-    "noImplicitAny": false
-  },
-  "files": [
-    "./H-W-1_and_H-W-2/test1.ts",
-    "./H-W-1_and_H-W-2/test2.ts",
-    "./H-W-1_and_H-W-2/test3.ts",
-    "H-W-3/Normal_And_Advanced_levels.ts"
-  ]
+    "noImplicitAny": false,
+  }
 }

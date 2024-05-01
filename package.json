@@ -4,25 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "hw1_1": "tsc ./H-W-1_and_H-W-2/test1.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
-    "hw1_2": "tsc ./H-W-1_and_H-W-2/test2.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
-    "hw1_3": "tsc ./H-W-1_and_H-W-2/test3.ts -t ES5 --removeComments --outDir ./H-W-1_and_H-W-2/Compiled",
-    "hw3": "ts-node ./H-W-3/Normal_And_advanced_levels.ts",
-    "hw4": "ts-node ./H-W-4/Normal_level.ts",
-    "hw5": "ts-node ./H-W-5/H-W-5.ts",
-    "format": "npx prettier --write ."
+    "test_mocha": "mocha --config='.mocharc.json'",
+    "test_jest": "jest --config='jest.config.js'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/chai": "^4.3.14",
+    "@types/node": "^20.12.7",
+    "assert": "^2.1.0",
     "axios": "^1.6.8",
+    "chai": "^5.1.0",
     "cross-fetch": "^4.0.0",
+    "jest": "^29.7.0",
     "lodash": "^4.17.21",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@types/assert": "^1.5.10",
+    "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.202",
+    "@types/mocha": "^10.0.6",
     "prettier": "^3.2.5",
+    "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2"
   }
 }

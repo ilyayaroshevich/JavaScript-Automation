@@ -1,5 +1,5 @@
-import * as classes from "./classes";
-import * as methods from "./methods";
+import * as classes from "./Classes";
+import * as methods from "./Methods";
 
 
 try {
