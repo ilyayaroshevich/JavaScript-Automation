@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test_mocha": "mocha --config='H-W-17/.mocharc.json'",
-    "test_jest": "jest --config='jest.config.js'"
+    "test_mocha": "mocha --config='H-W-17\\Tests\\.mocharc.json'",
+    "test_jest": "jest --config='H-W-17\\Tests\\jest.config.js'"
   },
   "author": "",
   "license": "ISC",

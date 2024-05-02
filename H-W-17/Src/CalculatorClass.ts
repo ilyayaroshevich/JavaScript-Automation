@@ -20,7 +20,7 @@ export class Calculator {
         return a / b;
     }
 
-    calculate(a: number, b: number, operation: string): number {
+    calculate(a: number, b: number, operation: string): any {
         switch (operation) {
             case "add":
                 return this.add(a, b);

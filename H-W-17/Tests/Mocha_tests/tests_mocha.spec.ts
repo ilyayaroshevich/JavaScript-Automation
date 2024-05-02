@@ -1,6 +1,7 @@
-import { Calculator } from "../Src/CalculatorClass";
+import { Calculator } from "../../Src/CalculatorClass";
 import * as assert from 'assert';
 import { expect } from "chai";
+
 
 // describe("Mocha + asserts tests", () => {
 //     it("checks additions two positive digits", () => {
@@ -108,3 +109,4 @@ describe("Mocha + chai tests", () => {
         expect(result, "Result is not equal to expected result").to.throw(Error);
     });
 });
+
