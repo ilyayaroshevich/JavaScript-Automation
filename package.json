@@ -4,17 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test_mocha": "mocha --config='.mocharc.json'",
+    "test_mocha": "mocha --config='H-W-17/.mocharc.json'",
     "test_jest": "jest --config='jest.config.js'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/chai": "^4.3.14",
     "@types/node": "^20.12.7",
     "assert": "^2.1.0",
     "axios": "^1.6.8",
-    "chai": "^5.1.0",
     "cross-fetch": "^4.0.0",
     "jest": "^29.7.0",
     "lodash": "^4.17.21",
@@ -23,9 +21,12 @@
   },
   "devDependencies": {
     "@types/assert": "^1.5.10",
+    "@types/chai": "^4.3.15",
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.202",
     "@types/mocha": "^10.0.6",
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
     "prettier": "^3.2.5",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2"
