@@ -1,5 +1,5 @@
 import { Calculator } from "../../Src/CalculatorClass";
-import { expect } from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 
 describe("Jest tests", () => {
     test("checks additions two positive digits", () => {
@@ -49,7 +49,6 @@ describe("Jest tests", () => {
     });
     it("checks dividing one positive and one 0", () => {
         const calculator = new Calculator();
-        const result = calculator.calculate(-10, 2, 'divide');
-        expect(result).toThrow(Error);
+        expect(() => calculator.calculate(10, 0, 'divide')).toThrowError(Error);
     });
 });
