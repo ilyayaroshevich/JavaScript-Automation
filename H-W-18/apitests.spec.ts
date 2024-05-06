@@ -9,12 +9,16 @@ describe('GetApiTests', () => {
         expect(response.body.data).toEqual(expectedDataObject);
         expect(response.body.support).toEqual(expectedSupportObject);
     });
-    //                                             !I dont know how to resolve it!
-    // test('getNonExistedUser', async () => {
-    //     let response: any = await getRequest('https://reqres.in/api/users/23');
-    //     expect(response.status).toBe(404);
-    // });
+
+    test('get non-existed user', async () => {
+        await getRequest(`https://reqres.in/api/users/23`).catch((error) => {
+            expect(error.status).toBe(404);
+            expect(error.message).toBe('Not Found');
+            return error;
+        });
+    });
 });
+
 
 describe('PostApiTests', () => {
     test('createUser', async () => {

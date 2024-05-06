@@ -2,10 +2,10 @@ import * as superagent from 'superagent';
 
 export async function getRequest(url: string): Promise<any> {
     try {
-        const response: any = await superagent.get(url);
+        const response = await superagent.get(url);
         return response;
     } catch (error) {
-        console.log(error);
+        throw error;
     };
 };
 
