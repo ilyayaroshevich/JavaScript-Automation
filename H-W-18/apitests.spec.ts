@@ -11,10 +11,7 @@ describe('GetApiTests', () => {
     });
 
     test('get non-existed user', async () => {
-        await expect(getRequest(`https://reqres.in/api/users/23`)).rejects.toMatchObject({
-            status: 404,
-            message: 'Not Found',
-        });
+        await expect(getRequest(`https://reqres.in/api/users/23`)).rejects.toMatchObject(expectedObjectWhen404Error);
     });
 });
 
@@ -84,5 +81,6 @@ import {
     expectedSupportObject,
     expectedPostObject,
     newData,
-    expectedPostObjectNumbers
+    expectedPostObjectNumbers,
+    expectedObjectWhen404Error
 } from './Consts/consts';

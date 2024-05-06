@@ -1,5 +1,5 @@
-export let expectedDataObject: 
-{ id: number, email: string, first_name: string, last_name: string, avatar: string } = 
+export let expectedDataObject:
+    { id: number, email: string, first_name: string, last_name: string, avatar: string } =
 {
     "id": 2,
     "email": "janet.weaver@reqres.in",
@@ -24,3 +24,8 @@ export let expectedPostObjectNumbers: { name?: string | number, job?: string | n
     name: 1,
     job: 1
 };
+
+export let expectedObjectWhen404Error: { status?: number, message?: string } = {
+    status: 404,
+    message: 'Not Found',
+}
