@@ -11,10 +11,9 @@ describe('GetApiTests', () => {
     });
 
     test('get non-existed user', async () => {
-        await getRequest(`https://reqres.in/api/users/23`).catch((error) => {
-            expect(error.status).toBe(404);
-            expect(error.message).toBe('Not Found');
-            return error;
+        await expect(getRequest(`https://reqres.in/api/users/23`)).rejects.toMatchObject({
+            status: 404,
+            message: 'Not Found',
         });
     });
 });
