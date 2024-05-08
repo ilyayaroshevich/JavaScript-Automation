@@ -1,5 +1,5 @@
 import { Calculator } from "../../Src/CalculatorClass";
-import { describe, expect, test, beforeEach, afterEach } from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 
 describe("Jest tests", () => {
     let calculator: Calculator;
