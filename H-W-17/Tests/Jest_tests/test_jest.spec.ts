@@ -1,7 +1,5 @@
 import { Calculator } from "../../Src/CalculatorClass";
 import { describe, expect, test } from '@jest/globals';
-import 'jest-expected-message';
-
 
 
 describe("Jest tests", () => {
