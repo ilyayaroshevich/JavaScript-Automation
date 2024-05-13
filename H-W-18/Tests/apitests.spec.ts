@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { getRequest, postRequest, putRequest, patchRequest, deleteRequest } from './Src/functions';
+import { getRequest, postRequest, putRequest, patchRequest, deleteRequest } from '../Src/functions';
 import {
     expectedDataObject,
     expectedSupportObject,
@@ -7,7 +7,7 @@ import {
     newData,
     expectedPostObjectNumbers,
     expectedObjectWhen404Error
-} from './Consts/consts';
+} from '../Consts/consts';
 
 describe('GetApiTests', () => {
     test('getListUsers', async () => {
