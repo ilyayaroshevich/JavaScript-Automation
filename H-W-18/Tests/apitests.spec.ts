@@ -21,10 +21,6 @@ describe('GetApiTests', () => {
         expect(response.body.support).toEqual(expectedSupportObject);
     });
 
-    // test('get non-existed user', async () => {
-    //     await expect(getRequest(`https://reqres.in/api/users/23`)).rejects.toMatchObject(expectedObjectWhen404Error);
-    // });
-
     test('get non-existed user', async () => {
         const response = await getRequest(`https://reqres.in/api/users/23`);
         expect(response).toEqual(expectedObjectWhen404Error);
