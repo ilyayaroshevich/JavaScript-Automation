@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { getRequest, postRequest, putRequest, patchRequest, deleteRequest } from '../Src/functions';
+import { getRequest, postRequest, putRequest, patchRequest, deleteRequest } from '../Consts/consts';
 import {
     expectedDataObject,
     expectedSupportObject,
