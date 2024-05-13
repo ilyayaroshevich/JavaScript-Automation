@@ -1,3 +1,14 @@
+import { describe, expect, test } from '@jest/globals';
+import { getRequest, postRequest, putRequest, patchRequest, deleteRequest } from './Src/functions';
+import {
+    expectedDataObject,
+    expectedSupportObject,
+    expectedPostObject,
+    newData,
+    expectedPostObjectNumbers,
+    expectedObjectWhen404Error
+} from './Consts/consts';
+
 describe('GetApiTests', () => {
     test('getListUsers', async () => {
         let response = await getRequest('https://reqres.in/api/users?page=2');
@@ -74,13 +85,3 @@ describe('DeleteApitests', () => {
 
 
 
-import { describe, expect, test } from '@jest/globals';
-import { getRequest, postRequest, putRequest, patchRequest, deleteRequest } from './Src/functions';
-import {
-    expectedDataObject,
-    expectedSupportObject,
-    expectedPostObject,
-    newData,
-    expectedPostObjectNumbers,
-    expectedObjectWhen404Error
-} from './Consts/consts';
