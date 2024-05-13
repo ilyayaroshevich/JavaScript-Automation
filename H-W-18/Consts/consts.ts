@@ -5,8 +5,8 @@ export async function getRequest(url: string): Promise<any> {
     try {
         const response = await superagent.get(url);
         return response;
-    } catch (error) {
-        throw error;
+    } catch (error: any) {
+        return { error: error.message };
     };
 };
 
@@ -17,8 +17,8 @@ export async function postRequest(url: string, sentObject: { name?: string | any
             .set("Content-Type", "application/json")
             .send(sentObject);
         return response;
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        return { error: error.message };
     };
 };
 
@@ -28,8 +28,8 @@ export async function putRequest(url: string, newData: { name: string, job: stri
             .put(url)
             .send(newData);
         return response;
-    } catch (error) {
-        console.error(error);
+    } catch (error: any) {
+        return { error: error.message };
     };
 };
 
@@ -39,8 +39,8 @@ export async function patchRequest(url: string, newData: { name: string, job: st
             .patch(url)
             .send(newData);
         return response;
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        return { error: error.message };
     };
 };
 
@@ -48,8 +48,8 @@ export async function deleteRequest(url: string): Promise<any> {
     try {
         const response: any = await superagent.delete(url)
         return response;
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        return { error: error.message };
     };
 };
 
@@ -82,8 +82,7 @@ export const expectedPostObjectNumbers: { name?: string | number, job?: string |
     job: 1
 };
 
-export const expectedObjectWhen404Error: { status?: number, message?: string } = {
-    status: 404,
-    message: 'Not Found',
+export const expectedObjectWhen404Error: { error?: string } = {
+    error: 'Not Found',
 }
 
