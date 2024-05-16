@@ -12,8 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@types/jest": "^29.5.12",
-    "@types/superagent": "^8.1.7",
     "@types/node": "^20.12.7",
+    "@types/superagent": "^8.1.7",
     "assert": "^2.1.0",
     "axios": "^1.6.8",
     "chai": "^4.4.1",
