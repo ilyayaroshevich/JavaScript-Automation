@@ -6,7 +6,6 @@ import {
     expectedPostObject,
     newData,
     expectedPostObjectNumbers,
-    expectedObjectWhen404Error
 } from '../Consts/consts';
 
 describe('GetApiTests', () => {
@@ -23,7 +22,7 @@ describe('GetApiTests', () => {
 
     test('get non-existed user', async () => {
         const response = await getRequest(`https://reqres.in/api/users/23`);
-        expect(response).toEqual(expectedObjectWhen404Error);
+        expect(response.status).toBe(404);
     });
 });
 

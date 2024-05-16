@@ -3,12 +3,12 @@ import * as superagent from 'superagent';
 // functions 
 export async function getRequest(url: string): Promise<any> {
     try {
-        const response = await superagent.get(url);
-        return response;
+      const response = await superagent.get(url);
+      return response;
     } catch (error: any) {
-        return { error: error.message };
-    };
-};
+      return error;
+    }
+  }
 
 export async function postRequest(url: string, sentObject: { name?: string | any, job?: string | any }): Promise<any> {
     try {
@@ -18,7 +18,7 @@ export async function postRequest(url: string, sentObject: { name?: string | any
             .send(sentObject);
         return response;
     } catch (error: any) {
-        return { error: error.message };
+        return error;
     };
 };
 
@@ -29,7 +29,7 @@ export async function putRequest(url: string, newData: { name: string, job: stri
             .send(newData);
         return response;
     } catch (error: any) {
-        return { error: error.message };
+        return error;
     };
 };
 
@@ -40,7 +40,7 @@ export async function patchRequest(url: string, newData: { name: string, job: st
             .send(newData);
         return response;
     } catch (error: any) {
-        return { error: error.message };
+        return error;
     };
 };
 
@@ -49,7 +49,7 @@ export async function deleteRequest(url: string): Promise<any> {
         const response: any = await superagent.delete(url)
         return response;
     } catch (error: any) {
-        return { error: error.message };
+        return error;
     };
 };
 
@@ -82,7 +82,6 @@ export const expectedPostObjectNumbers: { name?: string | number, job?: string |
     job: 1
 };
 
-export const expectedObjectWhen404Error: { error?: string } = {
-    error: 'Not Found',
-}
+
+
 
