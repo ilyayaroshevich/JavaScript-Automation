@@ -14,10 +14,10 @@
     "@types/selenium-webdriver": "^4.1.22",
     "@types/superagent": "^8.1.7",
     "axios": "^1.6.8",
-    "chromedriver": "^124.0.3",
+    "chromedriver": "^124.0.4",
     "cross-fetch": "^4.0.0",
     "lodash": "^4.17.21",
-    "selenium-webdriver": "^4.20.0",
+    "selenium-webdriver": "^4.21.0",
     "superagent": "^9.0.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
