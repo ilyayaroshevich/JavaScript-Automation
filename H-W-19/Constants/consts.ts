@@ -1,5 +1,12 @@
-export const expectedMainURL:string = "https://www.onliner.by/";
-export const catalogLinkXpath:string = "//span[text()='Каталог' and @class = 'b-main-navigation__text']";
-export const expectedCatalogURL:string = 'https://catalog.onliner.by/';
-export const expectedCatalogTitle:string = 'Каталог Onlíner';
-export const expectedCatalogHeaderTextXpath:string = "//h1[text()='Каталог' and @class = 'catalog-navigation__title']";
+export const MainURL: string = "https://www.onliner.by/";
+export const catalogLinkXpath: string = "//span[text()='Каталог' and @class = 'b-main-navigation__text']";
+export const headphonesLinkXpath: string = "//a[@href = 'https://catalog.onliner.by/headphones?click_from_widget=true']";
+export const linkToHeadphonesXpath: string = "(//a[contains(text(),'Наушники Marshall Major IV (черный)')])[1]";
+export const buttonToAddGoodInBucketXpath: string = "//a[@data-shop-id='707' and text()='В корзину']";
+export const recommendsSideBarXpath: string = "//div[@class='product-recommended__sidebar-overflow']";
+export const textProductIsAddedXpath: string = "//div[contains(text(),'Товар добавлен в корзину')]";
+export const textHeadphonesAfterAddedXpath: string = "//div[contains(text(),'Наушники Marshall Major IV (черный)')]";
+export const productIsAddedText:string = "Товар добавлен в корзину";
+export const moveToBuckedSideBarXpath:string = "//a[contains(text(),'Перейти в корзину')]";
+export const continueBuyXpath:string = "//a[contains(text(),'Продолжить покупки')]";
+export const reccommendedToBuyXpath:string = "//span[contains(text(),'Рекомендуем купить в магазине')]";
