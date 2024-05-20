@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test_hw19": "jest --config='H-W-19\\jest.config.js'"
+    "test_hw19": "jest --config='H-W-19\\jest.config.js'",
     "test_hw18": "jest --config='H-W-18\\jest.config.js'",
     "test_mocha": "mocha --config='H-W-17\\Tests\\.mocharc.json'",
     "test_jest": "jest --config='H-W-17\\Tests\\jest.config.js'"
@@ -13,22 +13,17 @@
   "license": "ISC",
   "dependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.12",
-    "@types/selenium-webdriver": "^4.1.22",
-    "@types/superagent": "^8.1.7",
-    "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
+    "@types/selenium-webdriver": "^4.1.22",
     "@types/superagent": "^8.1.7",
     "assert": "^2.1.0",
     "axios": "^1.6.8",
-    "chromedriver": "^124.0.4",
     "chai": "^4.4.1",
+    "chromedriver": "^124.0.4",
     "cross-fetch": "^4.0.0",
     "jest": "^29.7.0",
     "lodash": "^4.17.21",
     "selenium-webdriver": "^4.21.0",
-    "superagent": "^9.0.2",
-    "ts-jest": "^29.1.2",
     "superagent": "^9.0.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
@@ -42,7 +37,6 @@
     "@types/mocha": "^10.0.6",
     "jest": "^29.7.0",
     "mocha": "^10.4.0",
-    "jest": "^29.7.0",
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
     "ts-mocha": "^10.0.0",
