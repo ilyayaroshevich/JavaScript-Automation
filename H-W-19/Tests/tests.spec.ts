@@ -18,45 +18,46 @@ describe('Onliner', () => {
     });
 
     test('Add product to cart', async () => {
-        const catalogButtonInHeaderElement = await driver.findElement(By.xpath(buttons.catalogInHeader));
-        await catalogButtonInHeaderElement.click();
+        const catalogButtonInHeader = await driver.findElement(By.xpath(buttons.catalogInHeader));
+        await catalogButtonInHeader.click();
         const headphonesButtonInCatalog = await driver.findElement(By.xpath(buttons.headphonesInCatalog));
         await headphonesButtonInCatalog.click();
         const headphonesLinkInCatalog = await driver.findElement(By.xpath(links.headphonesInCatalog));
         await headphonesLinkInCatalog.click();
-        const inCartButton = await driver.findElement(By.xpath(buttons.addToCart));
-        await inCartButton.click();
+        const addToCartButton = await driver.findElement(By.xpath(buttons.addToCart));
+        await addToCartButton.click();
         await driver.wait(until.elementLocated(By.xpath(popupElements.sideBar)), 30000, 'Timed out after 30 sec', 1000);
-        const productIsAddedTextElement = await driver.findElement(By.xpath(texts.productIsAdded));
-        const headphonesTextAfterAddedElement = await driver.findElement(By.xpath(texts.headphonesAfterAdded));
-        const moveToCartButtonElement = await driver.findElement(By.xpath(buttons.moveToCart));
-        const continueBuyButtonElement = await driver.findElement(By.xpath(buttons.continueToBuy));
-        const recommendedToBuyPupupElement = await driver.findElement(By.xpath(popupElements.recommendedToBuy));
-        const productIsAddedText = await productIsAddedTextElement.getText();
-        const moveToCartIsDisplayed = await moveToCartButtonElement.isDisplayed();
-        const continueBuyIsDisplayed = await continueBuyButtonElement.isDisplayed();
-        const recommendedToBuyIsPresent = await recommendedToBuyPupupElement.isDisplayed();
-        const productAddedToCart = await productIsAddedTextElement.isDisplayed();
-        const correctProductAddedToCart = await headphonesTextAfterAddedElement.isDisplayed();
-        expect(productIsAddedText).toContain("Товар добавлен в корзину");
-        expect(moveToCartIsDisplayed).toEqual(true);
-        expect(continueBuyIsDisplayed).toEqual(true);
-        expect(recommendedToBuyIsPresent).toEqual(true);
-        expect(productAddedToCart).toEqual(true);
-        expect(correctProductAddedToCart).toEqual(true);
+        const productIsAddedText = await driver.findElement(By.xpath(texts.productIsAdded));
+        const headphonesTextAfterAddedToCart = await driver.findElement(By.xpath(texts.headphonesAfterAdded));
+        const moveToCartButton = await driver.findElement(By.xpath(buttons.moveToCart));
+        const continueBuyButton = await driver.findElement(By.xpath(buttons.continueToBuy));
+        const recommendedToBuyPopup = await driver.findElement(By.xpath(popupElements.recommendedToBuy));
+        const textProductIsAdded = await productIsAddedText.isDisplayed();
+        const textHeadphonesAfterAddedToCart = await headphonesTextAfterAddedToCart.isDisplayed();
+        const moveToCartButtonIsDisplayed = await moveToCartButton.isDisplayed();
+        const continueBuyButtonIsDisplayed = await continueBuyButton.isDisplayed();
+        const recommendedToBuyPopupIsPresent = await recommendedToBuyPopup.isDisplayed();
+        expect(productIsAddedText.getText()).toContain("Товар добавлен в корзину");
+        expect(moveToCartButtonIsDisplayed).toEqual(true);
+        expect(continueBuyButtonIsDisplayed).toEqual(true);
+        expect(recommendedToBuyPopupIsPresent).toEqual(true);
+        expect(textProductIsAdded).toEqual(true);
+        expect(textHeadphonesAfterAddedToCart).toEqual(true);
     }, 50000);
+    
     test('Search in catalog', async () => {
-        const searchFieldInputElement = await driver.findElement(By.xpath(inputs.searchFieldOnMain));
-        await searchFieldInputElement.sendKeys('iPhone');
-        const fastSearchPopupElement = await driver.findElement(By.xpath(popupElements.fastSearchModal));
-        const fastSearchIsDisplayed = await fastSearchPopupElement.isDisplayed();
-        expect(fastSearchIsDisplayed).toEqual(true);
+        const searchFieldInput = await driver.findElement(By.xpath(inputs.searchFieldOnMain));
+        await searchFieldInput.sendKeys('iPhone');
+        const fastSearchPopup = await driver.findElement(By.xpath(popupElements.fastSearchModal));
+        const fastSearchPopupIsDisplayed = await fastSearchPopup.isDisplayed();
+        expect(fastSearchPopupIsDisplayed).toEqual(true);
     });
+    
     test('Unsuccessful login with empty fields', async () => {
-        const loginButtonElement = await driver.findElement(By.xpath(buttons.loginOnMain));
-        await loginButtonElement.click();
-        const buttonToLoginElement = await driver.findElement(By.xpath(buttons.loginOnLoginPage));
-        await buttonToLoginElement.click();
+        const loginButton = await driver.findElement(By.xpath(buttons.loginOnMain));
+        await loginButton.click();
+        const buttonToLogin = await driver.findElement(By.xpath(buttons.loginOnLoginPage));
+        await buttonToLogin.click();
         await driver.wait(until.elementLocated(By.xpath(texts.emailErrorOnLoginPage)), 30000, 'Timed out after 30 sec', 1000);
         await driver.wait(until.elementLocated(By.xpath(texts.passwordErrorOnLoginPage)), 30000, 'Timed out after 30 sec', 1000);
         const errorEmail = await driver.findElement(By.xpath(texts.emailErrorOnLoginPage));
@@ -66,34 +67,37 @@ describe('Onliner', () => {
         expect(textErrorEmail).toContain("Укажите ник или e-mail");
         expect(textErrorPassword).toContain("Укажите пароль");
     }, 30000);
+    
     test("Move to People page", async () => {
-        const peopleLinkElement = await driver.findElement(By.xpath(links.peopleElement));
-        await peopleLinkElement.click();
+        const peopleLink = await driver.findElement(By.xpath(links.peopleElement));
+        await peopleLink.click();
         await driver.wait(until.urlIs(urls.peopleSectionsURL), 30000, 'Timed out after 30 sec', 1000);
-        const selectedPeopleButtonElement = await driver.findElement(By.xpath(buttons.selectedPeople));
-        const peopleLinkHeaderElement = await driver.findElement(By.xpath(links.peopleHeader));
-        const textPeopleHeaderElement = await peopleLinkHeaderElement.getText();
-        const cssValueOfPeople = await selectedPeopleButtonElement.getCssValue("background-color");
-        expect(cssValueOfPeople).toEqual('rgba(225, 225, 225, 1)');
-        expect(textPeopleHeaderElement).toEqual('Все новости');
+        const selectedPeopleButton = await driver.findElement(By.xpath(buttons.selectedPeople));
+        const peopleLinkHeader = await driver.findElement(By.xpath(links.peopleHeader));
+        const textPeopleHeader = await peopleLinkHeader.getText();
+        const cssValueOfPeopleButton = await selectedPeopleButton.getCssValue("background-color");
+        expect(cssValueOfPeopleButton).toEqual('rgba(225, 225, 225, 1)');
+        expect(textPeopleHeader).toEqual('Все новости');
     }, 30000);
-    test("News drop down", async () => {
-        const newsButtonElement = await driver.findElement(By.xpath(buttons.newsInHeader));
+    
+    test("News dropdown", async () => {
+        const newsButton = await driver.findElement(By.xpath(buttons.newsInHeader));
         const actions = driver.actions({ async: true });
-        await actions.move({ origin: newsButtonElement }).perform();
+        await actions.move({ origin: newsButton }).perform();
         await driver.wait(until.elementLocated(By.xpath(popupElements.newsDropdown)), 30000, 'Timed out after 30 sec', 1000);
-        const newsDropdownPopupElement = await driver.findElement(By.xpath(popupElements.newsDropdown));
-        const newDropdownPopupIsVisible = await newsDropdownPopupElement.isDisplayed();
+        const newsDropdownPopup = await driver.findElement(By.xpath(popupElements.newsDropdown));
+        const newDropdownPopupIsVisible = await newsDropdownPopup.isDisplayed();
         expect(newDropdownPopupIsVisible).toEqual(true);
-        const peopleLinkInDropdownElement = await driver.findElement(By.xpath(links.peopleTitle)).getText();
-        const technoLinkDropdownElement = await driver.findElement(By.xpath(links.technoTitle)).getText();
-        const carLinkDropdownElement = await driver.findElement(By.xpath(links.carTitle)).getText();
-        const propLinkDropdownElement = await driver.findElement(By.xpath(links.propTitle)).getText();
-        expect(peopleLinkInDropdownElement).toContain('Люди');
-        expect(technoLinkDropdownElement).toContain('Технологии');
-        expect(carLinkDropdownElement).toContain('Авто');
-        expect(propLinkDropdownElement).toContain('Недвижимость');
-    })
+        const peopleLinkInDropdown = await driver.findElement(By.xpath(links.peopleTitle)).getText();
+        const technoLinkDropdown = await driver.findElement(By.xpath(links.technoTitle)).getText();
+        const carLinkDropdown = await driver.findElement(By.xpath(links.carTitle)).getText();
+        const propLinkDropdown = await driver.findElement(By.xpath(links.propTitle)).getText();
+        expect(peopleLinkInDropdown).toContain('Люди');
+        expect(technoLinkDropdown).toContain('Технологии');
+        expect(carLinkDropdown).toContain('Авто');
+        expect(propLinkDropdown).toContain('Недвижимость');
+    });
+    
     afterAll(async () => {
         await driver.close();
         await driver.quit();
