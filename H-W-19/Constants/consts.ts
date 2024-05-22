@@ -44,24 +44,13 @@ export const links = {
 
 }
 
-import driver from "../driver";
+// import driver from "../driver";
 
-import { By, until } from 'selenium-webdriver';
+// import { By, until } from 'selenium-webdriver';
 
-export async function findAndClickOnCatalogButtonInHeader() {
-    const catalogButtonInHeader = await driver.findElement(By.xpath(buttons.catalogInHeader));
-    await driver.wait(until.elementIsVisible(catalogButtonInHeader));
-    await catalogButtonInHeader.click();
-}
+// export async function findAndClickOnCatalogButtonInHeader() {
+//     const catalogButtonInHeader = await driver.findElement(By.xpath(buttons.catalogInHeader));
+//     await catalogButtonInHeader.click();
+// }
 
-export async function findAndClickOnHeadphonesLinkInCatalog() {
-    const headphonesButtonInCatalog = await driver.findElement(By.xpath(buttons.headphonesInCatalog));
-    await driver.wait(until.elementIsVisible(headphonesButtonInCatalog));
-    await headphonesButtonInCatalog.click();
-}
 
-export async function finsAndClickOnSPecificHeadphonesInCatalog() {
-    const headphonesLinkInCatalog = await driver.findElement(By.xpath(links.headphonesInCatalog));
-    await driver.wait(until.elementIsVisible(headphonesLinkInCatalog));
-    await headphonesLinkInCatalog.click();
-}

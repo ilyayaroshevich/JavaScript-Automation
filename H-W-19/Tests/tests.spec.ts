@@ -2,7 +2,7 @@ import { Builder, WebDriver, By, until } from "selenium-webdriver";
 import { describe, expect, test, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import { urls, buttons, texts, popupElements, links, inputs } from '../Constants/consts';
 import { only } from "node:test";
-import { findAndClickOnCatalogButtonInHeader, findAndClickOnHeadphonesLinkInCatalog, finsAndClickOnSPecificHeadphonesInCatalog } from "../Constants/consts";
+// import { findAndClickOnCatalogButtonInHeader } from "../Constants/consts";
 
 
 describe('Onliner', () => {
@@ -19,9 +19,13 @@ describe('Onliner', () => {
     });
 
     test.only('Add product to cart', async () => {
-        await findAndClickOnCatalogButtonInHeader();
-        await findAndClickOnHeadphonesLinkInCatalog();
-        await finsAndClickOnSPecificHeadphonesInCatalog();
+        const catalogButtonInHeader = await driver.findElement(By.xpath(buttons.catalogInHeader));
+        await catalogButtonInHeader.click();
+        const headphonesButtonInCatalog = await driver.findElement(By.xpath(buttons.headphonesInCatalog));
+        await driver.wait(until.elementIsVisible(headphonesButtonInCatalog));
+        await headphonesButtonInCatalog.click(); const headphonesLinkInCatalog = await driver.findElement(By.xpath(links.headphonesInCatalog));
+        await driver.wait(until.elementIsVisible(headphonesLinkInCatalog));
+        await headphonesLinkInCatalog.click();
         const addToCartButton = await driver.findElement(By.xpath(buttons.addToCart));
         await addToCartButton.click();
         await driver.wait(until.elementLocated(By.xpath(popupElements.sideBar)), 30000, 'Timed out after 30 sec', 1000);
