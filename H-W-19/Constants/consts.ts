@@ -53,3 +53,15 @@ export async function findAndClickOnCatalogButtonInHeader() {
     await driver.wait(until.elementIsVisible(catalogButtonInHeader));
     await catalogButtonInHeader.click();
 }
+
+export async function findAndClickOnHeadphonesLinkInCatalog() {
+    const headphonesButtonInCatalog = await driver.findElement(By.xpath(buttons.headphonesInCatalog));
+    await driver.wait(until.elementIsVisible(headphonesButtonInCatalog));
+    await headphonesButtonInCatalog.click();
+}
+
+export async function finsAndClickOnSPecificHeadphonesInCatalog() {
+    const headphonesLinkInCatalog = await driver.findElement(By.xpath(links.headphonesInCatalog));
+    await driver.wait(until.elementIsVisible(headphonesLinkInCatalog));
+    await headphonesLinkInCatalog.click();
+}
