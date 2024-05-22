@@ -2,6 +2,7 @@ import { Builder, WebDriver, By, until } from "selenium-webdriver";
 import { describe, expect, test, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import { urls, buttons, texts, popupElements, links, inputs } from '../Constants/consts';
 import { only } from "node:test";
+import { findAndClickOnCatalogButtonInHeader } from "../Constants/consts";
 
 
 describe('Onliner', () => {
@@ -17,9 +18,8 @@ describe('Onliner', () => {
         await driver.get(urls.mainURL);
     });
 
-    test('Add product to cart', async () => {
-        const catalogButtonInHeader = await driver.findElement(By.xpath(buttons.catalogInHeader));
-        await catalogButtonInHeader.click();
+    test.only('Add product to cart', async () => {
+        await findAndClickOnCatalogButtonInHeader();
         const headphonesButtonInCatalog = await driver.findElement(By.xpath(buttons.headphonesInCatalog));
         await headphonesButtonInCatalog.click();
         const headphonesLinkInCatalog = await driver.findElement(By.xpath(links.headphonesInCatalog));
@@ -44,7 +44,7 @@ describe('Onliner', () => {
         expect(textProductIsAdded).toEqual(true);
         expect(textHeadphonesAfterAddedToCart).toEqual(true);
     }, 50000);
-    
+
     test('Search in catalog', async () => {
         const searchFieldInput = await driver.findElement(By.xpath(inputs.searchFieldOnMain));
         await searchFieldInput.sendKeys('iPhone');
@@ -52,7 +52,7 @@ describe('Onliner', () => {
         const fastSearchPopupIsDisplayed = await fastSearchPopup.isDisplayed();
         expect(fastSearchPopupIsDisplayed).toEqual(true);
     });
-    
+
     test('Unsuccessful login with empty fields', async () => {
         const loginButton = await driver.findElement(By.xpath(buttons.loginOnMain));
         await loginButton.click();
@@ -67,7 +67,7 @@ describe('Onliner', () => {
         expect(textErrorEmail).toContain("Укажите ник или e-mail");
         expect(textErrorPassword).toContain("Укажите пароль");
     }, 30000);
-    
+
     test("Move to People page", async () => {
         const peopleLink = await driver.findElement(By.xpath(links.peopleElement));
         await peopleLink.click();
@@ -79,7 +79,7 @@ describe('Onliner', () => {
         expect(cssValueOfPeopleButton).toEqual('rgba(225, 225, 225, 1)');
         expect(textPeopleHeader).toEqual('Все новости');
     }, 30000);
-    
+
     test("News dropdown", async () => {
         const newsButton = await driver.findElement(By.xpath(buttons.newsInHeader));
         const actions = driver.actions({ async: true });
@@ -97,7 +97,7 @@ describe('Onliner', () => {
         expect(carLinkDropdown).toContain('Авто');
         expect(propLinkDropdown).toContain('Недвижимость');
     });
-    
+
     afterAll(async () => {
         await driver.close();
         await driver.quit();

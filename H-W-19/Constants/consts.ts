@@ -1,3 +1,4 @@
+
 export const urls = {
     mainURL: "https://www.onliner.by/",
     peopleSectionsURL: "https://people.onliner.by/"
@@ -43,3 +44,12 @@ export const links = {
 
 }
 
+import driver from "../driver";
+
+import { By, until } from 'selenium-webdriver';
+
+export async function findAndClickOnCatalogButtonInHeader() {
+    const catalogButtonInHeader = await driver.findElement(By.xpath(buttons.catalogInHeader));
+    await driver.wait(until.elementIsVisible(catalogButtonInHeader));
+    await catalogButtonInHeader.click();
+}
