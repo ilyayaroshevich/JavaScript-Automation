@@ -1,5 +1,7 @@
 import { WebDriver, By, until } from "selenium-webdriver";
 import BasePage from "./basePage";
+import driver from "../../driver";
+
 
 export default class LoginPage extends BasePage {
     loginButton: string;
@@ -7,7 +9,8 @@ export default class LoginPage extends BasePage {
     passwordErrorText: string;
     emailError: string;
     passwordError: string;
-    constructor(driver: WebDriver) {
+    // private static instance: LoginPage;
+    /*protected*/ constructor(driver: WebDriver) {
         super(driver);
         this.loginButton = "//button[@type='submit' and contains(@class,'auth')]";
         this.emailErrorText = "//div[contains(text(),'Укажите ник')]";
@@ -34,4 +37,11 @@ export default class LoginPage extends BasePage {
         const textErrorPassword = await errorPassword.getText();
         return textErrorPassword;
     };
+
+    // static getInstance() {
+    //     if (!this.instance) {
+    //         this.instance = new LoginPage(driver)
+    //     };
+    //     return this.instance;
+    // };
 };

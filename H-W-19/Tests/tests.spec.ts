@@ -3,7 +3,7 @@ import { describe, expect, test, beforeAll, afterAll, beforeEach } from '@jest/g
 import { only } from "node:test";
 import HomePage from "../Src/pageObjects/homePage";
 import CatalogPage from "../Src/pageObjects/catalog";
-import HeadphonesCatalog from "../Src/pageObjects/headphonesCatalog";
+import HeadphonesCatalogPage from "../Src/pageObjects/headphonesCatalog";
 import LoginPage from "../Src/pageObjects/loginPage";
 import PeoplePage from "../Src/pageObjects/peoplePage";
 import HeaderPage from "../Src/pageObjects/headerPage";
@@ -11,15 +11,40 @@ import ProductPage from "../Src/pageObjects/productPage";
 import BasePage from "../Src/pageObjects/basePage";
 import OrderPlacementPage from "../Src/pageObjects/orderPlacementPage";
 
+//PageObjects
 const basePage = new BasePage(driver);
 const homePage = new HomePage(driver)
 const catalogPage = new CatalogPage(driver)
-const headphonesCatalogPage = new HeadphonesCatalog(driver)
+const headphonesCatalogPage = new HeadphonesCatalogPage(driver)
 const loginPage = new LoginPage(driver)
 const peoplePage = new PeoplePage(driver)
 const headerPage = new HeaderPage(driver)
 const productPage = new ProductPage(driver)
 const orderPage = new OrderPlacementPage(driver)
+
+//FactoryPage
+// import { PageFactory } from "../Src/pageFactory/pageFactory";
+// const headerPage = PageFactory.getPage(driver, "HeaderPage") as HeaderPage;
+// const homePage = PageFactory.getPage(driver,"HomePage") as HomePage;
+// const catalogPage = PageFactory.getPage(driver, "CatalogPage") as CatalogPage;
+// const headphonesCatalogPage = PageFactory.getPage(driver, "HeadphonesCatalogPage") as HeadphonesCatalogPage;
+// const loginPage = PageFactory.getPage(driver,"LoginPage") as LoginPage;
+// const peoplePage = PageFactory.getPage(driver, "PeoplePage") as PeoplePage;
+// const productPage = PageFactory.getPage(driver, "ProductPage") as ProductPage;
+// const orderPage = PageFactory.getPage(driver, "OrderPlacementPage") as OrderPlacementPage;
+// const basePage = PageFactory.getPage(driver, "BasePage") as BasePage;
+
+//SingleTon
+// const basePage = BasePage.getInstance();
+// const homePage = HomePage.getInstance();
+// const catalogPage = CatalogPage.getInstance();
+// const headphonesCatalogPage = HeadphonesCatalogPage.getInstance();
+// const loginPage = LoginPage.getInstance();
+// const peoplePage = PeoplePage.getInstance();
+// const headerPage = HeaderPage.getInstance();
+// const productPage = ProductPage.getInstance();
+// const orderPage = OrderPlacementPage.getInstance();
+
 
 describe('Onliner', () => {
     beforeAll(async () => {

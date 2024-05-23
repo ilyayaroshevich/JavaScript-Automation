@@ -1,8 +1,10 @@
 import { WebDriver } from "selenium-webdriver";
+import driver from "../../driver";
 
 export default class BasePage {
     colorOfSelectedButton: string;
-    constructor(protected driver: WebDriver) {
+    // private static instance: BasePage;
+    /*protected*/ constructor(protected driver: WebDriver) {
         this.colorOfSelectedButton = "rgba(225, 225, 225, 1)";
     };
 
@@ -22,6 +24,13 @@ export default class BasePage {
         await this.driver.manage().window().maximize();
     };
 
+    // static getInstance() {
+    //     if(!this.instance) {
+    //         this.instance = new BasePage(driver)
+    //     };
+    //     return this.instance;
+    // };
 
+    
 
 }

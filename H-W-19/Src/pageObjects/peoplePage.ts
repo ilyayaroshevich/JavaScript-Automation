@@ -1,11 +1,14 @@
 import { WebDriver, By } from "selenium-webdriver";
 import BasePage from "./basePage";
+import driver from "../../driver";
+
 
 export default class PeoplePage extends BasePage {
    selectedPeopleButton: string;
    peopleHeader: string;
    allNewsText: string;
-   constructor(driver: WebDriver) {
+   // private static instance: PeoplePage;
+   /*protected*/ constructor(driver: WebDriver) {
       super(driver);
       this.selectedPeopleButton = "//span[text()='Люди' and contains(@class,'project')]";
       this.peopleHeader = "//div[@class='news-header__title']";
@@ -23,4 +26,11 @@ export default class PeoplePage extends BasePage {
       const textPeopleHeader = await peopleLinkHeader.getText();
       return textPeopleHeader;
    };
+
+   // static getInstance() {
+   //    if (!this.instance) {
+   //       this.instance = new PeoplePage(driver)
+   //    };
+   //    return this.instance;
+   // };
 };

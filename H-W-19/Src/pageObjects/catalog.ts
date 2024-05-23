@@ -1,9 +1,12 @@
 import { WebDriver, By, until } from "selenium-webdriver";
 import BasePage from "./basePage";
+import driver from "../../driver";
+
 
 export default class CatalogPage extends BasePage {
     headphonesButton: string;
-    constructor(driver: WebDriver) {
+    // private static instance: CatalogPage;
+    /*protected*/ constructor(driver: WebDriver) {
         super(driver);
         this.headphonesButton = "//div[contains(text(), 'Наушники') and contains(@class, 'catalog-form')]";
 
@@ -13,4 +16,12 @@ export default class CatalogPage extends BasePage {
         await this.driver.wait(until.elementIsVisible(headphonesButton));
         await headphonesButton.click();
     };
-};
+
+    // static getInstance() {
+    //     if (!this.instance) {
+    //         this.instance = new CatalogPage(driver)
+    //     };
+    //     return this.instance;
+    // };
+}
+

@@ -1,13 +1,16 @@
 import { By, WebDriver, until } from "selenium-webdriver";
 import BasePage from "./basePage";
+import driver from "../../driver";
+
 
 export default class HeaderPage extends BasePage {
     catalogButton: string;
     loginButton: string;
     newsButton: any;
     newsDropdown: string;
+    // private static instance: HeaderPage;
 
-    constructor(driver: WebDriver) {
+    /*protected*/ constructor(driver: WebDriver) {
         super(driver);
         this.catalogButton = "//span[text()='Каталог' and @class = 'b-main-navigation__text']";
         this.loginButton = "//div[@class = 'auth-bar__item auth-bar__item--text']";
@@ -37,4 +40,11 @@ export default class HeaderPage extends BasePage {
         const newsDropdownIsDisplayed = await newsDropdown.isDisplayed();
         return newsDropdownIsDisplayed;
     };
+
+    // static getInstance() {
+    //     if (!this.instance) {
+    //         this.instance = new HeaderPage(driver)
+    //     };
+    //     return this.instance;
+    // };
 };

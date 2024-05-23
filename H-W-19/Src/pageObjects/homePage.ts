@@ -1,5 +1,7 @@
 import { By, WebDriver, until } from "selenium-webdriver";
 import BasePage from "./basePage";
+import driver from "../../driver";
+
 
 export default class HomePage extends BasePage {
     searchField: string;
@@ -12,10 +14,12 @@ export default class HomePage extends BasePage {
     propTitle: string;
     mainURL: string;
     newsTitles: { People: string; Techno: string; Car: string; Prop: string; };
-    constructor(driver: WebDriver) {
+    // private static instance: HomePage;
+    /*protected*/ constructor(driver: WebDriver) {
         super(driver);
         this.searchField = "//input[@class='fast-search__input']";
-        this.fastSearchPopup = "//div[@id='fast-search-modal']";
+        // this.fastSearchPopup = "//div[@id='fast-search-modal']";
+        this.fastSearchPopup = "//div[@class='search__bar']";
         this.peopleElement = "//header[@class='b-main-page-blocks-header-2 cfix']//a[@href='https://people.onliner.by']";
         this.peoplePageUrl = "https://people.onliner.by/";
         this.peopleTitle = "//a[text()='Люди'][@class='b-main-navigation__dropdown-title-link']";
@@ -34,9 +38,12 @@ export default class HomePage extends BasePage {
 
     async enterValueInSearchField() {
         const searchFieldInput = await this.driver.findElement(By.xpath(this.searchField));
-        await searchFieldInput.sendKeys();
+        await searchFieldInput.sendKeys('iPhone');
+        await this.driver.wait(until.elementLocated(By.xpath(this.fastSearchPopup)), 30000, 'Timed out after 30 sec', 1000);
+
     };
     async fastSearchIsDisplayed() {
+        // await this.driver.wait(until.elementLocated(By.xpath(this.fastSearchPopup)), 30000, 'Timed out after 30 sec', 1000);
         const fastSearchPopup = await this.driver.findElement(By.xpath(this.fastSearchPopup));
         const searchFieldInputIsDisplayed = await fastSearchPopup.isDisplayed();
         return searchFieldInputIsDisplayed;
@@ -71,4 +78,11 @@ export default class HomePage extends BasePage {
     async getUrl() {
         return await this.driver.get(this.mainURL);
     };
+
+    // static getInstance() {
+    //     if (!this.instance) {
+    //         this.instance = new HomePage(driver)
+    //     };
+    //     return this.instance;
+    // };
 };

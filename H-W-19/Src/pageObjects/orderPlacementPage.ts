@@ -1,12 +1,15 @@
 
 import { WebDriver, By, until } from "selenium-webdriver";
 import BasePage from "./basePage";
+import driver from "../../driver";
+
 
 export default class OrderPlacementPage extends BasePage {
     currentUrl: string;
     productNameText: string;
     productPlacementText: string;
-    constructor(driver: WebDriver) {
+    // private static instance: OrderPlacementPage;
+    /*protected*/ constructor(driver: WebDriver) {
         super(driver);
         this.currentUrl = "https://cart.onliner.by/order";
         this.productNameText = "//div[contains(text(),'Marshall Major IV (черный)')]";
@@ -30,4 +33,11 @@ export default class OrderPlacementPage extends BasePage {
         const isDisplayedProductPlacement = await productPlacementText.isDisplayed();
         return isDisplayedProductPlacement;
     };
+
+    // static getInstance() {
+    //     if (!this.instance) {
+    //         this.instance = new OrderPlacementPage(driver)
+    //     };
+    //     return this.instance;
+    // };
 };
