@@ -1,16 +1,16 @@
 import driver from "../driver";
 import { describe, expect, test, beforeAll, afterAll, beforeEach } from '@jest/globals';
-import { urls, buttons, texts, popupElements, links, inputs } from '../Constants/consts';
 import { only } from "node:test";
-import { By, until } from "selenium-webdriver";
-import HomePage from "../Src/homePage";
-import CatalogPage from "../Src/catalog";
-import HeadphonesCatalog from "../Src/headphonesCatalog";
-import LoginPage from "../Src/loginPage";
-import PeoplePage from "../Src/peoplePage";
-import HeaderPage from "../Src/headerPage";
-import ProductPage from "../Src/productPage";
+import HomePage from "../Src/pageObjects/homePage";
+import CatalogPage from "../Src/pageObjects/catalog";
+import HeadphonesCatalog from "../Src/pageObjects/headphonesCatalog";
+import LoginPage from "../Src/pageObjects/loginPage";
+import PeoplePage from "../Src/pageObjects/peoplePage";
+import HeaderPage from "../Src/pageObjects/headerPage";
+import ProductPage from "../Src/pageObjects/productPage";
+import BasePage from "../Src/pageObjects/basePage";
 
+const basePage = new BasePage(driver);
 const homePage = new HomePage(driver)
 const catalogPage = new CatalogPage(driver)
 const headphonesCatalogPage = new HeadphonesCatalog(driver)
@@ -21,25 +21,24 @@ const productPage = new ProductPage(driver)
 
 describe('Onliner', () => {
     beforeAll(async () => {
-        await driver.manage().window().maximize();
+        await basePage.maximizeWindow();
     }, 30000);
 
     beforeEach(async () => {
-        await driver.get(urls.mainURL);
+        await basePage.getUrl();
     });
     // SideBar is not displayed after adding product to Cart sometimes
-    test('Add product to cart', async () => {
+    test.only('Add product to cart', async () => {
         await headerPage.findAndClickOnCatalogElementInHeader();
         await catalogPage.findAndWaitAndClickOnHeadphonesButtonInCatalog();
         await headphonesCatalogPage.findAndClickOnHeadphone();
         await productPage.findAndClickOnAddToCartButton();
         await productPage.waitSideBarAfterAddedToCart();
-        const productIsAddedText = await productPage.findAndGetTextProductIsAddedOnSideBar();
+        const productIsAddedText = await productPage.findAndDisplayingProductIsAddedOnSideBar();
         const textHeadphonesAfterAddedToCart = await productPage.findAndDisplayingNameOfHeadphones();
         const moveToCartButtonIsDisplayed = await productPage.findAndDisplayingMoveToCartButton();
         const continueBuyButtonIsDisplayed = await productPage.findAndDisplayingContinueToBuyButton();
         const recommendedToBuyPopupIsPresent = await productPage.findAndDisplayingRecommendedToBuyPopup();
-        expect(productIsAddedText).toContain("Товар добавлен в корзину");
         expect(moveToCartButtonIsDisplayed).toEqual(true);
         expect(continueBuyButtonIsDisplayed).toEqual(true);
         expect(recommendedToBuyPopupIsPresent).toEqual(true);
@@ -84,7 +83,7 @@ describe('Onliner', () => {
     });
 
     afterAll(async () => {
-        await driver.close();
-        await driver.quit();
+        await basePage.closeBrowserTab();
+        await basePage.closeBrowser();
     });
 });

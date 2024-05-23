@@ -24,6 +24,7 @@ export default class ProductPage extends BasePage {
 
     }
     async findAndClickOnAddToCartButton() {
+        await this.driver.wait(until.elementLocated(By.xpath(this.addToCart)));
         const addToCartButton = await this.driver.findElement(By.xpath(this.addToCart));
         await this.driver.wait(until.elementIsVisible(addToCartButton), 10000);
         await addToCartButton.click();
@@ -32,9 +33,10 @@ export default class ProductPage extends BasePage {
         await this.driver.wait(until.elementLocated(By.xpath(this.sideBar)), 30000, 'Timed out after 30 sec', 1000);
     }
 
-    async findAndGetTextProductIsAddedOnSideBar() {
+    async findAndDisplayingProductIsAddedOnSideBar() {
         const productIsAddedText = await this.driver.findElement(By.xpath(this.productIsAdded));
-        return productIsAddedText.getText();
+        const isDisplayedMoveToCartButton = await productIsAddedText.isDisplayed();
+        return isDisplayedMoveToCartButton;
     }
 
     async findAndDisplayingNameOfHeadphones() {
