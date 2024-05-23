@@ -67,8 +67,8 @@ describe('Onliner', () => {
     }, 30000);
 
     test("News dropdown", async () => {
-        await homePage.hoverCursorOverNewsButton();
-        const newsDropdownIsDisplayed = await homePage.isNewsDropdownIsDisplayed();
+        await headerPage.hoverCursorOverNewsButton();
+        const newsDropdownIsDisplayed = await headerPage.isNewsDropdownIsDisplayed();
         expect(newsDropdownIsDisplayed).toEqual(true);
         const peopleLinkInDropdown = await homePage.getPeopleText();
         const technoLinkDropdown = await homePage.getTechnoText();

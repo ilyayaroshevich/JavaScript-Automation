@@ -5,7 +5,7 @@ export default class CatalogPage extends BasePage {
     headphonesButton: string;
     constructor(driver: WebDriver) {
         super(driver);
-        this.headphonesButton= "//a[@href = 'https://catalog.onliner.by/headphones?click_from_widget=true']";
+        this.headphonesButton = "//div[contains(text(), 'Наушники') and contains(@class, 'catalog-form')]";
 
     };
     async clickOnHeadphonesButton() {

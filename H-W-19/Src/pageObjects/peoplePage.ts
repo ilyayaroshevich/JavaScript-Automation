@@ -7,7 +7,7 @@ export default class PeoplePage extends BasePage {
    allNewsText: string;
    constructor(driver: WebDriver) {
       super(driver);
-      this.selectedPeopleButton = "//a[@href='https://people.onliner.by'] [@class='project-navigation__link project-navigation__link_primary']";
+      this.selectedPeopleButton = "//span[text()='Люди' and contains(@class,'project')]";
       this.peopleHeader = "//div[@class='news-header__title']";
       this.allNewsText = "Все новости";
    };

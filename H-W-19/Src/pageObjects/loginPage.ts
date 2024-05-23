@@ -9,7 +9,7 @@ export default class LoginPage extends BasePage {
     passwordError: string;
     constructor(driver: WebDriver) {
         super(driver);
-        this.loginButton = "//button[@class='auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full']";
+        this.loginButton = "//button[@type='submit' and contains(@class,'auth')]";
         this.emailErrorText = "//div[contains(text(),'Укажите ник')]";
         this.passwordErrorText = "//div[contains(text(),'Укажите пароль')]";
         this.emailError = "Укажите ник или e-mail";

@@ -5,7 +5,7 @@ export default class ProductPage extends BasePage {
     buyNowButton: string;
     constructor(driver: WebDriver) {
         super(driver);
-        this.buyNowButton = "//a[@href='https://cart.onliner.by/?action=buyNow&shopId=1689&productKey=majorivbtblk&productId=2202506&positionId=1689:874391&deliveryType=courier']";
+        this.buyNowButton = "//a[@data-shop-id='1689' and @data-product-key='majorivbtblk' and contains(@class,'button-style') and text()='Купить сейчас']";
     };
     async clickOnBuyNowButton() {
         await this.driver.wait(until.elementLocated(By.xpath(this.buyNowButton)));
