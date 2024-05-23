@@ -57,11 +57,11 @@ describe('Onliner', () => {
         await loginPage.findAndClickOnLoginButton();
         const textErrorEmail = await loginPage.waitEmailErrorAndCheckTextOfError();
         const textErrorPassword = await loginPage.waitPasswordErrorAndCheckTextOfError();
-        expect(textErrorEmail).toContain("Укажите ник или e-mail");
-        expect(textErrorPassword).toContain("Укажите пароль");
+        expect(textErrorEmail).toEqual("Укажите ник или e-mail");
+        expect(textErrorPassword).toEqual("Укажите пароль");
     }, 30000);
 
-    test.only("Move to People page", async () => {
+    test("Move to People page", async () => {
         await homePage.findAndClickOnPeopleElementAndWaitUrl();
         const cssValueOfPeopleButton = await peoplePage.findPeopleButtonAndGetCssValue();
         const textPeopleHeader = await peoplePage.findPeopleLinkAndGetText()
@@ -70,17 +70,13 @@ describe('Onliner', () => {
     }, 30000);
 
     test("News dropdown", async () => {
-        const newsButton = await driver.findElement(By.xpath(buttons.newsInHeader));
-        const actions = driver.actions({ async: true });
-        await actions.move({ origin: newsButton }).perform();
-        await driver.wait(until.elementLocated(By.xpath(popupElements.newsDropdown)), 30000, 'Timed out after 30 sec', 1000);
-        const newsDropdownPopup = await driver.findElement(By.xpath(popupElements.newsDropdown));
-        const newDropdownPopupIsVisible = await newsDropdownPopup.isDisplayed();
-        expect(newDropdownPopupIsVisible).toEqual(true);
-        const peopleLinkInDropdown = await driver.findElement(By.xpath(links.peopleTitle)).getText();
-        const technoLinkDropdown = await driver.findElement(By.xpath(links.technoTitle)).getText();
-        const carLinkDropdown = await driver.findElement(By.xpath(links.carTitle)).getText();
-        const propLinkDropdown = await driver.findElement(By.xpath(links.propTitle)).getText();
+        await homePage.findNewsButtonAndHoverCursorOverIt();
+        const newDropdownPopupIsDisplayed = await homePage.waitNewDropdownIsLocatedandDisplayingIt();
+        expect(newDropdownPopupIsDisplayed).toEqual(true);
+        const peopleLinkInDropdown = await homePage.findPeopleLinkInDropdownAndGetText();
+        const technoLinkDropdown = await homePage.findCarLinkInDropdownAndGetText();
+        const carLinkDropdown = await homePage.findTechnoLinkInDropdownAndGetText();
+        const propLinkDropdown = await homePage.findPropLinkInDropdownAndGetText();
         expect(peopleLinkInDropdown).toContain('Люди');
         expect(technoLinkDropdown).toContain('Технологии');
         expect(carLinkDropdown).toContain('Авто');
