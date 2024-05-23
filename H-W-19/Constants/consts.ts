@@ -1,6 +1,6 @@
 
 import driver from "../driver";
-import {By, until } from "selenium-webdriver";
+import { By, until } from "selenium-webdriver";
 
 export const urls = {
     mainURL: "https://www.onliner.by/",
@@ -46,11 +46,4 @@ export const links = {
     propTitle: "//a[text()='Недвижимость'][@class='b-main-navigation__dropdown-title-link']"
 
 }
-
-
-export async function testfunc() {
-    const searchFieldInput = await driver.findElement(By.xpath(inputs.searchFieldOnMain));
-    return searchFieldInput;
-}
-
 

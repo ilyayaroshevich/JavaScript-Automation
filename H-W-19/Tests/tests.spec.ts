@@ -1,11 +1,11 @@
 import driver from "../driver";
 import { describe, expect, test, beforeAll, afterAll, beforeEach } from '@jest/globals';
-import { urls, buttons, texts, popupElements, links, inputs, testfunc } from '../Constants/consts';
+import { urls, buttons, texts, popupElements, links, inputs } from '../Constants/consts';
 import { only } from "node:test";
-import {By, until } from "selenium-webdriver";
+import { By, until } from "selenium-webdriver";
+import HomePage from "../Src/homePage";
 
-// import { findAndClickOnCatalogButtonInHeader } from "../Constants/consts";
-
+const homePage = new HomePage(driver)
 
 describe('Onliner', () => {
     beforeAll(async () => {
@@ -45,14 +45,10 @@ describe('Onliner', () => {
         expect(textHeadphonesAfterAddedToCart).toEqual(true);
     }, 50000);
 
-    test.only('Search in catalog', async () => {
-        // const searchFieldInput = await driver.findElement(By.xpath(inputs.searchFieldOnMain));
-        const searchFieldInput = await testfunc();
-        await searchFieldInput.sendKeys('iPhone');
-        const fastSearchPopup = await driver.findElement(By.xpath(popupElements.fastSearchModal));
-        const fastSearchPopupIsDisplayed = await fastSearchPopup.isDisplayed();
-        expect(fastSearchPopupIsDisplayed).toEqual(true);
-    },20000);
+    test('Search in catalog', async () => {
+        const searchFieldInput = await homePage.findSearchFieldEnterValueAndFindFastSearchPopup()
+        expect(searchFieldInput).toEqual(true);
+    }, 20000);
 
     test('Unsuccessful login with empty fields', async () => {
         const loginButton = await driver.findElement(By.xpath(buttons.loginOnMain));
