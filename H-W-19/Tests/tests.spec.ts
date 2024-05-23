@@ -27,7 +27,7 @@ describe('Onliner', () => {
     beforeEach(async () => {
         await driver.get(urls.mainURL);
     });
-// SideBar is not displayed after adding product to Cart sometimes
+    // SideBar is not displayed after adding product to Cart sometimes
     test('Add product to cart', async () => {
         await headerPage.findAndClickOnCatalogElementInHeader();
         await catalogPage.findAndWaitAndClickOnHeadphonesButtonInCatalog();
@@ -35,7 +35,7 @@ describe('Onliner', () => {
         await productPage.findAndClickOnAddToCartButton();
         await productPage.waitSideBarAfterAddedToCart();
         const productIsAddedText = await productPage.findAndGetTextProductIsAddedOnSideBar();
-        const textHeadphonesAfterAddedToCart = await productPage.findAndDisplayingNameOfHeadphones();   
+        const textHeadphonesAfterAddedToCart = await productPage.findAndDisplayingNameOfHeadphones();
         const moveToCartButtonIsDisplayed = await productPage.findAndDisplayingMoveToCartButton();
         const continueBuyButtonIsDisplayed = await productPage.findAndDisplayingContinueToBuyButton();
         const recommendedToBuyPopupIsPresent = await productPage.findAndDisplayingRecommendedToBuyPopup();
@@ -61,14 +61,10 @@ describe('Onliner', () => {
         expect(textErrorPassword).toContain("Укажите пароль");
     }, 30000);
 
-    test("Move to People page", async () => {
-        const peopleLink = await driver.findElement(By.xpath(links.peopleElement));
-        await peopleLink.click();
-        await driver.wait(until.urlIs(urls.peopleSectionsURL), 30000, 'Timed out after 30 sec', 1000);
-        const selectedPeopleButton = await driver.findElement(By.xpath(buttons.selectedPeople));
-        const peopleLinkHeader = await driver.findElement(By.xpath(links.peopleHeader));
-        const textPeopleHeader = await peopleLinkHeader.getText();
-        const cssValueOfPeopleButton = await selectedPeopleButton.getCssValue("background-color");
+    test.only("Move to People page", async () => {
+        await homePage.findAndClickOnPeopleElementAndWaitUrl();
+        const cssValueOfPeopleButton = await peoplePage.findPeopleButtonAndGetCssValue();
+        const textPeopleHeader = await peoplePage.findPeopleLinkAndGetText()
         expect(cssValueOfPeopleButton).toEqual('rgba(225, 225, 225, 1)');
         expect(textPeopleHeader).toEqual('Все новости');
     }, 30000);
