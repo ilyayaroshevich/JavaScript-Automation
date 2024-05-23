@@ -38,7 +38,7 @@ describe('Onliner', () => {
         const textHeadphonesAfterAddedToCart = await productPage.findAndDisplayingNameOfHeadphones();   
         const moveToCartButtonIsDisplayed = await productPage.findAndDisplayingMoveToCartButton();
         const continueBuyButtonIsDisplayed = await productPage.findAndDisplayingContinueToBuyButton();
-        const recommendedToBuyPopupIsPresent = await productPage.findAndDisplayingRecommendedToButPopup();
+        const recommendedToBuyPopupIsPresent = await productPage.findAndDisplayingRecommendedToBuyPopup();
         expect(productIsAddedText).toContain("Товар добавлен в корзину");
         expect(moveToCartButtonIsDisplayed).toEqual(true);
         expect(continueBuyButtonIsDisplayed).toEqual(true);

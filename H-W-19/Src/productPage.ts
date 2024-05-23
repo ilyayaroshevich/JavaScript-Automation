@@ -17,7 +17,8 @@ export default class ProductPage extends BasePage {
         this.headphonesAfterAdded = "//div[contains(text(),'Наушники Marshall Major IV (черный)')]";
         this.moveToCart = "//a[contains(text(),'Перейти в корзину')]";
         this.continueToBuy = "//a[contains(text(),'Продолжить покупки')]";
-        this.recommendedToBuy = "//span[contains(text(),'Рекомендуем купить в магазине')]";
+        this.recommendedToBuy = "//div[@class='product-recommended__subheader']/child::span[1]";
+        
 
 
 
@@ -38,21 +39,25 @@ export default class ProductPage extends BasePage {
 
     async findAndDisplayingNameOfHeadphones() {
         const headphonesTextAfterAddedToCart = await this.driver.findElement(By.xpath(this.headphonesAfterAdded));
-        await headphonesTextAfterAddedToCart.isDisplayed();
+        const isDisplayedHeadphonesTextAfterAddedToCart = await headphonesTextAfterAddedToCart.isDisplayed();
+        return isDisplayedHeadphonesTextAfterAddedToCart;
     }
 
     async findAndDisplayingMoveToCartButton() {
         const moveToCartButton = await this.driver.findElement(By.xpath(this.moveToCart));
-        await moveToCartButton.isDisplayed();
+        const isDisplayedMoveToCartButton = await moveToCartButton.isDisplayed();
+        return isDisplayedMoveToCartButton;
     }
 
     async findAndDisplayingContinueToBuyButton() {
         const continueBuyButton = await this.driver.findElement(By.xpath(this.continueToBuy));
-        await continueBuyButton.isDisplayed();
+        const isDisplayedContinueToBuyButton = await continueBuyButton.isDisplayed();
+        return isDisplayedContinueToBuyButton;
     }
 
-    async findAndDisplayingRecommendedToButPopup() {
+    async findAndDisplayingRecommendedToBuyPopup() {
         const recommendedToBuyPopup = await this.driver.findElement(By.xpath(this.recommendedToBuy));
-        await recommendedToBuyPopup.isDisplayed();
+        const isDisplayedRecommendedToBuyPopup = await recommendedToBuyPopup.isDisplayed();
+        return isDisplayedRecommendedToBuyPopup;
     }
 }
