@@ -18,6 +18,4 @@ export default class HomePage extends BasePage {
         return searchFieldInputIsDisplayed;
     }
 
-
-
 }

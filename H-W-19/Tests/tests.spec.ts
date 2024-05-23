@@ -4,8 +4,20 @@ import { urls, buttons, texts, popupElements, links, inputs } from '../Constants
 import { only } from "node:test";
 import { By, until } from "selenium-webdriver";
 import HomePage from "../Src/homePage";
+import CatalogPage from "../Src/catalog";
+import HeadphonesCatalog from "../Src/headphonesCatalog";
+import LoginPage from "../Src/loginPage";
+import PeoplePage from "../Src/peoplePage";
+import HeaderPage from "../Src/headerPage";
+import ProductPage from "../Src/productPage";
 
 const homePage = new HomePage(driver)
+const catalogPage = new CatalogPage(driver)
+const headphonesCatalogPage = new HeadphonesCatalog(driver)
+const loginPage = new LoginPage(driver)
+const peoplePage = new PeoplePage(driver)
+const headerPage = new HeaderPage(driver)
+const productPage = new ProductPage(driver)
 
 describe('Onliner', () => {
     beforeAll(async () => {
@@ -15,33 +27,23 @@ describe('Onliner', () => {
     beforeEach(async () => {
         await driver.get(urls.mainURL);
     });
-
-    test('Add product to cart', async () => {
-        const catalogButtonInHeader = await driver.findElement(By.xpath(buttons.catalogInHeader));
-        await catalogButtonInHeader.click();
-        const headphonesButtonInCatalog = await driver.findElement(By.xpath(buttons.headphonesInCatalog));
-        await driver.wait(until.elementIsVisible(headphonesButtonInCatalog));
-        await headphonesButtonInCatalog.click(); const headphonesLinkInCatalog = await driver.findElement(By.xpath(links.headphonesInCatalog));
-        await driver.wait(until.elementIsVisible(headphonesLinkInCatalog));
-        await headphonesLinkInCatalog.click();
-        const addToCartButton = await driver.findElement(By.xpath(buttons.addToCart));
-        await addToCartButton.click();
-        await driver.wait(until.elementLocated(By.xpath(popupElements.sideBar)), 30000, 'Timed out after 30 sec', 1000);
-        const productIsAddedText = await driver.findElement(By.xpath(texts.productIsAdded));
-        const headphonesTextAfterAddedToCart = await driver.findElement(By.xpath(texts.headphonesAfterAdded));
-        const moveToCartButton = await driver.findElement(By.xpath(buttons.moveToCart));
-        const continueBuyButton = await driver.findElement(By.xpath(buttons.continueToBuy));
-        const recommendedToBuyPopup = await driver.findElement(By.xpath(popupElements.recommendedToBuy));
-        const textProductIsAdded = await productIsAddedText.isDisplayed();
-        const textHeadphonesAfterAddedToCart = await headphonesTextAfterAddedToCart.isDisplayed();
-        const moveToCartButtonIsDisplayed = await moveToCartButton.isDisplayed();
-        const continueBuyButtonIsDisplayed = await continueBuyButton.isDisplayed();
-        const recommendedToBuyPopupIsPresent = await recommendedToBuyPopup.isDisplayed();
-        expect(productIsAddedText.getText()).toContain("Товар добавлен в корзину");
+// SideBar is not displayed after adding product to Cart
+    test.only('Add product to cart', async () => {
+        await headerPage.findAndClickOnCatalogElementInHeader();
+        await catalogPage.findAndWaitAndClickOnHeadphonesButtonInCatalog();
+        await headphonesCatalogPage.findAndClickOnHeadphone();
+        await productPage.findAndClickOnAddToCartButton();
+        await productPage.waitSideBarAfterAddedToCart();
+        const productIsAddedText = await productPage.findAndGetTextProductIsAddedOnSideBar();
+        const textHeadphonesAfterAddedToCart = await productPage.findAndDisplayingNameOfHeadphones();   
+        const moveToCartButtonIsDisplayed = await productPage.findAndDisplayingMoveToCartButton();
+        const continueBuyButtonIsDisplayed = await productPage.findAndDisplayingContinueToBuyButton();
+        const recommendedToBuyPopupIsPresent = await productPage.findAndDisplayingRecommendedToButPopup();
+        expect(productIsAddedText).toContain("Товар добавлен в корзину");
         expect(moveToCartButtonIsDisplayed).toEqual(true);
         expect(continueBuyButtonIsDisplayed).toEqual(true);
         expect(recommendedToBuyPopupIsPresent).toEqual(true);
-        expect(textProductIsAdded).toEqual(true);
+        expect(productIsAddedText).toEqual(true);
         expect(textHeadphonesAfterAddedToCart).toEqual(true);
     }, 50000);
 
