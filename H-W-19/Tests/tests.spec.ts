@@ -22,13 +22,13 @@ const productPage = new ProductPage(driver)
 describe('Onliner', () => {
     beforeAll(async () => {
         await driver.manage().window().maximize();
-    }, 10000);
+    }, 30000);
 
     beforeEach(async () => {
         await driver.get(urls.mainURL);
     });
-// SideBar is not displayed after adding product to Cart
-    test.only('Add product to cart', async () => {
+// SideBar is not displayed after adding product to Cart sometimes
+    test('Add product to cart', async () => {
         await headerPage.findAndClickOnCatalogElementInHeader();
         await catalogPage.findAndWaitAndClickOnHeadphonesButtonInCatalog();
         await headphonesCatalogPage.findAndClickOnHeadphone();
@@ -53,16 +53,10 @@ describe('Onliner', () => {
     }, 20000);
 
     test('Unsuccessful login with empty fields', async () => {
-        const loginButton = await driver.findElement(By.xpath(buttons.loginOnMain));
-        await loginButton.click();
-        const buttonToLogin = await driver.findElement(By.xpath(buttons.loginOnLoginPage));
-        await buttonToLogin.click();
-        await driver.wait(until.elementLocated(By.xpath(texts.emailErrorOnLoginPage)), 30000, 'Timed out after 30 sec', 1000);
-        await driver.wait(until.elementLocated(By.xpath(texts.passwordErrorOnLoginPage)), 30000, 'Timed out after 30 sec', 1000);
-        const errorEmail = await driver.findElement(By.xpath(texts.emailErrorOnLoginPage));
-        const errorPassword = await driver.findElement(By.xpath(texts.passwordErrorOnLoginPage));
-        const textErrorEmail = await errorEmail.getText();
-        const textErrorPassword = await errorPassword.getText();
+        await headerPage.moveToLoginPage();
+        await loginPage.findAndClickOnLoginButton();
+        const textErrorEmail = await loginPage.waitEmailErrorAndCheckTextOfError();
+        const textErrorPassword = await loginPage.waitPasswordErrorAndCheckTextOfError();
         expect(textErrorEmail).toContain("Укажите ник или e-mail");
         expect(textErrorPassword).toContain("Укажите пароль");
     }, 30000);
