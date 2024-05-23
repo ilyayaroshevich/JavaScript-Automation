@@ -1,29 +1,27 @@
 import { WebDriver } from "selenium-webdriver";
 
 export default class BasePage {
-    mainURL: string;
+    colorOfSelectedButton: string;
     constructor(protected driver: WebDriver) {
-        this.mainURL = "https://www.onliner.by/";
-    }
+        this.colorOfSelectedButton = "rgba(225, 225, 225, 1)";
+    };
 
     async getCurrentUrlValue() {
-        return await this.driver.getCurrentUrl()
-    }
+        return await this.driver.getCurrentUrl();
+    };
 
     async closeBrowser() {
-        return await this.driver.quit()
-    }
+        await this.driver.quit();
+    };
 
     async closeBrowserTab() {
-        return await this.driver.close()
-    }
+        await this.driver.close();
+    };
 
     async maximizeWindow() {
-        return await this.driver.manage().window().maximize();
-    }
+        await this.driver.manage().window().maximize();
+    };
 
-    async getUrl() {
-        return await this.driver.get(this.mainURL);
-    }
+
 
 }

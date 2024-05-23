@@ -27,56 +27,57 @@ describe('Onliner', () => {
     }, 30000);
 
     beforeEach(async () => {
-        await basePage.getUrl();
+        await homePage.getUrl();
     });
     test('Add product to cart', async () => {
-        await headerPage.findAndClickOnCatalogElementInHeader();
-        await catalogPage.findAndWaitAndClickOnHeadphonesButtonInCatalog();
-        await headphonesCatalogPage.findAndClickOnHeadphone();
-        await productPage.findAndClickOnBuyNowButton();
+        await headerPage.clickOnCatalogButton();
+        await catalogPage.clickOnHeadphonesButton();
+        await headphonesCatalogPage.clickOnHeadphoneName();
+        await productPage.clickOnBuyNowButton();
         await orderPage.waitUntilUrl();
-        const productIsDisplaying = await orderPage.findProductNameAndDisplaying();
-        const textProductPlacement = await orderPage.findAndDisplayingProductPlacement();
-        const curUrl = await basePage.getCurrentUrlValue();
-        expect(curUrl).toEqual('https://cart.onliner.by/order');
+        const productIsDisplaying = await orderPage.displayingProductName();
+        const textProductPlacement = await orderPage.displayingProductPlacement();
+        const currentUrl = await basePage.getCurrentUrlValue();
+        expect(currentUrl).toEqual(orderPage.currentUrl);
         expect(productIsDisplaying).toEqual(true);
         expect(textProductPlacement).toEqual(true);
     }, 50000);
 
     test('Search in catalog', async () => {
-        const searchFieldInput = await homePage.findSearchFieldEnterValueAndFindFastSearchPopup()
-        expect(searchFieldInput).toEqual(true);
+        await homePage.enterValueInSearchField();
+        const fastSearchIsDisplayed = await homePage.fastSearchIsDisplayed();
+        expect(fastSearchIsDisplayed).toEqual(true);
     }, 20000);
 
     test('Unsuccessful login with empty fields', async () => {
-        await headerPage.moveToLoginPage();
-        await loginPage.findAndClickOnLoginButton();
-        const textErrorEmail = await loginPage.waitEmailErrorAndCheckTextOfError();
-        const textErrorPassword = await loginPage.waitPasswordErrorAndCheckTextOfError();
-        expect(textErrorEmail).toEqual("Укажите ник или e-mail");
-        expect(textErrorPassword).toEqual("Укажите пароль");
+        await headerPage.moveToLoginForm();
+        await loginPage.clickOnLoginButton();
+        const textErrorEmail = await loginPage.getTextEmailError();
+        const textErrorPassword = await loginPage.getTextPasswordError();
+        expect(textErrorEmail).toEqual(loginPage.emailError);
+        expect(textErrorPassword).toEqual(loginPage.passwordError);
     }, 30000);
 
     test("Move to People page", async () => {
-        await homePage.findAndClickOnPeopleElementAndWaitUrl();
-        const cssValueOfPeopleButton = await peoplePage.findPeopleButtonAndGetCssValue();
-        const textPeopleHeader = await peoplePage.findPeopleLinkAndGetText()
-        expect(cssValueOfPeopleButton).toEqual('rgba(225, 225, 225, 1)');
-        expect(textPeopleHeader).toEqual('Все новости');
+        await homePage.clickOnPeopleElement();
+        const backgroundColorOfPeopleButton = await peoplePage.getCssValueFromPeopleButton();
+        const textPeopleHeader = await peoplePage.getTextFromPeopleHeader()
+        expect(backgroundColorOfPeopleButton).toEqual(basePage.colorOfSelectedButton);
+        expect(textPeopleHeader).toEqual(peoplePage.allNewsText);
     }, 30000);
 
     test("News dropdown", async () => {
-        await homePage.findNewsButtonAndHoverCursorOverIt();
-        const newDropdownPopupIsDisplayed = await homePage.waitNewDropdownIsLocatedandDisplayingIt();
-        expect(newDropdownPopupIsDisplayed).toEqual(true);
-        const peopleLinkInDropdown = await homePage.findPeopleLinkInDropdownAndGetText();
-        const technoLinkDropdown = await homePage.findCarLinkInDropdownAndGetText();
-        const carLinkDropdown = await homePage.findTechnoLinkInDropdownAndGetText();
-        const propLinkDropdown = await homePage.findPropLinkInDropdownAndGetText();
-        expect(peopleLinkInDropdown).toContain('Люди');
-        expect(technoLinkDropdown).toContain('Технологии');
-        expect(carLinkDropdown).toContain('Авто');
-        expect(propLinkDropdown).toContain('Недвижимость');
+        await homePage.hoverCursorOverNewsButton();
+        const newsDropdownIsDisplayed = await homePage.isNewsDropdownIsDisplayed();
+        expect(newsDropdownIsDisplayed).toEqual(true);
+        const peopleLinkInDropdown = await homePage.getPeopleText();
+        const technoLinkDropdown = await homePage.getTechnoText();
+        const carLinkDropdown = await homePage.getCarText();
+        const propLinkDropdown = await homePage.getPropText();
+        expect(peopleLinkInDropdown).toEqual(homePage.newsTitles.People);
+        expect(technoLinkDropdown).toEqual(homePage.newsTitles.Techno);
+        expect(carLinkDropdown).toEqual(homePage.newsTitles.Car);
+        expect(propLinkDropdown).toEqual(homePage.newsTitles.Prop);
     });
 
     afterAll(async () => {

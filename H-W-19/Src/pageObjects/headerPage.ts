@@ -2,23 +2,21 @@ import { By, WebDriver } from "selenium-webdriver";
 import BasePage from "./basePage";
 
 export default class HeaderPage extends BasePage {
-    catalogInHeader: string;
-    loginOnMain: string;
+    catalogButton: string;
+    loginButton: string;
     constructor(driver: WebDriver) {
         super(driver);
-        this.catalogInHeader = "//span[text()='Каталог' and @class = 'b-main-navigation__text']";
-        this.loginOnMain = "//div[@class = 'auth-bar__item auth-bar__item--text']";
+        this.catalogButton = "//span[text()='Каталог' and @class = 'b-main-navigation__text']";
+        this.loginButton = "//div[@class = 'auth-bar__item auth-bar__item--text']";
+    };
 
-    }
+    async clickOnCatalogButton() {
+        const catalogButton = await this.driver.findElement(By.xpath(this.catalogButton));
+        await catalogButton.click();
+    };
 
-    async findAndClickOnCatalogElementInHeader() {
-        const catalogButtonInHeader = await this.driver.findElement(By.xpath(this.catalogInHeader));
-        await catalogButtonInHeader.click();
-    }
-
-    async moveToLoginPage() {
-        const loginButton = await this.driver.findElement(By.xpath(this.loginOnMain));
+    async moveToLoginForm() {
+        const loginButton = await this.driver.findElement(By.xpath(this.loginButton));
         await loginButton.click();
-    }
-
-}
+    };
+};
