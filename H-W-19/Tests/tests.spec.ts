@@ -9,6 +9,7 @@ import PeoplePage from "../Src/pageObjects/peoplePage";
 import HeaderPage from "../Src/pageObjects/headerPage";
 import ProductPage from "../Src/pageObjects/productPage";
 import BasePage from "../Src/pageObjects/basePage";
+import OrderPlacementPage from "../Src/pageObjects/orderPlacementPage";
 
 const basePage = new BasePage(driver);
 const homePage = new HomePage(driver)
@@ -18,6 +19,7 @@ const loginPage = new LoginPage(driver)
 const peoplePage = new PeoplePage(driver)
 const headerPage = new HeaderPage(driver)
 const productPage = new ProductPage(driver)
+const orderPage = new OrderPlacementPage(driver)
 
 describe('Onliner', () => {
     beforeAll(async () => {
@@ -27,23 +29,18 @@ describe('Onliner', () => {
     beforeEach(async () => {
         await basePage.getUrl();
     });
-    // SideBar is not displayed after adding product to Cart sometimes
-    test.only('Add product to cart', async () => {
+    test('Add product to cart', async () => {
         await headerPage.findAndClickOnCatalogElementInHeader();
         await catalogPage.findAndWaitAndClickOnHeadphonesButtonInCatalog();
         await headphonesCatalogPage.findAndClickOnHeadphone();
-        await productPage.findAndClickOnAddToCartButton();
-        await productPage.waitSideBarAfterAddedToCart();
-        const productIsAddedText = await productPage.findAndDisplayingProductIsAddedOnSideBar();
-        const textHeadphonesAfterAddedToCart = await productPage.findAndDisplayingNameOfHeadphones();
-        const moveToCartButtonIsDisplayed = await productPage.findAndDisplayingMoveToCartButton();
-        const continueBuyButtonIsDisplayed = await productPage.findAndDisplayingContinueToBuyButton();
-        const recommendedToBuyPopupIsPresent = await productPage.findAndDisplayingRecommendedToBuyPopup();
-        expect(moveToCartButtonIsDisplayed).toEqual(true);
-        expect(continueBuyButtonIsDisplayed).toEqual(true);
-        expect(recommendedToBuyPopupIsPresent).toEqual(true);
-        expect(productIsAddedText).toEqual(true);
-        expect(textHeadphonesAfterAddedToCart).toEqual(true);
+        await productPage.findAndClickOnBuyNowButton();
+        await orderPage.waitUntilUrl();
+        const productIsDisplaying = await orderPage.findProductNameAndDisplaying();
+        const textProductPlacement = await orderPage.findAndDisplayingProductPlacement();
+        const curUrl = await basePage.getCurrentUrlValue();
+        expect(curUrl).toEqual('https://cart.onliner.by/order');
+        expect(productIsDisplaying).toEqual(true);
+        expect(textProductPlacement).toEqual(true);
     }, 50000);
 
     test('Search in catalog', async () => {
