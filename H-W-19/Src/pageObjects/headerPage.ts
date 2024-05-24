@@ -8,7 +8,7 @@ export default class HeaderPage extends BasePage {
     loginButton: string;
     newsButton: any;
     newsDropdown: string;
-    private static instance: HeaderPage;
+    static instance: HeaderPage;
     protected constructor(driver: WebDriver) {
         super(driver);
         this.catalogButton = "//span[text()='Каталог' and @class = 'b-main-navigation__text']";
@@ -44,6 +44,6 @@ export default class HeaderPage extends BasePage {
         if (!this.instance) {
             this.instance = new HeaderPage(driver)
         };
-        return this.instance;
+        return HeaderPage.instance;
     };
 };

@@ -52,9 +52,9 @@ describe('Onliner', () => {
     }, 30000);
 
     beforeEach(async () => {
-        await homePage.
+        await homePage.getUrl();
     });
-    test('Add product to cart', async () => {
+    test.only('Add product to cart', async () => {
         await headerPage.clickOnCatalogButton();
         await catalogPage.clickOnHeadphonesButton();
         await headphonesCatalogPage.clickOnHeadphoneName();

@@ -7,7 +7,7 @@ export default class PeoplePage extends BasePage {
    selectedPeopleButton: string;
    peopleHeader: string;
    allNewsText: string;
-   private static instance: PeoplePage;
+   static instance: PeoplePage;
    protected constructor(driver: WebDriver) {
       super(driver);
       this.selectedPeopleButton = "//a[contains(@class,'project-navigation') and contains(@href,'people')]";
@@ -31,6 +31,6 @@ export default class PeoplePage extends BasePage {
       if (!this.instance) {
          this.instance = new PeoplePage(driver)
       };
-      return this.instance;
+      return PeoplePage.instance;
    };
 };

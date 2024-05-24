@@ -8,7 +8,7 @@ export default class OrderPlacementPage extends BasePage {
     currentUrl: string;
     productNameText: string;
     productPlacementText: string;
-    private static instance: OrderPlacementPage;
+    static instance: OrderPlacementPage;
     protected constructor(driver: WebDriver) {
         super(driver);
         this.currentUrl = "https://cart.onliner.by/order";
@@ -38,6 +38,6 @@ export default class OrderPlacementPage extends BasePage {
         if (!this.instance) {
             this.instance = new OrderPlacementPage(driver)
         };
-        return this.instance;
+        return OrderPlacementPage.instance;
     };
 };

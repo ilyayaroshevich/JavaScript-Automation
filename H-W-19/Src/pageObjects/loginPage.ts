@@ -9,7 +9,7 @@ export default class LoginPage extends BasePage {
     passwordErrorText: string;
     emailError: string;
     passwordError: string;
-    private static instance: LoginPage;
+    static instance: LoginPage;
     protected constructor(driver: WebDriver) {
         super(driver);
         this.loginButton = "//button[@type='submit' and contains(@class,'auth')]";
@@ -42,6 +42,6 @@ export default class LoginPage extends BasePage {
         if (!this.instance) {
             this.instance = new LoginPage(driver)
         };
-        return this.instance;
+        return LoginPage.instance;
     };
 };

@@ -5,7 +5,7 @@ import driver from "../../driver";
 
 export default class ProductPage extends BasePage {
     buyNowButton: string;
-    private static instance: ProductPage;
+    static instance: ProductPage;
     protected constructor(driver: WebDriver) {
         super(driver);
         this.buyNowButton = "//a[@href='https://cart.onliner.by/?action=buyNow&shopId=707&productKey=majorivbtblk&productId=2202506&positionId=707:2202506001&deliveryType=courier']";
@@ -20,6 +20,6 @@ export default class ProductPage extends BasePage {
         if (!this.instance) {
             this.instance = new ProductPage(driver)
         };
-        return this.instance;
+        return ProductPage.instance;
     };
 };

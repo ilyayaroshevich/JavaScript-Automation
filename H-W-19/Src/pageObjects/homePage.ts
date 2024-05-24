@@ -14,7 +14,7 @@ export default class HomePage extends BasePage {
     propTitle: string;
     newsTitles: { People: string; Techno: string; Car: string; Prop: string; };
     mainURL: string;
-    private static instance: HomePage;
+    static instance: HomePage;
     protected constructor(driver: WebDriver) {
         super(driver);
         this.searchField = "//input[@class='fast-search__input']";
@@ -78,9 +78,9 @@ export default class HomePage extends BasePage {
     };
 
     static getInstance() {
-        if (!this.instance) {
-            this.instance = new HomePage(driver)
+        if (!HomePage.instance) {
+            HomePage.instance = new HomePage(driver)
         };
-        return this.instance;
+        return HomePage.instance;
     };
 };
