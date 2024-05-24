@@ -44,6 +44,6 @@ export default class HeaderPage extends BasePage {
         if (!this.instance) {
             this.instance = new HeaderPage(driver)
         };
-        return HeaderPage.instance;
+        return this.instance;
     };
 };

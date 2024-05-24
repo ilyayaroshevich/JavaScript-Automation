@@ -42,6 +42,6 @@ export default class LoginPage extends BasePage {
         if (!this.instance) {
             this.instance = new LoginPage(driver)
         };
-        return LoginPage.instance;
+        return this.instance;
     };
 };

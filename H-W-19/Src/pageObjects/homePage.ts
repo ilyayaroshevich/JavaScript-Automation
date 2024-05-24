@@ -81,6 +81,6 @@ export default class HomePage extends BasePage {
         if (!HomePage.instance) {
             HomePage.instance = new HomePage(driver)
         };
-        return HomePage.instance;
+        return this.instance;
     };
 };

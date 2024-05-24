@@ -3,7 +3,7 @@ import driver from "../../driver";
 
 export default class BasePage {
     colorOfSelectedButton: string;
-    static instance: BasePage;
+    protected static instance: BasePage;
     protected constructor(protected driver: WebDriver) {
         this.colorOfSelectedButton = "rgba(225, 225, 225, 1)";
 
@@ -29,7 +29,7 @@ export default class BasePage {
         if (!this.instance) {
             this.instance = new BasePage(driver)
         };
-        return BasePage.instance;
+        return this.instance;
     };
 
 }

@@ -20,6 +20,6 @@ export default class HeadphonesCatalogPage extends BasePage {
         if (!this.instance) {
             this.instance = new HeadphonesCatalogPage(driver)
         };
-        return HeadphonesCatalogPage.instance;
+        return this.instance;
     };
 };

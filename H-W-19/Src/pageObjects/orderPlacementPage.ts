@@ -38,6 +38,6 @@ export default class OrderPlacementPage extends BasePage {
         if (!this.instance) {
             this.instance = new OrderPlacementPage(driver)
         };
-        return OrderPlacementPage.instance;
+        return this.instance;
     };
 };

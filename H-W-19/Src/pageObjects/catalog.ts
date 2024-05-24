@@ -21,7 +21,7 @@ export default class CatalogPage extends BasePage {
         if (!this.instance) {
             this.instance = new CatalogPage(driver)
         };
-        return CatalogPage.instance;
+        return this.instance;
     };
 }
 

@@ -31,6 +31,6 @@ export default class PeoplePage extends BasePage {
       if (!this.instance) {
          this.instance = new PeoplePage(driver)
       };
-      return PeoplePage.instance;
+      return this.instance;
    };
 };

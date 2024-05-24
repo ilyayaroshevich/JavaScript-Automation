@@ -20,6 +20,6 @@ export default class ProductPage extends BasePage {
         if (!this.instance) {
             this.instance = new ProductPage(driver)
         };
-        return ProductPage.instance;
+        return this.instance;
     };
 };
