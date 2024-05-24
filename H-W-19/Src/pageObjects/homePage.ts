@@ -12,10 +12,10 @@ export default class HomePage extends BasePage {
     technoTitle: string;
     carTitle: string;
     propTitle: string;
-    mainURL: string;
     newsTitles: { People: string; Techno: string; Car: string; Prop: string; };
-    // private static instance: HomePage;
-    /*protected*/ constructor(driver: WebDriver) {
+    mainURL: string;
+    private static instance: HomePage;
+    protected constructor(driver: WebDriver) {
         super(driver);
         this.searchField = "//input[@class='fast-search__input']";
         this.fastSearchModal = "//div[@id='fast-search-modal']/*[@class='modal-dialog']";
@@ -25,7 +25,6 @@ export default class HomePage extends BasePage {
         this.technoTitle = "//a[text()='Технологии'][@class='b-main-navigation__dropdown-title-link']";
         this.carTitle = "//a[text()='Авто'][@class='b-main-navigation__dropdown-title-link']";
         this.propTitle = "//a[text()='Недвижимость'][@class='b-main-navigation__dropdown-title-link']";
-        this.mainURL = "https://www.onliner.by/";
         this.newsTitles =
         {
             People: "Люди",
@@ -33,6 +32,8 @@ export default class HomePage extends BasePage {
             Car: "Авто",
             Prop: "Недвижимость",
         };
+        this.mainURL = "https://www.onliner.by/";
+
     };
 
     async enterValueInSearchField() {
@@ -76,10 +77,10 @@ export default class HomePage extends BasePage {
         return await this.driver.get(this.mainURL);
     };
 
-    // static getInstance() {
-    //     if (!this.instance) {
-    //         this.instance = new HomePage(driver)
-    //     };
-    //     return this.instance;
-    // };
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new HomePage(driver)
+        };
+        return this.instance;
+    };
 };

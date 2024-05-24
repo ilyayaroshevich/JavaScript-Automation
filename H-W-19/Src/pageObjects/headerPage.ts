@@ -8,9 +8,8 @@ export default class HeaderPage extends BasePage {
     loginButton: string;
     newsButton: any;
     newsDropdown: string;
-    // private static instance: HeaderPage;
-
-    /*protected*/ constructor(driver: WebDriver) {
+    private static instance: HeaderPage;
+    protected constructor(driver: WebDriver) {
         super(driver);
         this.catalogButton = "//span[text()='Каталог' and @class = 'b-main-navigation__text']";
         this.loginButton = "//div[@class = 'auth-bar__item auth-bar__item--text']";
@@ -41,10 +40,10 @@ export default class HeaderPage extends BasePage {
         return newsDropdownIsDisplayed;
     };
 
-    // static getInstance() {
-    //     if (!this.instance) {
-    //         this.instance = new HeaderPage(driver)
-    //     };
-    //     return this.instance;
-    // };
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new HeaderPage(driver)
+        };
+        return this.instance;
+    };
 };

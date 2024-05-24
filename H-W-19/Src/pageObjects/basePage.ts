@@ -3,9 +3,10 @@ import driver from "../../driver";
 
 export default class BasePage {
     colorOfSelectedButton: string;
-    // private static instance: BasePage;
-    /*protected*/ constructor(protected driver: WebDriver) {
+    private static instance: BasePage;
+    protected constructor(protected driver: WebDriver) {
         this.colorOfSelectedButton = "rgba(225, 225, 225, 1)";
+
     };
 
     async getCurrentUrlValue() {
@@ -24,13 +25,11 @@ export default class BasePage {
         await this.driver.manage().window().maximize();
     };
 
-    // static getInstance() {
-    //     if(!this.instance) {
-    //         this.instance = new BasePage(driver)
-    //     };
-    //     return this.instance;
-    // };
-
-    
+    static getInstance() {
+        if(!this.instance) {
+            this.instance = new BasePage(driver)
+        };
+        return this.instance;
+    };
 
 }

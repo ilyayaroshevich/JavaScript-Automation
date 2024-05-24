@@ -5,8 +5,8 @@ import driver from "../../driver";
 
 export default class CatalogPage extends BasePage {
     headphonesButton: string;
-    // private static instance: CatalogPage;
-    /*protected*/ constructor(driver: WebDriver) {
+    private static instance: CatalogPage;
+    protected constructor(driver: WebDriver) {
         super(driver);
         this.headphonesButton = "//div[contains(text(), 'Наушники') and contains(@class, 'catalog-form')]";
 
@@ -17,11 +17,11 @@ export default class CatalogPage extends BasePage {
         await headphonesButton.click();
     };
 
-    // static getInstance() {
-    //     if (!this.instance) {
-    //         this.instance = new CatalogPage(driver)
-    //     };
-    //     return this.instance;
-    // };
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new CatalogPage(driver)
+        };
+        return this.instance;
+    };
 }
 

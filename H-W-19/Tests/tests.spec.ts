@@ -12,15 +12,15 @@ import BasePage from "../Src/pageObjects/basePage";
 import OrderPlacementPage from "../Src/pageObjects/orderPlacementPage";
 
 //PageObjects
-const basePage = new BasePage(driver);
-const homePage = new HomePage(driver)
-const catalogPage = new CatalogPage(driver)
-const headphonesCatalogPage = new HeadphonesCatalogPage(driver)
-const loginPage = new LoginPage(driver)
-const peoplePage = new PeoplePage(driver)
-const headerPage = new HeaderPage(driver)
-const productPage = new ProductPage(driver)
-const orderPage = new OrderPlacementPage(driver)
+// const basePage = new BasePage(driver);
+// const homePage = new HomePage(driver)
+// const catalogPage = new CatalogPage(driver)
+// const headphonesCatalogPage = new HeadphonesCatalogPage(driver)
+// const loginPage = new LoginPage(driver)
+// const peoplePage = new PeoplePage(driver)
+// const headerPage = new HeaderPage(driver)
+// const productPage = new ProductPage(driver)
+// const orderPage = new OrderPlacementPage(driver)
 
 //FactoryPage
 // import { PageFactory } from "../Src/pageFactory/pageFactory";
@@ -35,15 +35,15 @@ const orderPage = new OrderPlacementPage(driver)
 // const basePage = PageFactory.getPage(driver, "BasePage") as BasePage;
 
 //SingleTon
-// const basePage = BasePage.getInstance();
-// const homePage = HomePage.getInstance();
-// const catalogPage = CatalogPage.getInstance();
-// const headphonesCatalogPage = HeadphonesCatalogPage.getInstance();
-// const loginPage = LoginPage.getInstance();
-// const peoplePage = PeoplePage.getInstance();
-// const headerPage = HeaderPage.getInstance();
-// const productPage = ProductPage.getInstance();
-// const orderPage = OrderPlacementPage.getInstance();
+const basePage = BasePage.getInstance();
+const homePage = HomePage.getInstance();
+const catalogPage = CatalogPage.getInstance();
+const headphonesCatalogPage = HeadphonesCatalogPage.getInstance();
+const loginPage = LoginPage.getInstance();
+const peoplePage = PeoplePage.getInstance();
+const headerPage = HeaderPage.getInstance();
+const productPage = ProductPage.getInstance();
+const orderPage = OrderPlacementPage.getInstance();
 
 
 describe('Onliner', () => {
@@ -52,7 +52,7 @@ describe('Onliner', () => {
     }, 30000);
 
     beforeEach(async () => {
-        await homePage.getUrl();
+        await homePage.
     });
     test('Add product to cart', async () => {
         await headerPage.clickOnCatalogButton();
