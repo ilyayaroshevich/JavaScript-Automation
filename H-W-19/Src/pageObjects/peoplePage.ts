@@ -10,7 +10,7 @@ export default class PeoplePage extends BasePage {
    // private static instance: PeoplePage;
    /*protected*/ constructor(driver: WebDriver) {
       super(driver);
-      this.selectedPeopleButton = "//span[text()='Люди' and contains(@class,'project')]";
+      this.selectedPeopleButton = "//a[contains(@class,'project-navigation') and contains(@href,'people')]";
       this.peopleHeader = "//div[@class='news-header__title']";
       this.allNewsText = "Все новости";
    };

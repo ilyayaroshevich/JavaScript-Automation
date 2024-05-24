@@ -5,7 +5,7 @@ import driver from "../../driver";
 
 export default class HomePage extends BasePage {
     searchField: string;
-    fastSearchPopup: string;
+    fastSearchModal: string;
     peopleElement: string;
     peoplePageUrl: string;
     peopleTitle: string;
@@ -18,8 +18,7 @@ export default class HomePage extends BasePage {
     /*protected*/ constructor(driver: WebDriver) {
         super(driver);
         this.searchField = "//input[@class='fast-search__input']";
-        // this.fastSearchPopup = "//div[@id='fast-search-modal']";
-        this.fastSearchPopup = "//div[@class='search__bar']";
+        this.fastSearchModal = "//div[@id='fast-search-modal']/*[@class='modal-dialog']";
         this.peopleElement = "//header[@class='b-main-page-blocks-header-2 cfix']//a[@href='https://people.onliner.by']";
         this.peoplePageUrl = "https://people.onliner.by/";
         this.peopleTitle = "//a[text()='Люди'][@class='b-main-navigation__dropdown-title-link']";
@@ -39,12 +38,10 @@ export default class HomePage extends BasePage {
     async enterValueInSearchField() {
         const searchFieldInput = await this.driver.findElement(By.xpath(this.searchField));
         await searchFieldInput.sendKeys('iPhone');
-        await this.driver.wait(until.elementLocated(By.xpath(this.fastSearchPopup)), 30000, 'Timed out after 30 sec', 1000);
-
     };
     async fastSearchIsDisplayed() {
-        // await this.driver.wait(until.elementLocated(By.xpath(this.fastSearchPopup)), 30000, 'Timed out after 30 sec', 1000);
-        const fastSearchPopup = await this.driver.findElement(By.xpath(this.fastSearchPopup));
+        await this.driver.wait(until.elementLocated(By.xpath(this.fastSearchModal)), 30000, 'Timed out after 30 sec', 1000);
+        const fastSearchPopup = await this.driver.findElement(By.xpath(this.fastSearchModal));
         const searchFieldInputIsDisplayed = await fastSearchPopup.isDisplayed();
         return searchFieldInputIsDisplayed;
     };
@@ -52,7 +49,7 @@ export default class HomePage extends BasePage {
     async clickOnPeopleElement() {
         const peopleElement = await this.driver.findElement(By.xpath(this.peopleElement));
         await peopleElement.click();
-        await this.driver.wait(until.urlIs(this.peoplePageUrl), 30000, 'Timed out after 30 sec', 1000);
+        await this.driver.wait(until.urlIs(this.peoplePageUrl), 20000, 'Timed out after 30 sec', 1000);
     };
 
     async getPeopleText() {
