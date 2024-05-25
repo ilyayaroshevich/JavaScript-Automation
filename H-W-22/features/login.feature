@@ -30,7 +30,7 @@ Scenario Outline: As a User, I want to find a specific film in the Search field
     And  I enter the <film_name>
     Then I see dropdown with relevant films
     And I click on the first film in the list
-    Then I should see the page about selected film
+    But I should see the page about selected film
 
     Examples:
       | film_name      |
@@ -49,14 +49,14 @@ Scenario: As a User, I want to move to Media page and read any article
   Given I am on the main page
   When I click on the Media button
   Then I should see the Media page
-  When I click on any article
-  Then I should the topick of selected article
+  And I click on any article
+  But I should the topick of selected article
 @5
 Scenario:  As a user I want to move to specific serial page via 250 top serials 
   Given I am on the main page
   When I click on the 'Serials' button
   Then I should see the page with list of serials categories
-  When I click on the '250 top serials' button
-  Then I should see the page with 250 top serials
-  When I click on any serial
-  Then I should see the page with selected serial
+  And I click on the '250 top serials' button
+  But I should see the page with 250 top serials
+  And I click on any serial
+  But I should see the page with selected serial
