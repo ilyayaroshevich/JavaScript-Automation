@@ -1,15 +1,15 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect, $ } from '@wdio/globals'
 
-import LoginPage from '../pageobjects/loginPage';
-import MainPage from '../pageobjects/mainPage';
-import FilmPage from '../pageobjects/filmPage';
-import HeaderPage from '../pageobjects/headerPage';
-import ListsPage from '../pageobjects/listsPage';
-import MediaPage from '../pageobjects/mediaPage';
-import OnlineCinemaPage from '../pageobjects/onlineCinemaPage';
-import SeriesPage from '../pageobjects/seriesPage';
-
+import LoginPage from '../pageobjects/login.page.ts';
+import MainPage from '../pageobjects/main.page.ts';
+import FilmPage from '../pageobjects/film.page.ts';
+import HeaderPage from '../pageobjects/header.page.ts';
+import ListsPage from '../pageobjects/lists.page.ts';
+import MediaPage from '../pageobjects/media.page.ts';
+import OnlineCinemaPage from '../pageobjects/onlineCinema.page.ts';
+import SeriesPage from '../pageobjects/series.page.ts';
+import mainPage from '../pageobjects/main.page.ts';
 
 const pages = {
     login: LoginPage,
@@ -18,20 +18,19 @@ const pages = {
     lists: ListsPage,
     media: MediaPage,
     series: SeriesPage,
-    onlineCinema: OnlineCinemaPage
+    onlineCinema: OnlineCinemaPage,
+    headerPage: HeaderPage
 }
 
-
-Given(/^I am on the (.+) page$/, async (page) => {
+Given(/^I am on the (\w+) page$/, async (page) => {
     await pages[page].open()
 });
 
-// When(/^I login with (\w+) and (.+)$/, async (username, password) => {
-//     await LoginPage.login(username, password)
+// When(/^I click on the login button$/, async () => {
+    
 // });
 
-// Then(/^I should see a flash message saying (.*)$/, async (message) => {
-//     await expect(SecurePage.flashAlert).toBeExisting();
-//     await expect(SecurePage.flashAlert).toHaveTextContaining(message);
+// Then(/^I should see the login page$/, async (message) => {
+    
 // });
 

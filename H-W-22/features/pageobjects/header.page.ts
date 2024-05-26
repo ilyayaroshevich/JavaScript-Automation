@@ -1,5 +1,5 @@
 import { $ } from '@wdio/globals'
-import BasePage from './basePage';
+import BasePage from './base.page.ts';
 
 
 class HeaderPage extends BasePage {
