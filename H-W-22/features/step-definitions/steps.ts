@@ -1,16 +1,30 @@
-// import { Given, When, Then } from '@wdio/cucumber-framework';
-// import { expect, $ } from '@wdio/globals'
+import { Given, When, Then } from '@wdio/cucumber-framework';
+import { expect, $ } from '@wdio/globals'
 
-// import LoginPage from '../pageobjects/login.page.js';
-// import SecurePage from '../pageobjects/secure.page.js';
+import LoginPage from '../pageobjects/loginPage';
+import MainPage from '../pageobjects/mainPage';
+import FilmPage from '../pageobjects/filmPage';
+import HeaderPage from '../pageobjects/headerPage';
+import ListsPage from '../pageobjects/listsPage';
+import MediaPage from '../pageobjects/mediaPage';
+import OnlineCinemaPage from '../pageobjects/onlineCinemaPage';
+import SeriesPage from '../pageobjects/seriesPage';
 
-// const pages = {
-//     login: LoginPage
-// }
 
-// Given(/^I am on the (\w+) page$/, async (page) => {
-//     await pages[page].open()
-// });
+const pages = {
+    login: LoginPage,
+    main: MainPage,
+    film: FilmPage,
+    lists: ListsPage,
+    media: MediaPage,
+    series: SeriesPage,
+    onlineCinema: OnlineCinemaPage
+}
+
+
+Given(/^I am on the (.+) page$/, async (page) => {
+    await pages[page].open()
+});
 
 // When(/^I login with (\w+) and (.+)$/, async (username, password) => {
 //     await LoginPage.login(username, password)
