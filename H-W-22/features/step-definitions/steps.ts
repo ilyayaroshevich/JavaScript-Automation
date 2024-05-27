@@ -73,7 +73,7 @@ When(/^I click on the Online-cinema button$/, async () => {
 
 Then(/^I should see Online-cinema page$/, async () => {
     const currentUrl = await browser.getUrl();
-    expect(OnlineCinemaPage.onlineCinemaUrl).toEqual(currentUrl);
+    expect(currentUrl).toEqual(OnlineCinemaPage.onlineCinemaUrl);
 });
 
 When(/^I click on the Media button$/, async () => {
@@ -86,7 +86,49 @@ Then(/^I should see the Media page$/, async () => {
     const cssPropertyOfAllMaterialsButton = await MediaPage.getCssPropertyAllMaterialsButton();
     expect(allMaterialsButtonIsDIsplayed).toEqual(true);
     expect(cssPropertyOfAllMaterialsButton.value).toEqual(MediaPage.blackColor)
-    expect(MediaPage.mediaUrl).toEqual(currentUrl);
+    expect(currentUrl).toEqual(MediaPage.mediaUrl);
+});
+
+When(/^I click on the Series button$/, async () => {
+    await MainPage.clickOnSeriesButton();
+});
+
+Then(/^I should see the page with list of series categories$/, async () => {
+    const textTitleList = await ListsPage.getTextFromListsTitle();
+    const seriesButtonIsDisplayed = await ListsPage.serialButtonIsDisplayed()
+    const cssPropertyFromSeriesButton = await ListsPage.getCssPropertyFromSerialButton()
+    expect(textTitleList).toEqual(ListsPage.ListsText);
+    expect(seriesButtonIsDisplayed).toEqual(true);
+    expect(cssPropertyFromSeriesButton.value).toEqual(ListsPage.grayColor);
+});
+
+When(/^I click on the 250 top series button$/, async () => {
+    await ListsPage.clickOnTop250Series();
+})
+
+Then(/^I should see the page with 250 top series$/, async () => {
+    // const currentUrlSeries = await browser.getUrl(); 
+
+    //I do not know why it is not working
+    //Expected: "https://www.kinopoisk.ru/lists/movies/series-top250/"
+    //Received: "https://www.kinopoisk.ru/lists/categories/movies/3/"
+    // It works normally if I put the “getUrl” function in the “expected” function as shown below 
+        const top250Text = await SeriesPage.getTextTop250Series();
+        expect(await browser.getUrl()).toEqual(SeriesPage.top250SeriesUrl); /*<=======*/
+        expect(top250Text).toEqual(SeriesPage.top250BestSeries);
+})
+
+When(/^I click on the Breaking Bad serial$/, async () => {
+    await SeriesPage.clickOnSeries();
+});
+
+Then(/^I should see the page with selected series$/, async () => {
+    const currentUrl = await browser.getUrl();
+    expect(currentUrl).toEqual(SeriesPage.breakingBadUrl);
+    const detailsBlockIsDisplayed = await SeriesPage.serialDetailsIsDisplayed();
+    expect(detailsBlockIsDisplayed).toEqual(true);
+    const BreakingBadName = await SeriesPage.getSerialsName();
+    expect(BreakingBadName).toEqual(SeriesPage.breakingBadName);
 });
 
 AfterAll(async function () {

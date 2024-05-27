@@ -15,6 +15,13 @@ async clickOnMediaButton() {
     const mediaButton = await this.mediaButton;
     mediaButton.click();
 }
+
+async clickOnSeriesButton() {
+    const seriesButton = await this.seriesButton;
+    await seriesButton.waitForClickable();
+    seriesButton.click();
+    
+}
     
 }
 

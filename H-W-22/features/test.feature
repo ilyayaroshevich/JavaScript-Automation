@@ -30,12 +30,12 @@ Scenario: As a User, I want to move to Media page
   Given I am on the main page
   When I click on the Media button
   Then I should see the Media page
-# @5
-# Scenario:  As a user I want to move to specific series page via 250 top series 
-#   Given I am on the main page
-#   When I click on the 'Series' button
-#   Then I should see the page with list of series categories
-#   And I click on the '250 top series' button
-#   But I should see the page with 250 top series
-#   And I click on any serial
-#   But I should see the page with selected series
+@5
+Scenario:  As a user I want to move to specific series page via 250 top series 
+  Given I am on the main page
+  When I click on the Series button
+  Then I should see the page with list of series categories
+  When I click on the 250 top series button
+  Then I should see the page with 250 top series
+  When I click on the Breaking Bad serial
+  Then I should see the page with selected series
