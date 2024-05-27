@@ -26,7 +26,7 @@ class HeaderPage extends BasePage {
         await loginButton.click();
     }
 
-    async clickOnSearchfield() {
+    async findAndWaitClickableSearchfield() {
         const searchField = await this.searchField;
         await searchField.waitForClickable({ timeout: 50000 });
     }
@@ -51,7 +51,10 @@ class HeaderPage extends BasePage {
         await firstFilm.click();
     }
 
-
+    async clickOnOnlineCinemaButton() {
+        const onlineCinemaButton = await this.onlineCinemaButton;
+        await onlineCinemaButton.click();
+    }
 }
 
 export default new HeaderPage();

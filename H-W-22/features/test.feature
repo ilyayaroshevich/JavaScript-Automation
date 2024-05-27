@@ -20,11 +20,11 @@ Feature: Kinopoisk main page
       | film_name    |
       | The Simpsons |
       | Green Book   |
-# @3
-# Scenario: As a User, I want to move to online-cinema page
-#   Given I am on the main page
-#   When I click on the Online-cinema button
-#   Then I should see Online-cinema page
+@3
+Scenario: As a User, I want to move to online-cinema page
+  Given I am on the main page
+  When I click on the Online-cinema button
+  Then I should see Online-cinema page
 # @4
 # Scenario: As a User, I want to move to Media page
 #   Given I am on the main page

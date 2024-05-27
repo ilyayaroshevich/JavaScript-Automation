@@ -48,7 +48,7 @@ Then(/^I should see the login page$/, async () => {
 });
 
 When(/^I click on the Search field and enter the (.+)$/, async (film_name) => {
-    await HeaderPage.clickOnSearchfield();
+    await HeaderPage.findAndWaitClickableSearchfield();
     await HeaderPage.enterFilmName(film_name)
 });
 
@@ -66,7 +66,16 @@ Then(/^I should see the page about selected (.+)$/, async (film_name) => {
     await expect(nameOfFilmText).toEqual(film_name)
 });
 
-// AfterAll(async function () {
-//     await browser.deleteSession();
-// });
+When(/^I click on the Online-cinema button$/, async () => {
+    await HeaderPage.clickOnOnlineCinemaButton();
+});
+
+Then(/^I should see Online-cinema page$/, async () => {
+    const currentUrl = await browser.getUrl();
+    expect(OnlineCinemaPage.onlineCinemaUrl).toEqual(currentUrl);
+});
+
+AfterAll(async function () {
+    await browser.deleteSession();
+});
 
