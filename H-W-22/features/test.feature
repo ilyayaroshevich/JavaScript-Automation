@@ -1,15 +1,15 @@
+@All
 Feature: Kinopoisk main page
 
-  @1
-  Scenario: As a User, I want to move to login page
+@1
+Scenario: As a User, I want to move to login page
 
     Given I am on the main page
     When I click on the login button
     Then I should see the login page
 
-
-  @2
-  Scenario Outline: As a User, I want to find a specific film in the Search field
+@2
+Scenario Outline: As a User, I want to find a specific film in the Search field
     Given I am on the main page
     When I click on the Search field and enter the <film_name>
     Then I see dropdown with relevant films
@@ -20,16 +20,19 @@ Feature: Kinopoisk main page
       | film_name    |
       | The Simpsons |
       | Green Book   |
+
 @3
 Scenario: As a User, I want to move to online-cinema page
   Given I am on the main page
   When I click on the Online-cinema button
   Then I should see Online-cinema page
+
 @4
 Scenario: As a User, I want to move to Media page
   Given I am on the main page
   When I click on the Media button
   Then I should see the Media page
+
 @5
 Scenario:  As a user I want to move to specific series page via 250 top series 
   Given I am on the main page

@@ -2,46 +2,45 @@ import { $ } from '@wdio/globals'
 import BasePage from './base.page.ts';
 import headerPage from './header.page.ts';
 
-
 class ListsPage extends BasePage {
 
     get listsPageUrl() { return 'https://www.kinopoisk.ru/lists/categories/movies/3/' };
 
-    get top250Button() { return $("[href$='series-top250/']") }
+    get top250SeriesButton() { return $("[href$='series-top250/']") };
+
+    get listsTitle() { return $("h1[class='styles_title__ZBCLA']") };
+
+    get listsText() { return "Списки" };
+
+    get serialButton() {
+        return $("div[class$='ly3pq'] > a[href$='/3/']");
+    };
 
     public open() {
-        return browser.url(`https://www.kinopoisk.ru/lists/categories/movies/1/`)
-    }
+        return browser.url(`https://www.kinopoisk.ru/lists/categories/movies/1/`);
+    };
 
-    get Lists() { return $("h1[class='styles_title__ZBCLA']") }
-
-    get ListsText() { return "Списки" }
-
-    get SerialButton() {
-        return $("div[class$='ly3pq'] > a[href$='/3/']")
-    }
-
-    async clickOnTop250Series() {
-        const top250SeriesButton = await this.top250Button;
+    async clickOnTop250SeriesButton() {
+        const top250SeriesButton = await this.top250SeriesButton;
         await top250SeriesButton.waitForDisplayed();
         await top250SeriesButton.click();
-    }
+    };
 
     async getTextFromListsTitle() {
-        const textOfTitleLists = (await this.Lists).getText();
+        const textOfTitleLists = (await this.listsTitle).getText();
         return textOfTitleLists;
-    }
+    };
 
     async serialButtonIsDisplayed() {
-        const serialButton = (await this.SerialButton).isDisplayed();
+        const serialButton = (await this.serialButton).isDisplayed();
         return serialButton;
-    }
+    };
 
     async getCssPropertyFromSerialButton() {
-        const CssPropertyOfSerialButton = (await this.SerialButton).getCSSProperty('background');
+        const CssPropertyOfSerialButton = (await this.serialButton).getCSSProperty('background');
         return CssPropertyOfSerialButton;
-    }
+    };
 
-}
+};
 
 export default new ListsPage();

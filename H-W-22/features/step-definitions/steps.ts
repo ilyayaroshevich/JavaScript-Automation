@@ -1,5 +1,5 @@
 import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
-import { expect, $, browser } from '@wdio/globals'
+import { expect, browser } from '@wdio/globals'
 
 import LoginPage from '../pageobjects/login.page.ts';
 import MainPage from '../pageobjects/main.page.ts';
@@ -11,8 +11,6 @@ import OnlineCinemaPage from '../pageobjects/onlineCinema.page.ts';
 import SeriesPage from '../pageobjects/series.page.ts';
 import headerPage from '../pageobjects/header.page.ts';
 import loginPage from '../pageobjects/login.page.ts';
-import BasePage from '../pageobjects/base.page.ts';
-
 
 const pages = {
     login: LoginPage,
@@ -23,16 +21,14 @@ const pages = {
     series: SeriesPage,
     onlineCinema: OnlineCinemaPage,
     headerPage: HeaderPage,
-}
+};
 
 BeforeAll(async function () {
     await browser.maximizeWindow();
-
 });
 
 Given(/^I am on the (\w+) page$/, async (page) => {
-    await pages[page].open()
-
+    await pages[page].open();
 });
 
 When(/^I click on the login button$/, async () => {
@@ -49,12 +45,11 @@ Then(/^I should see the login page$/, async () => {
 });
 
 When(/^I click on the Search field and enter the (.+)$/, async (film_name) => {
-    await HeaderPage.findAndWaitClickableSearchfield();
-    await HeaderPage.enterFilmName(film_name)
+    await HeaderPage.enterFilmName(film_name);
 });
 
 Then(/^I see dropdown with relevant films$/, async () => {
-    const suggestionDropdownIsDisplayed = await HeaderPage.suggestionDropdownIsDisplayed();
+    const suggestionDropdownIsDisplayed = await HeaderPage.suggestionContainerIsDisplayed();
     await expect(suggestionDropdownIsDisplayed).toEqual(true);
 });
 
@@ -64,7 +59,7 @@ When(/^I click on the first film in the list$/, async () => {
 
 Then(/^I should see the page about selected (.+)$/, async (film_name) => {
     const nameOfFilmText = await FilmPage.getFilmName();
-    await expect(nameOfFilmText).toEqual(film_name)
+    await expect(nameOfFilmText).toEqual(film_name);
 });
 
 When(/^I click on the Online-cinema button$/, async () => {
@@ -83,9 +78,9 @@ When(/^I click on the Media button$/, async () => {
 Then(/^I should see the Media page$/, async () => {
     const currentUrl = await browser.getUrl();
     const allMaterialsButtonIsDIsplayed = await MediaPage.allMaterialsIsDisplayed();
-    const cssPropertyOfAllMaterialsButton = await MediaPage.getCssPropertyAllMaterialsButton();
+    const cssPropertyOfAllMaterialsButton = await MediaPage.getCssPropertyFromAllMaterialsButton();
     expect(allMaterialsButtonIsDIsplayed).toEqual(true);
-    expect(cssPropertyOfAllMaterialsButton.value).toEqual(MediaPage.blackColor)
+    expect(cssPropertyOfAllMaterialsButton.value).toEqual(MediaPage.blackColor);
     expect(currentUrl).toEqual(MediaPage.mediaUrl);
 });
 
@@ -95,16 +90,16 @@ When(/^I click on the Series button$/, async () => {
 
 Then(/^I should see the page with list of series categories$/, async () => {
     const textTitleList = await ListsPage.getTextFromListsTitle();
-    const seriesButtonIsDisplayed = await ListsPage.serialButtonIsDisplayed()
-    const cssPropertyFromSeriesButton = await ListsPage.getCssPropertyFromSerialButton()
-    expect(textTitleList).toEqual(ListsPage.ListsText);
+    const seriesButtonIsDisplayed = await ListsPage.serialButtonIsDisplayed();
+    const cssPropertyFromSeriesButton = await ListsPage.getCssPropertyFromSerialButton();
+    expect(textTitleList).toEqual(ListsPage.listsText);
     expect(seriesButtonIsDisplayed).toEqual(true);
     expect(cssPropertyFromSeriesButton.value).toEqual(ListsPage.grayColor);
 });
 
 When(/^I click on the 250 top series button$/, async () => {
-    await ListsPage.clickOnTop250Series();
-})
+    await ListsPage.clickOnTop250SeriesButton();
+});
 
 Then(/^I should see the page with 250 top series$/, async () => {
     // const currentUrlSeries = await browser.getUrl(); 
@@ -113,21 +108,21 @@ Then(/^I should see the page with 250 top series$/, async () => {
     //Expected: "https://www.kinopoisk.ru/lists/movies/series-top250/"
     //Received: "https://www.kinopoisk.ru/lists/categories/movies/3/"
     // It works normally if I put the “getUrl” function in the “expected” function as shown below 
-        const top250Text = await SeriesPage.getTextTop250Series();
-        expect(await browser.getUrl()).toEqual(SeriesPage.top250SeriesUrl); /*<=======*/
-        expect(top250Text).toEqual(SeriesPage.top250BestSeries);
-})
+    const top250Text = await SeriesPage.getTextTop250Series();
+    expect(await browser.getUrl()).toEqual(SeriesPage.top250SeriesUrl); /*<=======*/
+    expect(top250Text).toEqual(SeriesPage.top250BestSeriesText);
+});
 
 When(/^I click on the Breaking Bad serial$/, async () => {
-    await SeriesPage.clickOnSeries();
+    await SeriesPage.clickOnBreakinBadSeries();
 });
 
 Then(/^I should see the page with selected series$/, async () => {
     const currentUrl = await browser.getUrl();
     expect(currentUrl).toEqual(SeriesPage.breakingBadUrl);
-    const detailsBlockIsDisplayed = await SeriesPage.serialDetailsIsDisplayed();
+    const detailsBlockIsDisplayed = await SeriesPage.serialsDetailsIsDisplayed();
     expect(detailsBlockIsDisplayed).toEqual(true);
-    const BreakingBadName = await SeriesPage.getSerialsName();
+    const BreakingBadName = await SeriesPage.getTextSerialsName();
     expect(BreakingBadName).toEqual(SeriesPage.breakingBadName);
 });
 
