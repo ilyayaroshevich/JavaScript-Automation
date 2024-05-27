@@ -2,7 +2,9 @@ import { $ } from '@wdio/globals'
 import BasePage from './base.page.ts';
 
 class SeriesPage extends BasePage {
-
+    constructor() {
+        super();
+    };
     get top250BestSeriesText() {
         return '250 лучших сериалов'
     };
@@ -64,4 +66,4 @@ class SeriesPage extends BasePage {
 
 };
 
-export default new SeriesPage();
+export default /*new*/ SeriesPage;

@@ -1,16 +1,24 @@
 import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
 import { expect, browser } from '@wdio/globals'
+import { PageFactory } from '../pageFactory/pageFactory.ts';
 
-import LoginPage from '../pageobjects/login.page.ts';
-import MainPage from '../pageobjects/main.page.ts';
-import FilmPage from '../pageobjects/film.page.ts';
-import HeaderPage from '../pageobjects/header.page.ts';
-import ListsPage from '../pageobjects/lists.page.ts';
-import MediaPage from '../pageobjects/media.page.ts';
-import OnlineCinemaPage from '../pageobjects/onlineCinema.page.ts';
-import SeriesPage from '../pageobjects/series.page.ts';
-import headerPage from '../pageobjects/header.page.ts';
-import loginPage from '../pageobjects/login.page.ts';
+// import LoginPage from '../pageobjects/login.page.ts';
+// import MainPage from '../pageobjects/main.page.ts';
+// import FilmPage from '../pageobjects/film.page.ts';
+// import HeaderPage from '../pageobjects/header.page.ts';
+// import ListsPage from '../pageobjects/lists.page.ts';
+// import MediaPage from '../pageobjects/media.page.ts';
+// import OnlineCinemaPage from '../pageobjects/onlineCinema.page.ts';
+// import SeriesPage from '../pageobjects/series.page.ts';
+
+const HeaderPage = PageFactory.getPage(browser, "HeaderPage");
+const FilmPage = PageFactory.getPage(browser, "FilmPage");
+const ListsPage = PageFactory.getPage(browser, "ListsPage");
+const LoginPage = PageFactory.getPage(browser, "LoginPage");
+const MainPage = PageFactory.getPage(browser, "MainPage");
+const MediaPage = PageFactory.getPage(browser, "MediaPage");
+const OnlineCinemaPage = PageFactory.getPage(browser, "OnlineCinemaPage");
+const SeriesPage = PageFactory.getPage(browser, "SeriesPage");
 
 const pages = {
     login: LoginPage,
@@ -32,13 +40,13 @@ Given(/^I am on the (\w+) page$/, async (page) => {
 });
 
 When(/^I click on the login button$/, async () => {
-    await headerPage.clickOnLoginButton();
+    await HeaderPage.clickOnLoginButton();
 });
 
 Then(/^I should see the login page$/, async () => {
-    const loginFieldisDisplayed = await loginPage.inputLoginFieldIsDisplayed();
-    const loginBUttonIsDisplayed = await loginPage.loginButtonIsDisplayed();
-    const emailButtonIsDisplayed = await loginPage.emailButtonIsDIsplayed();
+    const loginFieldisDisplayed = await LoginPage.inputLoginFieldIsDisplayed();
+    const loginBUttonIsDisplayed = await LoginPage.loginButtonIsDisplayed();
+    const emailButtonIsDisplayed = await LoginPage.emailButtonIsDIsplayed();
     await expect(loginFieldisDisplayed).toEqual(true);
     await expect(loginBUttonIsDisplayed).toEqual(true);
     await expect(emailButtonIsDisplayed).toEqual(true);

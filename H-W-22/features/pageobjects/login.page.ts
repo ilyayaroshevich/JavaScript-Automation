@@ -2,6 +2,9 @@ import { $ } from '@wdio/globals'
 import BasePage from './base.page.ts';
 
 class LoginPage extends BasePage {
+        constructor() {
+          super();
+        }
 
     public get inputLogin() {
         return $('#passp-field-login');
@@ -10,7 +13,7 @@ class LoginPage extends BasePage {
     public get loginButton() {
         return $("button[id='passp:sign-in']");
     };
-
+    
     public get emailButton() {
         return $('button[class$="Button2_view_default"]');
     };
@@ -34,4 +37,5 @@ class LoginPage extends BasePage {
     };
 };
 
-export default new LoginPage();
+export default /*new*/ LoginPage;
+//For PageFactory

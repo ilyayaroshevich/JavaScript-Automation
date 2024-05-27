@@ -3,7 +3,9 @@ import BasePage from './base.page.ts';
 import headerPage from './header.page.ts';
 
 class ListsPage extends BasePage {
-
+    constructor() {
+        super();
+      };
     get listsPageUrl() { return 'https://www.kinopoisk.ru/lists/categories/movies/3/' };
 
     get top250SeriesButton() { return $("[href$='series-top250/']") };
@@ -43,4 +45,5 @@ class ListsPage extends BasePage {
 
 };
 
-export default new ListsPage();
+export default /*new*/ ListsPage;
+//PageFactory

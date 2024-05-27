@@ -2,6 +2,9 @@ import { $ } from '@wdio/globals'
 import BasePage from './base.page.ts';
 
 class HeaderPage extends BasePage {
+    constructor() {
+        super();
+      };
 
     get loginButton() { return $('button[class$="LWZQp"]') };
 
@@ -46,4 +49,5 @@ class HeaderPage extends BasePage {
     };
 };
 
-export default new HeaderPage();
+export default /*new*/ HeaderPage;
+//pageFactory

@@ -2,7 +2,9 @@ import { $ } from '@wdio/globals'
 import BasePage from './base.page.ts';
 
 class MediaPage extends BasePage {
-
+    constructor() {
+        super();
+      };
     get allMaterialsButton() { return $("[href='/media/'][class$=' active']") };
 
     get mediaUrl() { return 'https://www.kinopoisk.ru/media/' };
@@ -25,4 +27,4 @@ class MediaPage extends BasePage {
     };
 };
 
-export default new MediaPage();
+export default /*new*/ MediaPage;

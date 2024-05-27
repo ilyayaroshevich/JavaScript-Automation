@@ -3,7 +3,9 @@ import BasePage from './base.page.ts';
 
 
 class FilmPage extends BasePage {
-
+    constructor() {
+        super();
+      };
     get filmName() {
         return $("span[class$='JaNKM']");
     };
@@ -15,4 +17,5 @@ class FilmPage extends BasePage {
     };
 };
 
-export default new FilmPage();
+export default /*new*/ FilmPage;
+//for pageFactory

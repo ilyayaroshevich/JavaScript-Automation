@@ -2,7 +2,9 @@ import { $ } from '@wdio/globals'
 import BasePage from './base.page.ts';
 
 class MainPage extends BasePage {
-
+    constructor() {
+        super();
+      };
     get mediaButton() { return $("[href='/media/'][class$='BSbZW']") };
 
     get seriesButton() { return $("[href$='/3/'][class$='BSbZW']") };
@@ -23,4 +25,5 @@ class MainPage extends BasePage {
     };
 };
 
-export default new MainPage();
+export default /*new*/ MainPage;
+//for pageFactory
