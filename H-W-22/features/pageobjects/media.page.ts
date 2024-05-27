@@ -11,6 +11,19 @@ class MediaPage extends BasePage {
     public open() {
         return browser.url(`https://www.kinopoisk.ru/media/`)
     }
+
+    async allMaterialsIsDisplayed(){
+        const allMaterialsButton = this.allMaterialsButton;
+        const allMaterialsButtonIsDisplayed = await allMaterialsButton.isDisplayed();
+        return allMaterialsButtonIsDisplayed;
+    }
+
+    
+    async getCssPropertyAllMaterialsButton(){
+        const allMaterialsButton = this.allMaterialsButton;
+        const allMaterialsButtonCssProperty = await allMaterialsButton.getCSSProperty('color');
+        return allMaterialsButtonCssProperty;
+    }
 }
 
 export default new MediaPage();

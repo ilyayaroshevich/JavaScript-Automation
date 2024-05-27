@@ -11,6 +11,7 @@ import OnlineCinemaPage from '../pageobjects/onlineCinema.page.ts';
 import SeriesPage from '../pageobjects/series.page.ts';
 import headerPage from '../pageobjects/header.page.ts';
 import loginPage from '../pageobjects/login.page.ts';
+import BasePage from '../pageobjects/base.page.ts';
 
 
 const pages = {
@@ -73,6 +74,19 @@ When(/^I click on the Online-cinema button$/, async () => {
 Then(/^I should see Online-cinema page$/, async () => {
     const currentUrl = await browser.getUrl();
     expect(OnlineCinemaPage.onlineCinemaUrl).toEqual(currentUrl);
+});
+
+When(/^I click on the Media button$/, async () => {
+    await MainPage.clickOnMediaButton();
+});
+
+Then(/^I should see the Media page$/, async () => {
+    const currentUrl = await browser.getUrl();
+    const allMaterialsButtonIsDIsplayed = await MediaPage.allMaterialsIsDisplayed();
+    const cssPropertyOfAllMaterialsButton = await MediaPage.getCssPropertyAllMaterialsButton();
+    expect(allMaterialsButtonIsDIsplayed).toEqual(true);
+    expect(cssPropertyOfAllMaterialsButton.value).toEqual(MediaPage.blackColor)
+    expect(MediaPage.mediaUrl).toEqual(currentUrl);
 });
 
 AfterAll(async function () {

@@ -11,7 +11,10 @@ class MainPage extends BasePage {
     public open() {
         return browser.url(`https://www.kinopoisk.ru/`)
     }
-
+async clickOnMediaButton() {
+    const mediaButton = await this.mediaButton;
+    mediaButton.click();
+}
     
 }
 
