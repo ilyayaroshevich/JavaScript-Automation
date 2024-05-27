@@ -3,9 +3,9 @@ Feature: Kinopoisk main page
   @1
   Scenario: As a User, I want to move to login page
 
-    Given I am on the media page
-    # When I click on the login button
-    # Then I should see the login page
+    Given I am on the main page
+    When I click on the login button
+    Then I should see the login page
 
 
 #   @2

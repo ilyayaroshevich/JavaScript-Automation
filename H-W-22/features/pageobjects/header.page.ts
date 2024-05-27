@@ -20,6 +20,11 @@ class HeaderPage extends BasePage {
 
     get onlineCinemaButton() { return $("a[class$='menu__item'][href^='https://hd.']") }
 
+    async clickOnLoginButton() {
+        const loginButton = await this.loginButton;
+        await loginButton.waitForDisplayed({timeout: 20000});
+        await loginButton.click();
+    }
 }
 
 export default new HeaderPage();
