@@ -12,9 +12,7 @@ class MainPage extends BasePage {
         return browser.url(`https://www.kinopoisk.ru/`)
     }
 
-    clickOnLoginButton() {
-        return
-    }
+    
 }
 
 export default new MainPage();

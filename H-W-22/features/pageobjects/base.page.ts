@@ -6,8 +6,6 @@ export default class BasePage {
 
     get blackColor() { return 'rgb(0, 0, 0)' }
 
-    // async maximizeMindow(){
-    //     browser.maximizeWindow();
-    // }
+    
 }
 

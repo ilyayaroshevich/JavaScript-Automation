@@ -1,4 +1,4 @@
-import { Given, When, Then, BeforeAll, AfterAll} from '@wdio/cucumber-framework';
+import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
 import { expect, $, browser } from '@wdio/globals'
 
 import LoginPage from '../pageobjects/login.page.ts';
@@ -31,7 +31,7 @@ BeforeAll(async function () {
 
 Given(/^I am on the (\w+) page$/, async (page) => {
     await pages[page].open()
-    
+
 });
 
 When(/^I click on the login button$/, async () => {
@@ -47,6 +47,26 @@ Then(/^I should see the login page$/, async () => {
     await expect(emailButtonIsDisplayed).toEqual(true);
 });
 
-AfterAll(async function () {
-    await browser.deleteSession();});
+When(/^I click on the Search field and enter the (.+)$/, async (film_name) => {
+    await HeaderPage.clickOnSearchfield();
+    await HeaderPage.enterFilmName(film_name)
+});
+
+Then(/^I see dropdown with relevant films$/, async () => {
+    const suggestionDropdownIsDisplayed = await HeaderPage.suggestionDropdownIsDisplayed();
+    await expect(suggestionDropdownIsDisplayed).toEqual(true);
+});
+
+When(/^I click on the first film in the list$/, async () => {
+    await HeaderPage.clickOnFirstFilmOfList();
+});
+
+Then(/^I should see the page about selected (.+)$/, async (film_name) => {
+    const nameOfFilmText = await FilmPage.getFilmName();
+    await expect(nameOfFilmText).toEqual(film_name)
+});
+
+// AfterAll(async function () {
+//     await browser.deleteSession();
+// });
 

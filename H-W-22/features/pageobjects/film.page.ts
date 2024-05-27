@@ -7,6 +7,12 @@ class FilmPage extends BasePage {
     get filmName() {
         return $("span[class$='JaNKM']");
     }
+
+    async getFilmName() {
+        const filmName = await this.filmName;
+        const textFilmName = await filmName.getText();
+        return textFilmName;
+    }
 }
 
 export default new FilmPage();

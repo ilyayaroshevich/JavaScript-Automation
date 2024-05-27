@@ -8,20 +8,18 @@ Feature: Kinopoisk main page
     Then I should see the login page
 
 
-#   @2
-#   Scenario Outline: As a User, I want to find a specific film in the Search field
-#     Given I am on the main page
-#     When I click on the Search field
-#     And I enter the <film_name>
-#     Then I see dropdown with relevant films
-#     And I click on the first film in the list
-#     But I should see the page about selected film
+  @2
+  Scenario Outline: As a User, I want to find a specific film in the Search field
+    Given I am on the main page
+    When I click on the Search field and enter the <film_name>
+    Then I see dropdown with relevant films
+    When I click on the first film in the list
+    Then I should see the page about selected <film_name>
 
-#     Examples:
-#       | film_name    |
-#       | The Simpsons |
-#       | Green Book   |
-#       | I Am Legend  |
+    Examples:
+      | film_name    |
+      | The Simpsons |
+      | Green Book   |
 # @3
 # Scenario: As a User, I want to move to online-cinema page
 #   Given I am on the main page
