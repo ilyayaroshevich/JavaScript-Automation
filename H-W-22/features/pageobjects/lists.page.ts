@@ -33,10 +33,10 @@ class ListsPage extends BasePage {
         return textOfTitleLists;
     };
 
-    async serialButtonIsDisplayed() {
-        const serialButton = (await this.serialButton).isDisplayed();
-        return serialButton;
-    };
+    // async serialButtonIsDisplayed() {
+    //     const serialButton = (await this.serialButton).isDisplayed();
+    //     return serialButton;
+    // };
 
     async getCssPropertyFromSerialButton() {
         const CssPropertyOfSerialButton = (await this.serialButton).getCSSProperty('background');

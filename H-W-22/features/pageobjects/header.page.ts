@@ -28,12 +28,12 @@ class HeaderPage extends BasePage {
         await this.searchField.setValue(film_name);
     };
 
-    async suggestionContainerIsDisplayed() {
-        const suggestionContainer = await this.suggestContainer;
-        await suggestionContainer.waitForDisplayed({ timeout: 50000 });
-        const suggestionDropDownIsDisplayed = suggestionContainer.isDisplayed();
-        return suggestionDropDownIsDisplayed;
-    };
+    // async suggestionContainerIsDisplayed() {
+    //     const suggestionContainer = await this.suggestContainer;
+    //     await suggestionContainer.waitForDisplayed({ timeout: 50000 });
+    //     const suggestionDropDownIsDisplayed = suggestionContainer.isDisplayed();
+    //     return suggestionDropDownIsDisplayed;
+    // };
 
     // async clickOnFirstFilmOfList() {
     //     const firstFilm = await this.searchedMovie;

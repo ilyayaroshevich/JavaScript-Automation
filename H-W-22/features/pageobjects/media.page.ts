@@ -13,11 +13,11 @@ class MediaPage extends BasePage {
         return browser.url(`https://www.kinopoisk.ru/media/`);
     };
 
-    async allMaterialsIsDisplayed(){
-        const allMaterialsButton = this.allMaterialsButton;
-        const allMaterialsButtonIsDisplayed = await allMaterialsButton.isDisplayed();
-        return allMaterialsButtonIsDisplayed;
-    };
+    // async allMaterialsIsDisplayed(){
+    //     const allMaterialsButton = this.allMaterialsButton;
+    //     const allMaterialsButtonIsDisplayed = await allMaterialsButton.isDisplayed();
+    //     return allMaterialsButtonIsDisplayed;
+    // };
 
     
     async getCssPropertyFromAllMaterialsButton(){

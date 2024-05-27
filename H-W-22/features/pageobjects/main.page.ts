@@ -18,11 +18,11 @@ class MainPage extends BasePage {
     //     mediaButton.click();
     // };
 
-    async clickOnSeriesButton() {
-        const seriesButton = await this.seriesButton;
-        await seriesButton.waitForClickable();
-        seriesButton.click();
-    };
+    // async clickOnSeriesButton() {
+    //     const seriesButton = await this.seriesButton;
+    //     await seriesButton.waitForClickable();
+    //     seriesButton.click();
+    // };
 };
 
 export default /*new*/ MainPage;

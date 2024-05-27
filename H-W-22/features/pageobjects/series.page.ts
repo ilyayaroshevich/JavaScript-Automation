@@ -54,10 +54,10 @@ class SeriesPage extends BasePage {
     //     breakingBadSeries.click();
     // };
 
-    async serialsDetailsIsDisplayed() {
-        const serialDetails = (await this.detailsBlockOfMovie).isDisplayed();
-        return serialDetails;
-    };
+    // async serialsDetailsIsDisplayed() {
+    //     const serialDetails = (await this.detailsBlockOfMovie).isDisplayed();
+    //     return serialDetails;
+    // };
 
     async getTextSerialsName() {
         const nameOfSerial = (await this.serialName).getText();
