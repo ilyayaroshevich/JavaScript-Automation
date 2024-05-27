@@ -48,11 +48,11 @@ class SeriesPage extends BasePage {
         return top250Text;
     };
 
-    async clickOnBreakinBadSeries() {
-        const breakingBadSeries = await this.breakingBadSeries;
-        await breakingBadSeries.waitForDisplayed();
-        breakingBadSeries.click();
-    };
+    // async clickOnBreakinBadSeries() {
+    //     const breakingBadSeries = await this.breakingBadSeries;
+    //     await breakingBadSeries.waitForDisplayed();
+    //     breakingBadSeries.click();
+    // };
 
     async serialsDetailsIsDisplayed() {
         const serialDetails = (await this.detailsBlockOfMovie).isDisplayed();

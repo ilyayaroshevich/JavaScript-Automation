@@ -18,23 +18,23 @@ class LoginPage extends BasePage {
         return $('button[class$="Button2_view_default"]');
     };
 
-    async inputLoginFieldIsDisplayed() {
-        const loginField = await this.inputLogin;
-        const loginFieldIsDisplayed = await loginField.isDisplayed();
-        return loginFieldIsDisplayed;
-    };
+    // async inputLoginFieldIsDisplayed() {
+    //     const loginField = await this.inputLogin;
+    //     const loginFieldIsDisplayed = await loginField.isDisplayed();
+    //     return loginFieldIsDisplayed;
+    // };
 
-    async loginButtonIsDisplayed() {
-        const loginButton = await this.loginButton;
-        const loginButtonIsDisplayed = await loginButton.isDisplayed();
-        return loginButtonIsDisplayed;
-    };
+    // async loginButtonIsDisplayed() {
+    //     const loginButton = await this.loginButton;
+    //     const loginButtonIsDisplayed = await loginButton.isDisplayed();
+    //     return loginButtonIsDisplayed;
+    // };
 
-    async emailButtonIsDIsplayed() {
-        const emailButton = await this.emailButton;
-        const emailButtonIsDisplayed = await emailButton.isDisplayed();
-        return emailButtonIsDisplayed;
-    };
+    // async emailButtonIsDIsplayed() {
+    //     const emailButton = await this.emailButton;
+    //     const emailButtonIsDisplayed = await emailButton.isDisplayed();
+    //     return emailButtonIsDisplayed;
+    // };
 };
 
 export default /*new*/ LoginPage;

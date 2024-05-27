@@ -22,11 +22,11 @@ class ListsPage extends BasePage {
         return browser.url(`https://www.kinopoisk.ru/lists/categories/movies/1/`);
     };
 
-    async clickOnTop250SeriesButton() {
-        const top250SeriesButton = await this.top250SeriesButton;
-        await top250SeriesButton.waitForDisplayed();
-        await top250SeriesButton.click();
-    };
+    // async clickOnTop250SeriesButton() {
+    //     const top250SeriesButton = await this.top250SeriesButton;
+    //     await top250SeriesButton.waitForDisplayed();
+    //     await top250SeriesButton.click();
+    // };
 
     async getTextFromListsTitle() {
         const textOfTitleLists = (await this.listsTitle).getText();
