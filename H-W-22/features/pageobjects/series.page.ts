@@ -41,15 +41,6 @@ class SeriesPage extends BasePage {
         return browser.url(`https://www.kinopoisk.ru/lists/movies/series-top250/`);
     };
 
-    async getTextTop250Series() {
-        await this.top250SeriesTitle.waitForDisplayed();
-        return await this.top250SeriesTitle.getText();
-    };
-
-    async getTextSerialsName() {
-        return await this.serialName.getText();      
-    };
-
 };
 
 export default new SeriesPage;
