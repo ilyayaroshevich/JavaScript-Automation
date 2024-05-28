@@ -1,7 +1,7 @@
 import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
-import { expect} from '@wdio/globals'
+import { expect } from '@wdio/globals'
 // import { PageFactory } from '../pageFactory/pageFactory.ts';
-import { clickOnButton, elementIsDisplayed } from '../../utils/utils.ts'
+import { clickOnButton, elementIsDisplayed, getTextIsEqual } from '../../utils/utils.ts'
 //PageObject
 import LoginPage from '../pageobjects/login.page.ts';
 import MainPage from '../pageobjects/main.page.ts';
@@ -38,11 +38,11 @@ const pages = {
 BeforeAll(async function () {
     await basePage.maximizeWindow();
 });
-                                                    //FOR ALL SCENARIO
+//FOR ALL SCENARIO
 Given(/^I am on the (\w+) page$/, async (page) => {
     await pages[page].open();
 });
-                                                    //FOR @1 SCENARIO
+//FOR @1 SCENARIO
 When(/^I click on the login button$/, async () => {
     await clickOnButton(await HeaderPage.loginButton);
 });
@@ -52,7 +52,7 @@ Then(/^ I should make sure there is the Login field, Login button and Email butt
     await elementIsDisplayed(await LoginPage.loginButton, true)
     await elementIsDisplayed(await LoginPage.emailButton, true)
 });
-                                                    //FOR @2 SCENARIO    
+//FOR @2 SCENARIO    
 When(/^I enter (.+) in the search field$/, async (film_name) => {
     await HeaderPage.enterFilmName(film_name);
 });
@@ -66,10 +66,9 @@ When(/^I click on the first film in the list$/, async () => {
 });
 
 Then(/^I should see the (.+) page$/, async (film_name) => {
-    const nameOfFilmText = await FilmPage.getFilmName();
-    await expect(nameOfFilmText).toEqual(film_name);
+    await getTextIsEqual(await FilmPage.filmName, film_name);
 });
-                                                    //FOR @3 SCENARIO
+//FOR @3 SCENARIO
 When(/^I click on the Online-cinema button$/, async () => {
     await clickOnButton(await HeaderPage.onlineCinemaButton);
 });
@@ -78,7 +77,7 @@ Then(/^I should be redirected to the online-cinema page$/, async () => {
     const currentUrl = await basePage.getUrl();
     expect(currentUrl).toEqual(OnlineCinemaPage.onlineCinemaUrl);
 });
-                                                    //FOR @4 SCENARIO
+//FOR @4 SCENARIO
 When(/^I click on the Media button$/, async () => {
     await clickOnButton(await MainPage.mediaButton);
 });
@@ -90,15 +89,14 @@ Then(/^I should be redirected to the Media page and the All_Materials button sho
     expect(cssPropertyOfAllMaterialsButton.value).toEqual(MediaPage.blackColor);
     expect(currentUrl).toEqual(MediaPage.mediaUrl);
 });
-                                                    //FOR @5 SCENARIO
+//FOR @5 SCENARIO
 When(/^I click on the Series button$/, async () => {
     await clickOnButton(await MainPage.seriesButton);
 });
 
 Then(/^Then I should see a page with series categories, including a visible Series button styled in gray$/, async () => {
-    const textTitleList = await ListsPage.getTextFromListsTitle();
+    await getTextIsEqual(await ListsPage.listsTitle, ListsPage.listsText);
     const cssPropertyFromSeriesButton = await ListsPage.getCssPropertyFromSerialButton();
-    expect(textTitleList).toEqual(ListsPage.listsText);
     await elementIsDisplayed(await ListsPage.serialButton, true)
     expect(cssPropertyFromSeriesButton.value).toEqual(ListsPage.grayColor);
 });
@@ -108,9 +106,8 @@ When(/^I click on the 250 top series button$/, async () => {
 });
 
 Then(/^I should be redirected to the page displaying the top 250 series, and the text Top_250_Best_Series should be visible$/, async () => {
-    const top250Text = await SeriesPage.getTextTop250Series();
-    expect(await basePage.getUrl()).toEqual(SeriesPage.top250SeriesUrl); 
-    expect(top250Text).toEqual(SeriesPage.top250BestSeriesText);
+    await getTextIsEqual(await SeriesPage.top250SeriesTitle, SeriesPage.top250BestSeriesText);
+    expect(await basePage.getUrl()).toEqual(SeriesPage.top250SeriesUrl);
 });
 
 When(/^I click on the Breaking Bad serial$/, async () => {
@@ -120,9 +117,9 @@ When(/^I click on the Breaking Bad serial$/, async () => {
 Then(/^I should be redirected to the page for the selected series Breaking_Bad with its details block displayed$/, async () => {
     const currentUrl = await basePage.getUrl();;
     expect(currentUrl).toEqual(SeriesPage.breakingBadUrl);
+    await getTextIsEqual(await SeriesPage.serialName, SeriesPage.breakingBadName);
     await elementIsDisplayed(await SeriesPage.detailsBlockOfMovie, true)
-    const BreakingBadName = await SeriesPage.getTextSerialsName();
-    expect(BreakingBadName).toEqual(SeriesPage.breakingBadName);
+
 });
 
 AfterAll(async function () {

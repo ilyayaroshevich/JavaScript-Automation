@@ -22,9 +22,9 @@ class ListsPage extends BasePage {
         return browser.url(`https://www.kinopoisk.ru/lists/categories/movies/1/`);
     };
 
-    async getTextFromListsTitle() {
-        return await this.listsTitle.getText();
-    };
+    // async getTextFromListsTitle() {
+    //     return await this.listsTitle.getText();
+    // };
 
     async getCssPropertyFromSerialButton() {
         return await this.serialButton.getCSSProperty('background');
