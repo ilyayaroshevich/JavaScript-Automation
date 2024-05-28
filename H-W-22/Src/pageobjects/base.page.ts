@@ -1,10 +1,10 @@
 import { browser } from '@wdio/globals'
-
+import {blackColor, grayColor} from '../helpers/colors.ts'
 export default class BasePage {
 
-    get blackColor() { return 'rgba(0,0,0,1)' };
+    get blackColor() { return blackColor };
 
-    get grayColor() { return 'none 0% 0% auto repeat padding-box border-box scroll rgba(0, 0, 0, 0.05)' };
+    get grayColor() { return grayColor };
 
     async maximizeWindow() {
         await browser.maximizeWindow();
