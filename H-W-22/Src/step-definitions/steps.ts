@@ -1,7 +1,7 @@
 import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals'
 // import { PageFactory } from '../pageFactory/pageFactory.ts';
-import { elementIsDisplayed, getTextIsEqual } from '../../utils/utils.ts'
+import { elementIsDisplayed, getTextIsEqual } from '../utils/utils.ts'
 import { givenIAmOnPage, whenIClickOnButtonOnPage } from './commonSteps.ts';
 
 //PageObject

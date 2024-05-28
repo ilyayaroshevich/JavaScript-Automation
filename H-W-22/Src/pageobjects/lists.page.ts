@@ -1,6 +1,5 @@
 import { $ } from '@wdio/globals'
 import BasePage from './base.page.ts';
-import headerPage from './header.page.ts';
 
 class ListsPage extends BasePage {
     constructor() {
