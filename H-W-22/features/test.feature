@@ -3,7 +3,7 @@ Background:
   Given I am on the main page
 @1
 Scenario: As a User, I want to move to login page
-  When I click on the login button
+  When I click on the loginButton button on the header
   Then I should make sure there is the Login field, Login button, and Email button
 @2
 Scenario Outline: As a User, I want to find a specific film in the Search field
@@ -17,7 +17,7 @@ Scenario Outline: As a User, I want to find a specific film in the Search field
     | Green Book   |
 @3
 Scenario: As a User, I want to move to online-cinema page
-  When I click on the Online-cinema button
+  When I click on the OnlineCinema button on the header
   Then I should be redirected to the online-cinema page
 @4
 Scenario: As a User, I want to move to Media page

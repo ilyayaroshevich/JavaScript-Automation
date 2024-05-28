@@ -14,7 +14,7 @@ class HeaderPage extends BasePage {
 
     get searchedMovie() { return $("li[data-index='0']") };
 
-    get onlineCinemaButton() { return $("a[class$='menu__item'][href^='https://hd.']") };
+    get OnlineCinema() { return $("a[class$='menu__item'][href^='https://hd.']") };
 
 
     async enterFilmName(film_name) {

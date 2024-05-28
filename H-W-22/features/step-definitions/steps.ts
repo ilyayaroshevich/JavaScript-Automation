@@ -31,7 +31,7 @@ const pages = {
     media: MediaPage,
     series: SeriesPage,
     onlineCinema: OnlineCinemaPage,
-    headerPage: HeaderPage,
+    header: HeaderPage,
 };
 
 
@@ -39,15 +39,17 @@ BeforeAll(async function () {
     await basePage.maximizeWindow();
 });
 //FOR ALL SCENARIO
-Given(/^I am on the (\w+) page$/, async (page) => {
-    await pages[page].open();
+Given(/^I am on the (\w+) page$/, async (pageName) => {
+    await pages[pageName].open();
 });
 //FOR @1 SCENARIO
-When(/^I click on the login button$/, async () => {
-    await clickOnButton(await HeaderPage.loginButton);
+When(/^I click on the (\w+) button on the (\w+)$/, async (buttonName, pageName, ) => {
+    const page = pages[pageName];
+    const buttonElement = page && page[buttonName];
+    await clickOnButton(buttonElement);
 });
 
-Then(/^ I should make sure there is the Login field, Login button and Email button$/, async () => {
+Then(/^I should make sure there is the Login field, Login button, and Email button$/, async () => {
     await elementIsDisplayed(await LoginPage.inputLogin, true)
     await elementIsDisplayed(await LoginPage.loginButton, true)
     await elementIsDisplayed(await LoginPage.emailButton, true)
@@ -69,9 +71,9 @@ Then(/^I should see the (.+) page$/, async (film_name) => {
     await getTextIsEqual(await FilmPage.filmName, film_name);
 });
 //FOR @3 SCENARIO
-When(/^I click on the Online-cinema button$/, async () => {
-    await clickOnButton(await HeaderPage.onlineCinemaButton);
-});
+// When(/^I click on the OnlineCinema button$/, async () => {
+//     await clickOnButton(await HeaderPage.onlineCinemaButton);
+// });
 
 Then(/^I should be redirected to the online-cinema page$/, async () => {
     const currentUrl = await basePage.getUrl();
