@@ -1,7 +1,9 @@
 import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals'
 // import { PageFactory } from '../pageFactory/pageFactory.ts';
-import { clickOnButton, elementIsDisplayed, getTextIsEqual } from '../../utils/utils.ts'
+import { elementIsDisplayed, getTextIsEqual } from '../../utils/utils.ts'
+import { givenIAmOnPage, whenIClickOnButtonOnPage } from './commonSteps.ts';
+
 //PageObject
 import LoginPage from '../pageobjects/login.page.ts';
 import MainPage from '../pageobjects/main.page.ts';
@@ -23,7 +25,7 @@ import BasePage from '../pageobjects/base.page.ts';
 // const SeriesPage = PageFactory.getPage(browser, "SeriesPage");
 const basePage = new BasePage();
 
-const pages = {
+export const pages = {
     login: LoginPage,
     main: MainPage,
     film: FilmPage,
@@ -34,27 +36,19 @@ const pages = {
     header: HeaderPage,
 };
 
-
 BeforeAll(async function () {
     await basePage.maximizeWindow();
 });
-//FOR ALL SCENARIO
-Given(/^I am on the (\w+) page$/, async (pageName) => {
-    await pages[pageName].open();
-});
-//FOR @1 SCENARIO
-When(/^I click on the (\w+) button on the (\w+)$/, async (buttonName, pageName, ) => {
-    const page = pages[pageName];
-    const buttonElement = page && page[buttonName];
-    await clickOnButton(buttonElement);
-});
+
+Given(/^I am on the (\w+) page$/, givenIAmOnPage);
+
+When(/^I click on the (\w+) button on the (\w+)$/, whenIClickOnButtonOnPage);
 
 Then(/^I should make sure there is the Login field, Login button, and Email button$/, async () => {
     await elementIsDisplayed(await LoginPage.inputLogin, true)
     await elementIsDisplayed(await LoginPage.loginButton, true)
     await elementIsDisplayed(await LoginPage.emailButton, true)
 });
-//FOR @2 SCENARIO    
 When(/^I enter (.+) in the search field$/, async (film_name) => {
     await HeaderPage.enterFilmName(film_name);
 });
@@ -67,13 +61,11 @@ Then(/^I see dropdown with relevant films$/, async () => {
 Then(/^I should see the (.+) page$/, async (film_name) => {
     await getTextIsEqual(await FilmPage.filmName, film_name);
 });
-//FOR @3 SCENARIO
 
 Then(/^I should be redirected to the online-cinema page$/, async () => {
     const currentUrl = await basePage.getUrl();
     expect(currentUrl).toEqual(OnlineCinemaPage.onlineCinemaUrl);
 });
-//FOR @4 SCENARIO
 
 Then(/^I should be redirected to the Media page and the All_Materials button should be visible and styled in black color$/, async () => {
     const currentUrl = await basePage.getUrl();
@@ -82,7 +74,6 @@ Then(/^I should be redirected to the Media page and the All_Materials button sho
     expect(cssPropertyOfAllMaterialsButton.value).toEqual(MediaPage.blackColor);
     expect(currentUrl).toEqual(MediaPage.mediaUrl);
 });
-//FOR @5 SCENARIO
 
 Then(/^Then I should see a page with series categories, including a visible Series button styled in gray$/, async () => {
     await getTextIsEqual(await ListsPage.listsTitle, ListsPage.listsText);
