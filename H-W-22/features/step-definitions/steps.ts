@@ -1,7 +1,7 @@
 import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
-import { expect, browser } from '@wdio/globals'
+import { expect} from '@wdio/globals'
 // import { PageFactory } from '../pageFactory/pageFactory.ts';
-import { clickOnButton, isDisplayed } from '../../utils/utils.ts'
+import { clickOnButton, elementIsDisplayed } from '../../utils/utils.ts'
 //PageObject
 import LoginPage from '../pageobjects/login.page.ts';
 import MainPage from '../pageobjects/main.page.ts';
@@ -48,12 +48,9 @@ When(/^I click on the login button$/, async () => {
 });
 
 Then(/^ I should make sure there is the Login field, Login button and Email button$/, async () => {
-    const loginFieldisDisplayed = await isDisplayed(await LoginPage.inputLogin);
-    const loginBUttonIsDisplayed = await isDisplayed(await LoginPage.loginButton);
-    const emailButtonIsDisplayed = await isDisplayed(await LoginPage.emailButton);
-    await expect(loginFieldisDisplayed).toEqual(true);
-    await expect(loginBUttonIsDisplayed).toEqual(true);
-    await expect(emailButtonIsDisplayed).toEqual(true);
+    await elementIsDisplayed(await LoginPage.inputLogin, true)
+    await elementIsDisplayed(await LoginPage.loginButton, true)
+    await elementIsDisplayed(await LoginPage.emailButton, true)
 });
                                                     //FOR @2 SCENARIO    
 When(/^I enter (.+) in the search field$/, async (film_name) => {
@@ -61,8 +58,7 @@ When(/^I enter (.+) in the search field$/, async (film_name) => {
 });
 
 Then(/^I see dropdown with relevant films$/, async () => {
-    const suggestionDropdownIsDisplayed = await isDisplayed(await HeaderPage.suggestContainer);
-    await expect(suggestionDropdownIsDisplayed).toEqual(true);
+    await elementIsDisplayed(await HeaderPage.suggestContainer, true)
 });
 
 When(/^I click on the first film in the list$/, async () => {
@@ -89,9 +85,8 @@ When(/^I click on the Media button$/, async () => {
 
 Then(/^I should be redirected to the Media page and the All_Materials button should be visible and styled in black color$/, async () => {
     const currentUrl = await basePage.getUrl();
-    const allMaterialsButtonIsDIsplayed = await isDisplayed(await MediaPage.allMaterialsButton);
     const cssPropertyOfAllMaterialsButton = await MediaPage.getCssPropertyFromAllMaterialsButton();
-    expect(allMaterialsButtonIsDIsplayed).toEqual(true);
+    await elementIsDisplayed(await MediaPage.allMaterialsButton, true)
     expect(cssPropertyOfAllMaterialsButton.value).toEqual(MediaPage.blackColor);
     expect(currentUrl).toEqual(MediaPage.mediaUrl);
 });
@@ -102,10 +97,9 @@ When(/^I click on the Series button$/, async () => {
 
 Then(/^Then I should see a page with series categories, including a visible Series button styled in gray$/, async () => {
     const textTitleList = await ListsPage.getTextFromListsTitle();
-    const seriesButtonIsDisplayed = await isDisplayed(await ListsPage.serialButton);
     const cssPropertyFromSeriesButton = await ListsPage.getCssPropertyFromSerialButton();
     expect(textTitleList).toEqual(ListsPage.listsText);
-    expect(seriesButtonIsDisplayed).toEqual(true);
+    await elementIsDisplayed(await ListsPage.serialButton, true)
     expect(cssPropertyFromSeriesButton.value).toEqual(ListsPage.grayColor);
 });
 
@@ -126,8 +120,7 @@ When(/^I click on the Breaking Bad serial$/, async () => {
 Then(/^I should be redirected to the page for the selected series Breaking_Bad with its details block displayed$/, async () => {
     const currentUrl = await basePage.getUrl();;
     expect(currentUrl).toEqual(SeriesPage.breakingBadUrl);
-    const detailsBlockIsDisplayed = await isDisplayed(await SeriesPage.detailsBlockOfMovie);
-    expect(detailsBlockIsDisplayed).toEqual(true);
+    await elementIsDisplayed(await SeriesPage.detailsBlockOfMovie, true)
     const BreakingBadName = await SeriesPage.getTextSerialsName();
     expect(BreakingBadName).toEqual(SeriesPage.breakingBadName);
 });
