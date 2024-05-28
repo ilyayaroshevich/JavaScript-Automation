@@ -9,4 +9,4 @@ class OnlineCinemaPage extends BasePage {
 
 };
 
-export default /*new*/ OnlineCinemaPage;
+export default new OnlineCinemaPage;

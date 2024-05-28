@@ -1,44 +1,33 @@
-@All
 Feature: Kinopoisk main page
-
+Background:
+  Given I am on the main page
 @1
 Scenario: As a User, I want to move to login page
-
-    Given I am on the main page
-    When I click on the login button
-    Then I should see the login page
-
+  When I click on the login button
+  Then I should make sure there is the Login field, Login button, and Email button
 @2
 Scenario Outline: As a User, I want to find a specific film in the Search field
-    Given I am on the main page
-    When I click on the Search field and enter the <film_name>
-    Then I see dropdown with relevant films
-    When I click on the first film in the list
-    Then I should see the page about selected <film_name>
-
-    Examples:
-      | film_name    |
-      | The Simpsons |
-      | Green Book   |
-
+  When I enter <film_name> in the search field
+  Then I see dropdown with relevant films
+  When I click on the first film in the list
+  Then I should see the <film_name> page
+  Examples:
+    | film_name    |
+    | The Simpsons |
+    | Green Book   |
 @3
 Scenario: As a User, I want to move to online-cinema page
-  Given I am on the main page
   When I click on the Online-cinema button
-  Then I should see Online-cinema page
-
+  Then I should be redirected to the online-cinema page
 @4
 Scenario: As a User, I want to move to Media page
-  Given I am on the main page
   When I click on the Media button
-  Then I should see the Media page
-
+  Then I should be redirected to the Media page and the All_Materials button should be visible and styled in black color
 @5
 Scenario:  As a user I want to move to specific series page via 250 top series 
-  Given I am on the main page
   When I click on the Series button
-  Then I should see the page with list of series categories
+  Then Then I should see a page with series categories, including a visible Series button styled in gray
   When I click on the 250 top series button
-  Then I should see the page with 250 top series
+  Then I should be redirected to the page displaying the top 250 series, and the text Top_250_Best_Series should be visible
   When I click on the Breaking Bad serial
-  Then I should see the page with selected series
+  Then I should be redirected to the page for the selected series Breaking_Bad with its details block displayed

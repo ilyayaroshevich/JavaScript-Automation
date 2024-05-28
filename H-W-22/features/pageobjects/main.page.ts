@@ -12,18 +12,6 @@ class MainPage extends BasePage {
     public open() {
         return browser.url(`https://www.kinopoisk.ru/`);
     };
-    // async clickOnMediaButton() {
-    //     const mediaButton = await this.mediaButton;
-    //     await mediaButton.waitForClickable();
-    //     mediaButton.click();
-    // };
-
-    // async clickOnSeriesButton() {
-    //     const seriesButton = await this.seriesButton;
-    //     await seriesButton.waitForClickable();
-    //     seriesButton.click();
-    // };
 };
 
-export default /*new*/ MainPage;
-//for pageFactory
+export default new MainPage;

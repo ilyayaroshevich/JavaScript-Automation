@@ -42,28 +42,14 @@ class SeriesPage extends BasePage {
     };
 
     async getTextTop250Series() {
-        const top250TextTitle = await this.top250SeriesTitle;
-        await top250TextTitle.waitForDisplayed();
-        const top250Text = await top250TextTitle.getText();
-        return top250Text;
+        await this.top250SeriesTitle.waitForDisplayed();
+        return await this.top250SeriesTitle.getText();
     };
 
-    // async clickOnBreakinBadSeries() {
-    //     const breakingBadSeries = await this.breakingBadSeries;
-    //     await breakingBadSeries.waitForDisplayed();
-    //     breakingBadSeries.click();
-    // };
-
-    // async serialsDetailsIsDisplayed() {
-    //     const serialDetails = (await this.detailsBlockOfMovie).isDisplayed();
-    //     return serialDetails;
-    // };
-
     async getTextSerialsName() {
-        const nameOfSerial = (await this.serialName).getText();
-        return nameOfSerial;
+        return await this.serialName.getText();      
     };
 
 };
 
-export default /*new*/ SeriesPage;
+export default new SeriesPage;

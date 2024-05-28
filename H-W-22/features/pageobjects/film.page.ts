@@ -11,11 +11,8 @@ class FilmPage extends BasePage {
     };
 
     async getFilmName() {
-        const filmName = await this.filmName;
-        const textFilmName = await filmName.getText();
-        return textFilmName;
+        return await this.filmName.getText();
     };
 };
 
-export default /*new*/ FilmPage;
-//for pageFactory
+export default new FilmPage;
