@@ -8,7 +8,7 @@ class ListsPage extends BasePage {
       };
     get listsPageUrl() { return 'https://www.kinopoisk.ru/lists/categories/movies/3/' };
 
-    get top250SeriesButton() { return $("[href$='series-top250/']") };
+    get top250Series() { return $("[href$='series-top250/']") };
 
     get listsTitle() { return $("h1[class='styles_title__ZBCLA']") };
 

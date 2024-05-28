@@ -60,29 +60,20 @@ When(/^I enter (.+) in the search field$/, async (film_name) => {
 });
 
 Then(/^I see dropdown with relevant films$/, async () => {
+    await browser.pause(1000);
     await elementIsDisplayed(await HeaderPage.suggestContainer, true)
-});
-
-When(/^I click on the first film in the list$/, async () => {
-    await clickOnButton(await HeaderPage.searchedMovie);
 });
 
 Then(/^I should see the (.+) page$/, async (film_name) => {
     await getTextIsEqual(await FilmPage.filmName, film_name);
 });
 //FOR @3 SCENARIO
-// When(/^I click on the OnlineCinema button$/, async () => {
-//     await clickOnButton(await HeaderPage.onlineCinemaButton);
-// });
 
 Then(/^I should be redirected to the online-cinema page$/, async () => {
     const currentUrl = await basePage.getUrl();
     expect(currentUrl).toEqual(OnlineCinemaPage.onlineCinemaUrl);
 });
 //FOR @4 SCENARIO
-When(/^I click on the Media button$/, async () => {
-    await clickOnButton(await MainPage.mediaButton);
-});
 
 Then(/^I should be redirected to the Media page and the All_Materials button should be visible and styled in black color$/, async () => {
     const currentUrl = await basePage.getUrl();
@@ -92,9 +83,6 @@ Then(/^I should be redirected to the Media page and the All_Materials button sho
     expect(currentUrl).toEqual(MediaPage.mediaUrl);
 });
 //FOR @5 SCENARIO
-When(/^I click on the Series button$/, async () => {
-    await clickOnButton(await MainPage.seriesButton);
-});
 
 Then(/^Then I should see a page with series categories, including a visible Series button styled in gray$/, async () => {
     await getTextIsEqual(await ListsPage.listsTitle, ListsPage.listsText);
@@ -103,17 +91,9 @@ Then(/^Then I should see a page with series categories, including a visible Seri
     expect(cssPropertyFromSeriesButton.value).toEqual(ListsPage.grayColor);
 });
 
-When(/^I click on the 250 top series button$/, async () => {
-    await clickOnButton(await ListsPage.top250SeriesButton);
-});
-
 Then(/^I should be redirected to the page displaying the top 250 series, and the text Top_250_Best_Series should be visible$/, async () => {
     await getTextIsEqual(await SeriesPage.top250SeriesTitle, SeriesPage.top250BestSeriesText);
     expect(await basePage.getUrl()).toEqual(SeriesPage.top250SeriesUrl);
-});
-
-When(/^I click on the Breaking Bad serial$/, async () => {
-    await clickOnButton(await SeriesPage.breakingBadSeries);
 });
 
 Then(/^I should be redirected to the page for the selected series Breaking_Bad with its details block displayed$/, async () => {

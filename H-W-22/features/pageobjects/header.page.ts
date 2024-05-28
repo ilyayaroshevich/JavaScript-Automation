@@ -4,7 +4,7 @@ import BasePage from './base.page.ts';
 class HeaderPage extends BasePage {
     constructor() {
         super();
-      };
+    };
 
     get loginButton() { return $('button[class$="LWZQp"]') };
 
@@ -12,7 +12,7 @@ class HeaderPage extends BasePage {
 
     get suggestContainer() { return $('#suggest-container') };
 
-    get searchedMovie() { return $("li[data-index='0']") };
+    get firstFilm() { return $("li[data-index='0']") };
 
     get OnlineCinema() { return $("a[class$='menu__item'][href^='https://hd.']") };
 
