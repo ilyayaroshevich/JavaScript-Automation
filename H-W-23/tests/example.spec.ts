@@ -1,18 +1,27 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../Src/pageObject/homePage';
+import { HeaderPage } from '../Src/pageObject/headerPage';
+import { GamesPage } from '../Src/pageObject/gamesPage';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+test.describe.configure({ mode: 'serial', retries: 2 })
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.describe('First block', () => {
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  test.beforeEach(async ({ page }) => {
+    const homePage = new HomePage(page);
+    await homePage.openPage();
+  });
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+
+
+  test('there are buttons to social-networks', async ({ page }) => {
+    const headerPage = new HeaderPage(page);
+    await headerPage.buttonsIsDisplayed();
+
+  });
+
+
+ 
+
 });
