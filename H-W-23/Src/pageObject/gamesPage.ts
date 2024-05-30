@@ -1,42 +1,42 @@
 import { expect, type Locator, type Page } from '@playwright/test'
 import { BasePage } from './basePage';
-import { darkBlue } from '../helpers/colors';
+import { white } from '../helpers/colors';
 
 export class GamesPage extends BasePage {
     readonly page: Page;
     url: string;
     title: string;
-    sideBarButtons:any;
+    gamesTitle: any;
 
     constructor(page: Page) {
         super(page);
         this.page = page;
         this.url = 'https://3dnews.ru/games';
         this.title = 'Игры';
-        this.sideBarButtons = page.locator("td[id='left-sidebar']>div[class='sidebar-chunk submenu'] > a[href^='/games/']")
+        this.gamesTitle = page.locator("td[data-url='games']")
     }
 
     async openPage(url: string) {
         await super.openPage(this.url)
     }
 
-    async urlIsCorrect(){
+    async urlIsCorrect() {
         const currentUrl = await super.getCurrentUrl();
         expect(currentUrl).toEqual(this.url);
     }
 
-    async titleIsCorrect(){
+    async titleIsCorrect() {
         const currentUrl = await super.getCurrentTitle();
         expect(currentUrl).toEqual(this.title);
     }
 
-    async sideBarIsVisible(){
-        expect(this.sideBarButtons).toBeVisible();
+    async sideBarIsVisible() {
+        await expect(this.gamesTitle).toBeVisible();
     }
 
-    async colorIsCorrect(){
-        const buttonsColor = await this.page.getAttribute(this.sideBarButtons, 'background');
-        expect(buttonsColor).toEqual(darkBlue);
+    async colorIsCorrect() {
+        await this.gamesTitle.waitFor({ state: 'visible' });
+        await expect(this.gamesTitle).toHaveCSS('color', white);
     }
 
 }

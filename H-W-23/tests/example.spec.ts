@@ -3,17 +3,19 @@ import { HomePage } from '../Src/pageObject/homePage';
 import { HeaderPage } from '../Src/pageObject/headerPage';
 import { GamesPage } from '../Src/pageObject/gamesPage';
 import { SearchPage } from '../Src/pageObject/searchPage';
-import { clickOnButton, enterValue } from '../Src/utils/utils';
+import { clickOnButton, /*enterValue*/ } from '../Src/utils/utils';
 import { NewsPage } from '../Src/pageObject/newsPage';
+import { waitForUrlSEarch } from '../Src/helpers/urls';
+
 test.describe.configure({ mode: 'serial', retries: 2 })
 
 test.describe('First block', () => {
 
   test.beforeEach(async ({ page }) => {
+    await page.setViewportSize({ width: 1920, height: 1080 });
     const homePage = new HomePage(page);
     await homePage.openPage();
   });
-
 
 
   test('there are buttons to social-networks', async ({ page }) => {
@@ -38,11 +40,13 @@ test.describe('First block', () => {
     await gamesPage.colorIsCorrect();
   });
 
-  test('searching on the home page', async ({ page }) => {
+  test.only('searching on the home page', async ({ page }) => {
     const homePage = new HomePage(page);
     const searchPage = new SearchPage(page);
-    await enterValue(page, homePage.searchField, 'Новости');
+    // await enterValue(page, homePage.searchField, 'Новости');
+    await homePage.searchField.fill('Смартфоны');
     await page.keyboard.press('Enter');
+    await page.waitForURL(waitForUrlSEarch);
     await searchPage.urlIsCorrect();
     await searchPage.titleIsCorrect();
   });

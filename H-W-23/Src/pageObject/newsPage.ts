@@ -30,8 +30,8 @@ export class NewsPage extends BasePage {
     }
 
     async colorIsCorrect(){
-        const buttonsColor = await this.page.getAttribute(this.allNewsButton, 'background-color');
-        expect(buttonsColor).toEqual(redColor);
+        await this.allNewsButton.waitFor({ state: 'visible' });
+        await expect(this.allNewsButton).toHaveCSS('color', redColor);
     }
 
 
