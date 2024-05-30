@@ -3,7 +3,7 @@ import { HomePage } from '../Src/pageObject/homePage';
 import { HeaderPage } from '../Src/pageObject/headerPage';
 import { GamesPage } from '../Src/pageObject/gamesPage';
 import { SearchPage } from '../Src/pageObject/searchPage';
-import { clickOnButton, /*enterValue*/ } from '../Src/utils/utils';
+import { clickOnButton, /*enterValue*/ } from '../Src/helpers/commonFunctions';
 import { NewsPage } from '../Src/pageObject/newsPage';
 import { waitForUrlSEarch } from '../Src/helpers/urls';
 
@@ -40,7 +40,7 @@ test.describe('First block', () => {
     await gamesPage.colorIsCorrect();
   });
 
-  test.only('searching on the home page', async ({ page }) => {
+  test('searching on the home page', async ({ page }) => {
     const homePage = new HomePage(page);
     const searchPage = new SearchPage(page);
     // await enterValue(page, homePage.searchField, 'Новости');
@@ -51,7 +51,7 @@ test.describe('First block', () => {
     await searchPage.titleIsCorrect();
   });
 
-  test('move to News page and navifate there', async ({ page }) => {
+  test.only('move to News page and navifate there', async ({ page }) => {
     const homePage = new HomePage(page);
     const newsPage = new NewsPage(page);
     await clickOnButton(page, homePage.newsButton);

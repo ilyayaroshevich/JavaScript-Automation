@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page } from '@playwright/test'
 import { BasePage } from './basePage';
-import { clickOnButton } from '../utils/utils';
+import { clickOnButton } from '../helpers/commonFunctions';
 
 export class HomePage extends BasePage {
     readonly page: Page;
