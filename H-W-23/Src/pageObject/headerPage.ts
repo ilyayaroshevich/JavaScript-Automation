@@ -3,11 +3,11 @@ import { BasePage } from './basePage';
 
 export class HeaderPage extends BasePage {
     readonly page: Page;
-    private vkButton: any;
-    private youTubeButton: any;
-    private xButton: any;
-    private classMatesButton: any;
-    private telegramButton: any;
+    vkButton: any;
+    youTubeButton: any;
+    xButton: any;
+    classMatesButton: any;
+    telegramButton: any;
 
     constructor(page: Page) {
         super(page);
@@ -20,11 +20,11 @@ export class HeaderPage extends BasePage {
     }
 
     async buttonsIsDisplayed(): Promise<void> {
-        expect(await this.vkButton.isVisible()).toBe(true);
-        expect(await this.youTubeButton.isVisible()).toBe(true);
-        expect(await this.xButton.isVisible()).toBe(true);
-        expect(await this.classMatesButton.isVisible()).toBe(true);
-        expect(await this.telegramButton.isVisible()).toBe(true);
+        expect(await this.vkButton.toBeVisible()).toBe(true);
+        expect(await this.youTubeButton.toBeVisible()).toBe(true);
+        expect(await this.xButton.toBeVisible()).toBe(true);
+        expect(await this.classMatesButton.toBeVisible()).toBe(true);
+        expect(await this.telegramButton.toBeVisible()).toBe(true);
     };
 
 
