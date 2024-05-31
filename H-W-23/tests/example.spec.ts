@@ -62,4 +62,7 @@ test.describe('3DNews.ru', () => {
     await newsPage.urlIsCorrect(newsPage.url);
     await newsPage.colorIsCorrect();
   });
+  test.afterAll(async ({ browser }) => {
+    await browser.close();
+  });
 });
