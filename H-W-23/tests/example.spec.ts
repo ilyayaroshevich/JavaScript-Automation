@@ -11,35 +11,33 @@ import { PageFactory } from '../Src/pageObject/pageFactory';
 test.describe.configure({ mode: 'parallel', retries: 2 })
 
 
-test.describe('First block', () => {
+test.describe('3DNews.ru', () => {
+  let homePage: HomePage;
+  let headerPage: HeaderPage;
+  let gamesPage: GamesPage;
+  let searchPage: SearchPage;
+  let newsPage: NewsPage;
 
-  test.beforeEach(async ({ page}) => {
+  test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    // const homePage = new HomePage(page);
-    const homePage = PageFactory.getPage(page,'Home') as HomePage;
+    homePage = PageFactory.getPage(page, 'Home') as HomePage;
+    headerPage = PageFactory.getPage(page, 'Header') as HeaderPage;
+    gamesPage = PageFactory.getPage(page, 'Games') as GamesPage;
+    searchPage = PageFactory.getPage(page, 'Search') as SearchPage;
+    newsPage = PageFactory.getPage(page, 'News') as NewsPage;
     await homePage.openPage();
   });
 
-
-  test('social network buttons have correct href attributes', async ({ page }) => {
-    // const headerPage = new HeaderPage(page);
-    const headerPage = PageFactory.getPage(page, 'Header') as HeaderPage;
+  test('Test 1: Verify social network buttons href attributes', async ({ page }) => {
     await headerPage.buttonsHasCorrectHrefAttribute();
 
   });
 
-  test('displaying crypto currency', async ({ page }) => {
-    // const homePage = new HomePage(page);
-    const homePage = PageFactory.getPage(page,'Home') as HomePage;
+  test('Test 2: Verify displaying crypto currency', async ({ page }) => {
     await homePage.cryptoCurrencyIsVisible();
   });
 
-
-  test('move to Games page', async ({ page }) => {
-    // const homePage = new HomePage(page);
-    const homePage = PageFactory.getPage(page,'Home') as HomePage;
-    const gamesPage = PageFactory.getPage(page,'Games') as GamesPage;
-    // const gamesPage = new GamesPage(page);
+  test('Test 3: Move to Games page and verify elements', async ({ page }) => {
     await clickOnButton(page, homePage.gamesButton);
     await gamesPage.urlIsCorrect();
     await gamesPage.titleIsCorrect();
@@ -47,11 +45,7 @@ test.describe('First block', () => {
     await gamesPage.colorIsCorrect();
   });
 
-  test('searching on the home page', async ({ page }) => {
-    // const homePage = new HomePage(page);
-    const homePage = PageFactory.getPage(page,'Home') as HomePage;
-    const searchPage = PageFactory.getPage(page,'Search') as SearchPage;
-    // const searchPage = new SearchPage(page);
+  test('Test 4: Search on the home page and verify results', async ({ page }) => {
     await enterValue(homePage.searchField, 'Смартфоны');
     await page.keyboard.press('Enter');
     await page.waitForURL(waitForUrlSEarch);
@@ -59,12 +53,7 @@ test.describe('First block', () => {
     await searchPage.titleIsCorrect();
   });
 
-
-  test('move to News page and navigate there', async ({ page }) => {
-    // const homePage = new HomePage(page);
-    const homePage = PageFactory.getPage(page,'Home') as HomePage;
-    const newsPage = PageFactory.getPage(page,'News') as NewsPage;
-    // const newsPage = new NewsPage(page);
+  test('Test 5: Move to News page and navigate there', async ({ page }) => {
     await clickOnButton(page, homePage.newsButton);
     await newsPage.urlIsCorrect(newsPage.url);
     await newsPage.colorIsCorrect();
