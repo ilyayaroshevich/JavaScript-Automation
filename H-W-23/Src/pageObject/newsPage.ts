@@ -14,9 +14,9 @@ export class NewsPage extends BasePage {
         super(page);
         this.page = page;
         this.url = 'https://3dnews.ru/news';
-        this.inPastButton = page.locator("div[class^='content-block-header n']>a[class='right']");
-        this.inFutureButton = page.locator("div[class$='toc']>div>span>a[href$='news']");
-        this.allNewsButton = page.locator("div[class$='NF_select']");
+        this.inPastButton = page.getByRole('link', { name: 'В прошлое  →' }).first();
+        this.inFutureButton = page.getByRole('link', { name: '←  В будущее' }).first();
+        this.allNewsButton = page.locator('div').filter({ hasText: 'все новости' }).nth(3);
         this.urlSecondPage = 'https://3dnews.ru/news/page-2.html';
     }
 
@@ -25,8 +25,7 @@ export class NewsPage extends BasePage {
     }
 
     async urlIsCorrect(expectedUrl:string){
-        const currentUrl = await super.getCurrentUrl();
-        expect(currentUrl).toEqual(expectedUrl);
+        expect(this.page).toHaveURL(expectedUrl);
     }
 
     async colorIsCorrect() {

@@ -9,16 +9,18 @@ export class HeaderPage extends BasePage {
     classMatesButton: any;
     telegramButton: any;
     groupOfButtons:any;
+    dzen:any;
 
     constructor(page: Page) {
         super(page);
         this.page = page;
-        this.vkButton = page.locator("a.vk-b");
-        this.youTubeButton = page.locator("a.youtube-b");
-        this.xButton = page.locator("a.twitter-b");
-        this.classMatesButton = page.locator("a.google-plus-b");
-        this.telegramButton = page.locator("a.telegram-b");
-        this.groupOfButtons = page.locator("div.right.socbuttons");
+        this.vkButton = page.getByRole('link', { name: '3DNews ВКонтакте' });
+        this.youTubeButton = page.getByRole('link', { name: 'Youtube 3DNews' });
+        this.xButton = page.getByRole('link', { name: 'Твиттер 3DNews' });
+        this.classMatesButton = page.getByRole('link', { name: '3DNews в Одноклассниках' });
+        this.telegramButton = page.getByRole('link', { name: 'Telegram канал 3DNews' });
+        this.dzen = page.getByRole('link', { name: '3DNews в Дзен' });
+        this.groupOfButtons = page.locator('#stripe div').filter({ hasText: '+' });
     }
 
     async buttonsHasCorrectHrefAttribute(): Promise<void> {
@@ -26,7 +28,8 @@ export class HeaderPage extends BasePage {
         await expect(this.vkButton).toHaveAttribute('href','https://vk.com/ru_3dnews');
         await expect(this.youTubeButton).toHaveAttribute('href','https://www.youtube.com/user/3DNewsRU');
         await expect(this.xButton).toHaveAttribute('href','https://twitter.com/3D_News');
-        await expect(this.classMatesButton).toHaveAttribute('href','https://dzen.ru/3dnews.ru?favid=1188');
+        await expect(this.dzen).toHaveAttribute('href','https://dzen.ru/3dnews.ru?favid=1188');
+        await expect(this.classMatesButton).toHaveAttribute('href','https://ok.ru/group/54669301383183');
         await expect(this.telegramButton).toHaveAttribute('href','https://telegram.me/ru3dnews');
     };
 

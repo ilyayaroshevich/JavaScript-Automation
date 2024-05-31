@@ -13,7 +13,7 @@ export class GamesPage extends BasePage {
         this.page = page;
         this.url = 'https://3dnews.ru/games';
         this.title = 'Игры';
-        this.gamesTitle = page.locator("td[data-url='games']")
+        this.gamesTitle = page.locator('#section-header').getByText('Игры');
     }
 
     async openPage(url: string) {
