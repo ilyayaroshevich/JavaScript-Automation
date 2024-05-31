@@ -52,13 +52,13 @@ test.describe('3DNews.ru', () => {
   });
 
   test('Test 5: Move to News page and navigate there', async ({ page }) => {
-    await clickOnButton(page, homePage.newsButton);
+    await clickOnButton(page, homePage.newsLink);
     await newsPage.urlIsCorrect(newsPage.url);
     await newsPage.colorIsCorrect();
-    await clickOnButton(page, newsPage.inPastButton);
+    await clickOnButton(page, newsPage.inPastLink);
     await page.waitForURL(newsPage.urlSecondPage);
     await newsPage.urlIsCorrect(newsPage.urlSecondPage);
-    await clickOnButton(page, newsPage.inFutureButton);
+    await clickOnButton(page, newsPage.inFutureLink);
     await newsPage.urlIsCorrect(newsPage.url);
     await newsPage.colorIsCorrect();
   });

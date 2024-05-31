@@ -8,7 +8,7 @@ export class HomePage extends BasePage {
     readonly currencyBlock: any;
     readonly gamesButton: any;
     readonly searchField: any;
-    readonly newsButton: any;
+    readonly newsLink: any;
     constructor(page: Page) {
         super(page);
         this.page = page;
@@ -17,7 +17,7 @@ export class HomePage extends BasePage {
         this.currencyBlock = page.locator('#currencyTicker div').first();
         this.gamesButton = page.getByTitle('игры', { exact: true });
         this.searchField = page.locator('#search-text');
-        this.newsButton = page.getByRole('link', { name: 'Новости', exact: true });
+        this.newsLink = page.getByRole('link', { name: 'Новости', exact: true });
     };
 
     async openPage() {

@@ -5,8 +5,8 @@ import { redColor } from '../helpers/colors';
 export class NewsPage extends BasePage {
     readonly page: Page;
     readonly url: string;
-    readonly inPastButton:any;
-    readonly inFutureButton:any;
+    readonly inPastLink:any;
+    readonly inFutureLink:any;
     readonly allNewsButton:any;
     readonly urlSecondPage: string;
 
@@ -14,8 +14,8 @@ export class NewsPage extends BasePage {
         super(page);
         this.page = page;
         this.url = 'https://3dnews.ru/news';
-        this.inPastButton = page.getByRole('link', { name: 'В прошлое  →' }).first();
-        this.inFutureButton = page.getByRole('link', { name: '←  В будущее' }).first();
+        this.inPastLink = page.getByRole('link', { name: 'В прошлое  →' }).first();
+        this.inFutureLink = page.getByRole('link', { name: '←  В будущее' }).first();
         this.allNewsButton = page.locator('div').filter({ hasText: 'все новости' }).nth(3);
         this.urlSecondPage = 'https://3dnews.ru/news/page-2.html';
     };
