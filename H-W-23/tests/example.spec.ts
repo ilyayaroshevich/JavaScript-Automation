@@ -10,9 +10,10 @@ import { PageFactory } from '../Src/pageObject/pageFactory';
 
 test.describe.configure({ mode: 'parallel', retries: 2 })
 
+
 test.describe('First block', () => {
 
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page}) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     // const homePage = new HomePage(page);
     const homePage = PageFactory.getPage(page,'Home') as HomePage;
@@ -20,7 +21,7 @@ test.describe('First block', () => {
   });
 
 
-  test('there are buttons to social-networks', async ({ page }) => {
+  test('social network buttons have correct href attributes', async ({ page }) => {
     // const headerPage = new HeaderPage(page);
     const headerPage = PageFactory.getPage(page, 'Header') as HeaderPage;
     await headerPage.buttonsHasCorrectHrefAttribute();
@@ -59,7 +60,7 @@ test.describe('First block', () => {
   });
 
 
-  test('move to News page and navifate there', async ({ page }) => {
+  test('move to News page and navigate there', async ({ page }) => {
     // const homePage = new HomePage(page);
     const homePage = PageFactory.getPage(page,'Home') as HomePage;
     const newsPage = PageFactory.getPage(page,'News') as NewsPage;
@@ -74,5 +75,4 @@ test.describe('First block', () => {
     await newsPage.urlIsCorrect(newsPage.url);
     await newsPage.colorIsCorrect();
   });
-
 });
