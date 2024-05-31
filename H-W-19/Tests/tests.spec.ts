@@ -35,13 +35,14 @@ import OrderPlacementPage from "../Src/pageObjects/orderPlacementPage";
 // const basePage = PageFactory.getPage(driver, "BasePage") as BasePage;
 
 //SingleTon
-const basePage = BasePage.getInstance();
+const basePage = new BasePage(driver);
 const homePage = HomePage.getInstance();
 const catalogPage = CatalogPage.getInstance();
 const headphonesCatalogPage = HeadphonesCatalogPage.getInstance();
 const loginPage = LoginPage.getInstance();
 const peoplePage = PeoplePage.getInstance();
 const headerPage = HeaderPage.getInstance();
+const headerPage2 = HeaderPage.getInstance();
 const productPage = ProductPage.getInstance();
 const orderPage = OrderPlacementPage.getInstance();
 
@@ -54,7 +55,7 @@ describe('Onliner', () => {
     beforeEach(async () => {
         await homePage.getUrl();
     });
-    test.only('Add product to cart', async () => {
+    test('Add product to cart', async () => {
         await headerPage.clickOnCatalogButton();
         await catalogPage.clickOnHeadphonesButton();
         await headphonesCatalogPage.clickOnHeadphoneName();
@@ -104,6 +105,10 @@ describe('Onliner', () => {
         expect(carLinkDropdown).toEqual(homePage.newsTitles.Car);
         expect(propLinkDropdown).toEqual(homePage.newsTitles.Prop);
     });
+
+    test("Comparing two the same getInstance Classes", async () => {
+       expect(headerPage).toBe(headerPage2);
+    })
 
     afterAll(async () => {
         await basePage.closeBrowserTab();
