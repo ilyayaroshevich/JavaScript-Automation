@@ -3,13 +3,13 @@ import { BasePage } from './basePage';
 
 export class HeaderPage extends BasePage {
     readonly page: Page;
-    vkButton: any;
-    youTubeButton: any;
-    xButton: any;
-    classMatesButton: any;
-    telegramButton: any;
-    groupOfButtons:any;
-    dzen:any;
+    readonly vkButton: any;
+    readonly youTubeButton: any;
+    readonly xButton: any;
+    readonly classMatesButton: any;
+    readonly telegramButton: any;
+    readonly groupOfButtons:any;
+    readonly dzen:any;
 
     constructor(page: Page) {
         super(page);

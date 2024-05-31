@@ -3,8 +3,8 @@ import { BasePage } from './basePage';
 
 export class SearchPage extends BasePage {
     readonly page: Page;
-    urlAfterSearch: string;
-    title: string;
+    readonly urlAfterSearch: string;
+    readonly title: string;
 
     constructor(page: Page) {
         super(page);

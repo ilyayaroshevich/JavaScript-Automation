@@ -4,11 +4,11 @@ import { redColor } from '../helpers/colors';
 
 export class NewsPage extends BasePage {
     readonly page: Page;
-    url: string;
-    inPastButton:any;
-    inFutureButton:any;
-    allNewsButton:any;
-    urlSecondPage: string;
+    readonly url: string;
+    readonly inPastButton:any;
+    readonly inFutureButton:any;
+    readonly allNewsButton:any;
+    readonly urlSecondPage: string;
 
     constructor(page: Page) {
         super(page);

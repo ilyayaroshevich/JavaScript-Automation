@@ -4,9 +4,9 @@ import { white } from '../helpers/colors';
 
 export class GamesPage extends BasePage {
     readonly page: Page;
-    url: string;
-    title: string;
-    gamesTitle: any;
+    readonly url: string;
+    readonly title: string;
+    readonly gamesTitle: any;
 
     constructor(page: Page) {
         super(page);

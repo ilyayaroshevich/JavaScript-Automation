@@ -4,12 +4,12 @@ import { clickOnButton } from '../helpers/commonFunctions';
 
 export class HomePage extends BasePage {
     readonly page: Page;
-    url: string;
-    showCryptoButton: any;
-    currencyBlock: any;
-    gamesButton: any;
-    searchField: any;
-    newsButton: any;
+    readonly url: string;
+    readonly showCryptoButton: any;
+    readonly currencyBlock: any;
+    readonly gamesButton: any;
+    readonly searchField: any;
+    readonly newsButton: any;
     constructor(page: Page) {
         super(page);
         this.page = page;
