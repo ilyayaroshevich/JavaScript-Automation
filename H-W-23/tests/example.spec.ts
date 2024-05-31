@@ -3,7 +3,7 @@ import { HomePage } from '../Src/pageObject/homePage';
 import { HeaderPage } from '../Src/pageObject/headerPage';
 import { GamesPage } from '../Src/pageObject/gamesPage';
 import { SearchPage } from '../Src/pageObject/searchPage';
-import { clickOnButton, /*enterValue*/ } from '../Src/helpers/commonFunctions';
+import { clickOnButton, enterValue } from '../Src/helpers/commonFunctions';
 import { NewsPage } from '../Src/pageObject/newsPage';
 import { waitForUrlSEarch } from '../Src/helpers/urls';
 
@@ -40,16 +40,16 @@ test.describe('First block', () => {
     await gamesPage.colorIsCorrect();
   });
 
-  test('searching on the home page', async ({ page }) => {
+  test.only('searching on the home page', async ({ page }) => {
     const homePage = new HomePage(page);
     const searchPage = new SearchPage(page);
-    // await enterValue(page, homePage.searchField, 'Новости');
-    await homePage.searchField.fill('Смартфоны');
+    await enterValue(homePage.searchField, 'Смартфоны');
     await page.keyboard.press('Enter');
     await page.waitForURL(waitForUrlSEarch);
     await searchPage.urlIsCorrect();
     await searchPage.titleIsCorrect();
   });
+
 
   test('move to News page and navifate there', async ({ page }) => {
     const homePage = new HomePage(page);
