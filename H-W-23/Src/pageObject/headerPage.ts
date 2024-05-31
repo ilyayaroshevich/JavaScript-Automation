@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page } from '@playwright/test'
+import { expect, type Page } from '@playwright/test';
 import { BasePage } from './basePage';
 
 export class HeaderPage extends BasePage {
@@ -21,7 +21,7 @@ export class HeaderPage extends BasePage {
         this.telegramButton = page.getByRole('link', { name: 'Telegram канал 3DNews' });
         this.dzen = page.getByRole('link', { name: '3DNews в Дзен' });
         this.groupOfButtons = page.locator('#stripe div').filter({ hasText: '+' });
-    }
+    };
 
     async buttonsHasCorrectHrefAttribute(): Promise<void> {
         await this.page.waitForSelector("div[class='right socbuttons']", { state: 'visible' });
@@ -32,8 +32,5 @@ export class HeaderPage extends BasePage {
         await expect(this.classMatesButton).toHaveAttribute('href','https://ok.ru/group/54669301383183');
         await expect(this.telegramButton).toHaveAttribute('href','https://telegram.me/ru3dnews');
     };
-
-
-
-}
+};
 

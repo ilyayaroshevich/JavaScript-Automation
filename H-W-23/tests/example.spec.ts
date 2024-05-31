@@ -10,7 +10,6 @@ import { PageFactory } from '../Src/pageObject/pageFactory';
 
 test.describe.configure({ mode: 'parallel', retries: 2 })
 
-
 test.describe('3DNews.ru', () => {
   let homePage: HomePage;
   let headerPage: HeaderPage;
@@ -30,7 +29,6 @@ test.describe('3DNews.ru', () => {
 
   test('Test 1: Verify social network buttons href attributes', async ({ page }) => {
     await headerPage.buttonsHasCorrectHrefAttribute();
-
   });
 
   test('Test 2: Verify displaying crypto currency', async ({ page }) => {
@@ -39,8 +37,8 @@ test.describe('3DNews.ru', () => {
 
   test('Test 3: Move to Games page and verify elements', async ({ page }) => {
     await clickOnButton(page, homePage.gamesButton);
-    await gamesPage.urlIsCorrect();
-    await gamesPage.titleIsCorrect();
+    await gamesPage.urlIsCorrect(gamesPage.url);
+    await gamesPage.titleIsCorrect(gamesPage.title);
     await gamesPage.sideBarIsVisible();
     await gamesPage.colorIsCorrect();
   });
@@ -49,8 +47,8 @@ test.describe('3DNews.ru', () => {
     await enterValue(homePage.searchField, 'Смартфоны');
     await page.keyboard.press('Enter');
     await page.waitForURL(waitForUrlSEarch);
-    await searchPage.urlIsCorrect();
-    await searchPage.titleIsCorrect();
+    await searchPage.urlIsCorrect(searchPage.urlAfterSearch);
+    await searchPage.titleIsCorrect(searchPage.title);
   });
 
   test('Test 5: Move to News page and navigate there', async ({ page }) => {

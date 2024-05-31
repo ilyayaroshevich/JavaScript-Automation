@@ -1,6 +1,5 @@
-import { expect, type Locator, type Page } from '@playwright/test'
+import { expect, type Page } from '@playwright/test'
 import { BasePage } from './basePage';
-import { clickOnButton } from '../helpers/commonFunctions';
 
 export class HomePage extends BasePage {
     readonly page: Page;
@@ -19,15 +18,15 @@ export class HomePage extends BasePage {
         this.gamesButton = page.getByTitle('игры', { exact: true });
         this.searchField = page.locator('#search-text');
         this.newsButton = page.getByRole('link', { name: 'Новости', exact: true });
-    }
+    };
 
     async openPage() {
-        await super.openPage(this.url)
-    }
+        await super.openPage(this.url);
+    };
 
     async cryptoCurrencyIsVisible() {
         await this.showCryptoButton.click();
         await expect(this.currencyBlock).toBeVisible();
-    }
-}
+    };
+};
 
