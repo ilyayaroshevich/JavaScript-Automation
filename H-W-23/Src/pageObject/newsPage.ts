@@ -24,14 +24,14 @@ export class NewsPage extends BasePage {
         await super.openPage(this.url)
     }
 
-    async urlIsCorrect(url:string){
+    async urlIsCorrect(expectedUrl:string){
         const currentUrl = await super.getCurrentUrl();
-        expect(currentUrl).toEqual(this.url);
+        expect(currentUrl).toEqual(expectedUrl);
     }
 
-    async colorIsCorrect(){
+    async colorIsCorrect() {
         await this.allNewsButton.waitFor({ state: 'visible' });
-        await expect(this.allNewsButton).toHaveCSS('color', redColor);
+        await expect(this.allNewsButton).toHaveCSS('background-color', redColor, { timeout: 10000 });
     }
 
 

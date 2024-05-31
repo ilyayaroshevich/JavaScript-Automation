@@ -27,7 +27,7 @@ export class HomePage extends BasePage {
 
     async cryptoCurrencyIsVisible() {
         await this.showCryptoButton.click();
-        expect(await this.currencyBlock).toBeVisible();
+        await expect(this.currencyBlock).toBeVisible();
     }
 }
 

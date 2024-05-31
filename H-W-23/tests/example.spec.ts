@@ -7,7 +7,7 @@ import { clickOnButton, /*enterValue*/ } from '../Src/helpers/commonFunctions';
 import { NewsPage } from '../Src/pageObject/newsPage';
 import { waitForUrlSEarch } from '../Src/helpers/urls';
 
-test.describe.configure({ mode: 'serial', retries: 2 })
+test.describe.configure({ mode: 'parallel', retries: 2 })
 
 test.describe('First block', () => {
 
@@ -20,7 +20,7 @@ test.describe('First block', () => {
 
   test('there are buttons to social-networks', async ({ page }) => {
     const headerPage = new HeaderPage(page);
-    await headerPage.buttonsIsDisplayed();
+    await headerPage.buttonsHasCorrectHrefAttribute();
 
   });
 
@@ -51,13 +51,14 @@ test.describe('First block', () => {
     await searchPage.titleIsCorrect();
   });
 
-  test.only('move to News page and navifate there', async ({ page }) => {
+  test('move to News page and navifate there', async ({ page }) => {
     const homePage = new HomePage(page);
     const newsPage = new NewsPage(page);
     await clickOnButton(page, homePage.newsButton);
     await newsPage.urlIsCorrect(newsPage.url);
     await newsPage.colorIsCorrect();
     await clickOnButton(page, newsPage.inPastButton);
+    await page.waitForURL(newsPage.urlSecondPage);
     await newsPage.urlIsCorrect(newsPage.urlSecondPage);
     await clickOnButton(page, newsPage.inFutureButton);
     await newsPage.urlIsCorrect(newsPage.url);
