@@ -1,8 +1,9 @@
 import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals'
 // import { PageFactory } from '../pageFactory/pageFactory.ts';
-import { elementIsDisplayed, getTextIsEqual } from '../utils/utils.ts'
+import { elementIsDisplayed, getTextIsEqual } from '../helpers/commonFunctions.ts';
 import { givenIAmOnPage, whenIClickOnButtonOnPage } from './commonSteps.ts';
+import { blackColor, grayColor } from '../helpers/colors.ts';
 
 //PageObject
 import LoginPage from '../pageobjects/login.page.ts';
@@ -14,6 +15,7 @@ import MediaPage from '../pageobjects/media.page.ts';
 import OnlineCinemaPage from '../pageobjects/onlineCinema.page.ts';
 import SeriesPage from '../pageobjects/series.page.ts';
 import BasePage from '../pageobjects/base.page.ts';
+import { urlIs } from 'selenium-webdriver/lib/until';
 // PageFactory
 // const HeaderPage = PageFactory.getPage(browser, "HeaderPage");
 // const FilmPage = PageFactory.getPage(browser, "FilmPage");
@@ -44,7 +46,7 @@ Given(/^I am on the (\w+) page$/, givenIAmOnPage);
 
 When(/^I click on the (\w+) button on the (\w+)$/, whenIClickOnButtonOnPage);
 
-Then(/^I should make sure there is the Login field, Login button, and Email button$/, async () => {
+Then(/^I should validate that login form displaying correctly$/, async () => {
     await elementIsDisplayed(await LoginPage.inputLogin, true)
     await elementIsDisplayed(await LoginPage.loginButton, true)
     await elementIsDisplayed(await LoginPage.emailButton, true)
@@ -67,30 +69,56 @@ Then(/^I should be redirected to the online-cinema page$/, async () => {
     expect(currentUrl).toEqual(OnlineCinemaPage.onlineCinemaUrl);
 });
 
-Then(/^I should be redirected to the Media page and the All_Materials button should be visible and styled in black color$/, async () => {
+Then(/^I should be redirected to the Media page$/, async () => {
     const currentUrl = await basePage.getUrl();
-    const cssPropertyOfAllMaterialsButton = await MediaPage.getCssPropertyFromAllMaterialsButton();
-    await elementIsDisplayed(await MediaPage.allMaterialsButton, true)
-    expect(cssPropertyOfAllMaterialsButton.value).toEqual(MediaPage.blackColor);
     expect(currentUrl).toEqual(MediaPage.mediaUrl);
 });
 
-Then(/^Then I should see a page with series categories, including a visible Series button styled in gray$/, async () => {
+Then(/^All_Materials button should be visible$/, async () => {
+    await elementIsDisplayed(await MediaPage.allMaterialsButton, true)
+});
+
+Then(/^All_Materials button styled in black$/, async () => {
+    const cssPropertyOfAllMaterialsButton = await MediaPage.getCssPropertyFromAllMaterialsButton();
+    expect(cssPropertyOfAllMaterialsButton.value).toEqual(blackColor);
+});
+
+Then(/^I should see a page with series categories$/, async () => {
     await getTextIsEqual(await ListsPage.listsTitle, ListsPage.listsText);
-    const cssPropertyFromSeriesButton = await ListsPage.getCssPropertyFromSerialButton();
+});
+
+Then(/^Series button is visible$/, async () => {
     await elementIsDisplayed(await ListsPage.serialButton, true)
-    expect(cssPropertyFromSeriesButton.value).toEqual(ListsPage.grayColor);
 });
 
-Then(/^I should be redirected to the page displaying the top 250 series, and the text Top_250_Best_Series should be visible$/, async () => {
+Then(/^Series button is styled in gray$/, async () => {
+    const cssPropertyFromSeriesButton = await ListsPage.getCssPropertyFromSerialButton();
+    expect(cssPropertyFromSeriesButton.value).toEqual(grayColor);
+});
+
+
+Then(/^I should be redirected to the top 250 series page$/, async () => {
+    await browser.waitUntil(async () => {
+        const currentUrl = await basePage.getUrl();
+        expect(currentUrl).toBe(SeriesPage.top250SeriesUrl);
+        return true;
+    }, {
+        timeout: 5000});
+});
+
+
+Then(/^The text Top 250 Best Series is correct$/, async () => {
     await getTextIsEqual(await SeriesPage.top250SeriesTitle, SeriesPage.top250BestSeriesText);
-    expect(await basePage.getUrl()).toEqual(SeriesPage.top250SeriesUrl);
+
 });
 
-Then(/^I should be redirected to the page for the selected series Breaking_Bad with its details block displayed$/, async () => {
+Then(/^I should be redirected to the Breaking Bad page$/, async () => {
     const currentUrl = await basePage.getUrl();;
     expect(currentUrl).toEqual(SeriesPage.breakingBadUrl);
     await getTextIsEqual(await SeriesPage.serialName, SeriesPage.breakingBadName);
+});
+
+Then(/^Details block is displayed$/, async () => {
     await elementIsDisplayed(await SeriesPage.detailsBlockOfMovie, true)
 
 });

@@ -1,5 +1,5 @@
 import { pages } from './steps.ts';
-import { clickOnButton } from '../utils/utils.ts';
+import { clickOnButton } from '../helpers/commonFunctions.ts';
 
 export const givenIAmOnPage = async (pageName: string) => {
     await pages[pageName].open();
