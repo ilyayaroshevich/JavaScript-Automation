@@ -21,13 +21,11 @@ export class GamesPage extends BasePage {
     }
 
     async urlIsCorrect() {
-        const currentUrl = await super.getCurrentUrl();
-        expect(currentUrl).toEqual(this.url);
+        expect(this.page).toHaveURL(this.url);
     }
 
     async titleIsCorrect() {
-        const currentUrl = await super.getCurrentTitle();
-        expect(currentUrl).toEqual(this.title);
+        await expect(this.page).toHaveTitle(this.title);
     }
 
     async sideBarIsVisible() {
