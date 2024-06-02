@@ -3,10 +3,11 @@ import { HomePage } from '../Src/pageObject/homePage';
 import { HeaderPage } from '../Src/pageObject/headerPage';
 import { GamesPage } from '../Src/pageObject/gamesPage';
 import { SearchPage } from '../Src/pageObject/searchPage';
-import { clickOnButton, enterValue } from '../Src/helpers/commonFunctions';
+import { clickOnButton, enterValue, countOfChildElements } from '../Src/helpers/commonFunctions';
 import { NewsPage } from '../Src/pageObject/newsPage';
 import { waitForUrlSEarch } from '../Src/helpers/urls';
 import { PageFactory } from '../Src/pageObject/pageFactory';
+import { only } from 'node:test';
 
 test.describe.configure({ mode: 'parallel', retries: 2 })
 
@@ -62,6 +63,16 @@ test.describe('3DNews.ru', () => {
     await newsPage.urlIsCorrect(newsPage.url);
     await newsPage.colorIsCorrect();
   });
+
+  test('Test 6: Counting the number of reviews', async ({ page }) => {
+    await countOfChildElements(homePage.reviews, 25, 'li')
+  });
+
+  test.only('Test 7: Counting subsections of the Games section', async ({ page }) => {
+    await clickOnButton(page, homePage.gamesButton);
+    await countOfChildElements(gamesPage.subsectionsGames, 28, 'a')
+  });
+
   test.afterAll(async ({ browser }) => {
     await browser.close();
   });

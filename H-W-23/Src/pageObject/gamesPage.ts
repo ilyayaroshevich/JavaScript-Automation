@@ -7,6 +7,7 @@ export class GamesPage extends BasePage {
     readonly url: string;
     readonly title: string;
     readonly gamesTitle: any;
+    readonly subsectionsGames: any;
 
     constructor(page: Page) {
         super(page);
@@ -14,6 +15,7 @@ export class GamesPage extends BasePage {
         this.url = 'https://3dnews.ru/games';
         this.title = 'Игры';
         this.gamesTitle = page.locator('#section-header').getByText('Игры');
+        this.subsectionsGames = page.locator('//td[@id="left-sidebar"]/div[12]');
     };
 
     async openPage(url: string) {
