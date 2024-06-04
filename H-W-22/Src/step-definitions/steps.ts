@@ -1,9 +1,10 @@
-import { Given, When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
+import { When, Then, BeforeAll, AfterAll } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals'
+import { urlIs } from 'selenium-webdriver/lib/until';
 // import { PageFactory } from '../pageFactory/pageFactory.ts';
 import { elementIsDisplayed, getTextIsEqual } from '../helpers/commonFunctions.ts';
-import { givenIAmOnPage, whenIClickOnButtonOnPage } from './commonSteps.ts';
 import { blackColor, grayColor } from '../helpers/colors.ts';
+import './commonSteps.ts';
 
 //PageObject
 import LoginPage from '../pageobjects/login.page.ts';
@@ -15,7 +16,7 @@ import MediaPage from '../pageobjects/media.page.ts';
 import OnlineCinemaPage from '../pageobjects/onlineCinema.page.ts';
 import SeriesPage from '../pageobjects/series.page.ts';
 import BasePage from '../pageobjects/base.page.ts';
-import { urlIs } from 'selenium-webdriver/lib/until';
+
 // PageFactory
 // const HeaderPage = PageFactory.getPage(browser, "HeaderPage");
 // const FilmPage = PageFactory.getPage(browser, "FilmPage");
@@ -42,10 +43,6 @@ BeforeAll(async function () {
     await basePage.maximizeWindow();
 });
 
-Given(/^I am on the (\w+) page$/, givenIAmOnPage);
-
-When(/^I click on the (\w+) button on the (\w+)$/, whenIClickOnButtonOnPage);
-
 Then(/^I should validate that login form displaying correctly$/, async () => {
     await elementIsDisplayed(await LoginPage.inputLogin, true)
     await elementIsDisplayed(await LoginPage.loginButton, true)
@@ -56,7 +53,8 @@ When(/^I enter (.+) in the search field$/, async (film_name) => {
 });
 
 Then(/^I see dropdown with relevant films$/, async () => {
-    await browser.pause(1000);
+    await browser.pause(1000);                                  //<=== Это вынужденный pause. Без него клик происходит по неправильному элементу.
+                                                                //Перепробовал разные вэйтеры и обращалс як chatgpt. Но знаю, что нужно избегать.
     await elementIsDisplayed(await HeaderPage.suggestContainer, true)
 });
 
