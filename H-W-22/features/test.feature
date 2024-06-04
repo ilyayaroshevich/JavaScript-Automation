@@ -1,3 +1,5 @@
+@All
+
 Feature: Kinopoisk main page
 Background:
   Given I am on the main page
