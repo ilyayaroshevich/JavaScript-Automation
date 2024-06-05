@@ -9,6 +9,8 @@ export class ForumPage extends BasePage {
         this.importantTopics = "div[class='h-hottopics']>ul[class='b-list-topics']";
 
 }
-
+public checkThatUrlIs() {
+    this.getPageUrl().should("equal", this.url)
+}
     
 }

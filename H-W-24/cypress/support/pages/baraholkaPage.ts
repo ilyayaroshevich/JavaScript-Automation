@@ -8,4 +8,9 @@ constructor(){
     this.fleaMarketButton=".b-btn-fleamarket__1";
 
 }    
+
+public checkThatUrlIs() {
+    this.getPageUrl().should("equal", this.url)
+}
+
 }
