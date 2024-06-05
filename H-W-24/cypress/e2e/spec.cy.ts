@@ -10,47 +10,53 @@ const servicesPage = new ServicesPage();
 const baraholkaPage = new BaraholkaPage();
 const forumPage = new ForumPage();
 describe('Navigations from Main page', () => {
-
+  before(() => {
+    cy.intercept('GET', 'https://s.onliner.by/api/tasks').as('tasks');
+  })
   beforeEach(() => {
     mainPage.openPage();
   })
   it('Test 1: Navigation to services page', () => {
-    headerPage.clickOnNavigationBarLink(headerPage.servicesLink);
-    servicesPage.checkThatUrlIs();
-    servicesPage.elementIsExistAndVisible(servicesPage.serviceFilter_1);
-    servicesPage.elementIsExistAndVisible(servicesPage.serviceFilter_2);
-    servicesPage.elementIsExistAndVisible(servicesPage.taskButton);
-    servicesPage.elementIsExistAndVisible(servicesPage.createTaskLink);
-    servicesPage.elementIsExistAndVisible(servicesPage.profilesButton);
-
-    cy.intercept('GET', 'https://s.onliner.by/api/tasks').as('tasks');
+    cy.clickOnNavigationBarLink(headerPage.servicesLink);
+    cy.checkThatUrlIs(servicesPage.url);
+    cy.elementIsExistAndVisible(servicesPage.serviceFilter_1);
+    cy.elementIsExistAndVisible(servicesPage.serviceFilter_2);
+    cy.elementIsExistAndVisible(servicesPage.taskButton);
+    cy.elementIsExistAndVisible(servicesPage.createTaskLink);
+    cy.elementIsExistAndVisible(servicesPage.profilesButton);
     cy.wait('@tasks').then((interception) => {
       const { response } = interception;
-      expect(response.body.page.limit).toEqual(50);
-      expect(response.body.page.items).toEqual(50);
-    });
+      expect(response.body.page.limit).to.equal(50);
+      expect(response.body.page.items).to.equal(50);
       cy.fixture('buttonNames.json').then((buttonNames) => {
-        servicesPage.getTextFromElementIs(servicesPage.createTaskLink, buttonNames.CREATING_TASK_BUTTON);
-        servicesPage.getTextFromElementIs(servicesPage.taskButton, buttonNames.TASK_BUTTON);
-        servicesPage.getTextFromElementIs(servicesPage.profilesButton, buttonNames.PROFILES_BUTTON);
+        cy.getTextFromElementIs(servicesPage.createTaskLink, buttonNames.CREATING_TASK_BUTTON);
+        cy.getTextFromElementIs(servicesPage.taskButton, buttonNames.TASK_BUTTON);
+        cy.getTextFromElementIs(servicesPage.profilesButton, buttonNames.PROFILES_BUTTON);
       });
       cy.fixture('colors.json').then((colors) => {
-        servicesPage.getCssValueFromElement(servicesPage.createTaskLink, 'background-color', colors.GREEN);
-        servicesPage.getCssValueFromElement(servicesPage.taskButton, 'background-color', colors.GRAY);
-        servicesPage.getCssValueFromElement(servicesPage.profilesButton, 'color', colors.BLUE);
+        cy.getCssValueFromElement(servicesPage.createTaskLink, 'background-color', colors.GREEN);
+        cy.getCssValueFromElement(servicesPage.taskButton, 'background-color', colors.GRAY);
+        cy.getCssValueFromElement(servicesPage.profilesButton, 'color', colors.BLUE);
       });
     });
   });
-  
 
-  // it('Test 2: Navigation to baraholka page', () => {
-  //   headerPage.clickOnNavigationBarLink(headerPage.baraholkaLink);
-  //   baraholkaPage.checkThatUrlIs();
 
-  // })
 
-  // it('Test 3: Navigation to forum page', () => {
-  //   headerPage.clickOnNavigationBarLink(headerPage.forumLink);
-  //   forumPage.checkThatUrlIs();
 
-  // })
+
+
+});
+
+
+// it('Test 2: Navigation to baraholka page', () => {
+//   headerPage.clickOnNavigationBarLink(headerPage.baraholkaLink);
+//   baraholkaPage.checkThatUrlIs();
+
+// })
+
+// it('Test 3: Navigation to forum page', () => {
+//   headerPage.clickOnNavigationBarLink(headerPage.forumLink);
+//   forumPage.checkThatUrlIs();
+
+// })

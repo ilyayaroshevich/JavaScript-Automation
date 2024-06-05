@@ -1,7 +1,8 @@
 import BasePage from "./basePage";
+
 export class ServicesPage extends BasePage {
     public url: string;
-    public profileUrl:string;
+    public profileUrl: string;
     public serviceFilter_1: string;
     public serviceFilter_2: string;
     public createTaskLink: string;

@@ -1,37 +1,31 @@
-/// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+// cypress/support/index.ts
+
+declare namespace Cypress {
+    interface Chainable<Subject = any> {
+        clickOnNavigationBarLink(linkSelector: string): Chainable<Subject>;
+        checkThatUrlIs(expectedUrl: string): Chainable<Subject>;
+        elementIsExistAndVisible(element: string): Chainable<Subject>;
+        getTextFromElementIs(element: string, expectedText: string): Chainable<Subject>;
+        getCssValueFromElement(element: string, nameOfCssValue: string, expectedCssValue: string): Chainable<Subject>;
+    }
+}
+
+Cypress.Commands.add('clickOnNavigationBarLink', (linkSelector: string) => {
+    cy.get(linkSelector).click();
+});
+
+Cypress.Commands.add('checkThatUrlIs', (expectedUrl: string) => {
+    cy.url().should('equal', expectedUrl);
+});
+
+Cypress.Commands.add('elementIsExistAndVisible', (element: string) => {
+    cy.get(element).should('exist').and('be.visible');
+});
+
+Cypress.Commands.add('getTextFromElementIs', (element: string, expectedText: string) => {
+    cy.get(element).should('have.text', expectedText);
+});
+
+Cypress.Commands.add('getCssValueFromElement', (element: string, nameOfCssValue: string, expectedCssValue: string) => {
+    cy.get(element).should('have.css', nameOfCssValue, expectedCssValue);
+});
