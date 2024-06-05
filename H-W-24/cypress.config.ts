@@ -11,6 +11,8 @@ export default defineConfig({
     fixturesFolder: "./H-W_24/cypress/fixtures",
     screenshotOnRunFailure: true,
     videosFolder: "./H-W_24/cypress/videos",
+    viewportHeight: 1080,
+    viewportWidth: 1920,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
