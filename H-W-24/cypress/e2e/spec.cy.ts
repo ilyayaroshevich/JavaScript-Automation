@@ -40,6 +40,18 @@ describe('Navigations from Main page', () => {
       });
     });
   });
+  it('Test 2: Navigation to baraholka page', () => {
+    cy.clickOnNavigationBarLink(headerPage.baraholkaLink);
+    cy.checkThatUrlIs(baraholkaPage.url);
+    cy.elementIsExistAndVisible(baraholkaPage.fleaMarketButton);
+    cy.fixture('buttonNames.json').then((buttonNames) => {
+      cy.getTextFromElementIs(baraholkaPage.fleaMarketButton, buttonNames.BARAHOLKA_BUTTON);
+    });
+    cy.fixture('font-family.json').then((fontFamily) => {
+      cy.getCssValueFromElement(baraholkaPage.fleaMarketButton, 'font-family' ,fontFamily.BARAHOLKA_BUTTON);
+    });
+
+  });
 
 
 
@@ -49,11 +61,6 @@ describe('Navigations from Main page', () => {
 });
 
 
-// it('Test 2: Navigation to baraholka page', () => {
-//   headerPage.clickOnNavigationBarLink(headerPage.baraholkaLink);
-//   baraholkaPage.checkThatUrlIs();
-
-// })
 
 // it('Test 3: Navigation to forum page', () => {
 //   headerPage.clickOnNavigationBarLink(headerPage.forumLink);

@@ -20,20 +20,4 @@ export class ServicesPage extends BasePage {
         this.profilesButton = "a[class^='project-navigation__'][href='/profiles']";
     }
 
-    public checkThatUrlIs() {
-        this.getPageUrl().should("equal", this.url)
-    }
-
-    public elementIsExistAndVisible(element:string){
-        cy.get(element).should("exist").and('be.visible');
-    }
-
-    public getTextFromElementIs(element:string, expectedText: string){
-        cy.get(element).should('have.text', expectedText);
-    }
-
-    public getCssValueFromElement(element: string, nameOfCssValue: string, expectedCssValue: string) {
-        cy.get(element).should('have.css', nameOfCssValue, expectedCssValue);
-    }
-    
 }

@@ -5,12 +5,8 @@ public fleaMarketButton:string;
 constructor(){
     super();
     this.url='https://baraholka.onliner.by/';
-    this.fleaMarketButton=".b-btn-fleamarket__1";
+    this.fleaMarketButton= "a[href^='/fle']>span";
 
 }    
-
-public checkThatUrlIs() {
-    this.getPageUrl().should("equal", this.url)
-}
 
 }

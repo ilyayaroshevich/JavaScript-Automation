@@ -8,9 +8,4 @@ export default class BasePage {
     public openPage(){
         cy.visit(this.url)
     }
-
-    public getPageUrl(){
-        return cy.url()
-    }
-
     }

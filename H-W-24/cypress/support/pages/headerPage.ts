@@ -11,7 +11,4 @@ export class HeaderPage extends BasePage {
 
     }
 
-    public clickOnNavigationBarLink(locator: any) {
-        cy.get(locator).click()
-    }
 }
