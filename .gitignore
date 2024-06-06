@@ -7,3 +7,5 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/H-W-24/cypress/screenshots/
+/H-W-24/cypress/videos/
