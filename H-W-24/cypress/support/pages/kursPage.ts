@@ -31,6 +31,4 @@ export class KursPage extends BasePage {
                 cy.wrap($value).should('have.attr', attribute, expectedValues[index]);
             });
     };
-
-
 }

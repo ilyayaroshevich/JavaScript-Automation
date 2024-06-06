@@ -2,7 +2,7 @@
 
 declare namespace Cypress {
     interface Chainable<Subject = any> {
-        clickOnNavigationBarLink(linkSelector: string): Chainable<Subject>;
+        clickOnElement(linkSelector: string): Chainable<Subject>;
         checkThatUrlIs(expectedUrl: string): Chainable<Subject>;
         elementIsExistAndVisible(element: string): Chainable<Subject>;
         getTextFromElementIs(element: string, expectedText: string): Chainable<Subject>;
@@ -10,7 +10,7 @@ declare namespace Cypress {
     }
 }
 
-Cypress.Commands.add('clickOnNavigationBarLink', (linkSelector: string) => {
+Cypress.Commands.add('clickOnElement', (linkSelector: string) => {
     cy.get(linkSelector).click();
 });
 

@@ -19,13 +19,14 @@ describe('Navigations from Main page', () => {
   before(() => {
     cy.intercept('GET', 'https://s.onliner.by/api/tasks').as('tasks');
     cy.intercept('GET', 'https://forum.onliner.by/sdapi/pogoda/api/now').as('now');
+    cy.intercept('GET', 'https://pogoda.onliner.by/api/forecast/*').as('pogodaNow');
 
   })
   beforeEach(() => {
     mainPage.openPage();
   })
   it('Test 1: Navigation to services page', () => {
-    cy.clickOnNavigationBarLink(headerPage.servicesLink);
+    cy.clickOnElement(headerPage.servicesLink);
     cy.checkThatUrlIs(servicesPage.url);
     cy.elementIsExistAndVisible(servicesPage.serviceFilter_1);
     cy.elementIsExistAndVisible(servicesPage.serviceFilter_2);
@@ -49,7 +50,7 @@ describe('Navigations from Main page', () => {
     });
   });
   it('Test 2: Navigation to baraholka page', () => {
-    cy.clickOnNavigationBarLink(headerPage.baraholkaLink);
+    cy.clickOnElement(headerPage.baraholkaLink);
     cy.checkThatUrlIs(baraholkaPage.url);
     cy.elementIsExistAndVisible(baraholkaPage.fleaMarketButton);
     cy.fixture('buttonNames.json').then((buttonNames) => {
@@ -61,7 +62,7 @@ describe('Navigations from Main page', () => {
 
   });
   it('Test 3: Navigation to forum page', () => {
-    cy.clickOnNavigationBarLink(headerPage.forumLink);
+    cy.clickOnElement(headerPage.forumLink);
     cy.checkThatUrlIs(forumPage.url);
     cy.elementIsExistAndVisible(forumPage.importantTopics);
     forumPage.checkAmountOfInportantTopicks(11);
@@ -71,7 +72,7 @@ describe('Navigations from Main page', () => {
     });
   });
   it('Test 4: Navigation to kurs page', () => {
-    cy.clickOnNavigationBarLink(headerPage.kursLink);
+    cy.clickOnElement(headerPage.kursLink);
     cy.checkThatUrlIs(kursPage.url);
     cy.elementIsExistAndVisible(kursPage.currencySelector);
     cy.elementIsExistAndVisible(kursPage.currencyConverter);
@@ -82,11 +83,25 @@ describe('Navigations from Main page', () => {
     cy.fixture('attributeValue.json').then((attributeValue) => {
       kursPage.checkAttributeValueInChildElements(kursPage.currencySelector, attributeValue.OPTION_ATTRIBUTE, 'option', 'value')
     });
-
   });
-
-
-
+  it('Test 5: Navigation to pogoda page', () => {
+    cy.clickOnElement(headerPage.pogodaLink);
+    cy.checkThatUrlIs(pogodaPage.url);
+    cy.elementIsExistAndVisible(pogodaPage.weatherCityButton);
+    cy.wait('@pogodaNow').then((interception) => {
+      const { response } = interception;
+      expect(response.body.city).to.equal("Минске");
+    });
+    pogodaPage.checkTextFromWeatherCity('Минске');
+    cy.clickOnElement(pogodaPage.weatherCityButton);
+    cy.elementIsExistAndVisible(pogodaPage.citiesDropDown);
+    pogodaPage.findAndClickOnKievCity();
+    pogodaPage.checkTextFromWeatherCity('Киеве');
+    cy.wait('@pogodaNow').then((interception) => {
+      const { response } = interception;
+      expect(response.body.city).to.equal("Киеве");
+    });
+  });
 });
 
 

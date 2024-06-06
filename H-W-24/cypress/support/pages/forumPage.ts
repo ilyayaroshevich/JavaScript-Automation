@@ -7,10 +7,7 @@ export class ForumPage extends BasePage {
         super();
         this.url = 'https://forum.onliner.by/';
         this.importantTopics = "div[class='h-hottopics']>ul[class='b-list-topics']";
-
 }
-    
-
 public checkAmountOfInportantTopicks(expectedCount:number){
     cy.get(this.importantTopics)
         .children()
