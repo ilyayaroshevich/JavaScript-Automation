@@ -26,7 +26,7 @@ describe('Navigations from Main page', () => {
   it('Test 1: Navigation to services page', () => {
     cy.clickOnElement(headerPage.servicesLink);
     cy.checkThatUrlIs(servicesPage.url);
-    cy.elementIsExistAndVisible1(servicesPage.serviceFilter_1);
+    cy.elementIsExistAndVisible(servicesPage.serviceFilter_1);
     cy.elementIsExistAndVisible(servicesPage.serviceFilter_2);
     cy.elementIsExistAndVisible(servicesPage.taskButton);
     cy.elementIsExistAndVisible(servicesPage.createTaskLink);
