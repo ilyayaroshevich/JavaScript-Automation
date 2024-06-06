@@ -3,12 +3,18 @@ import { HeaderPage } from "../support/pages/headerPage"
 import { ServicesPage } from "../support/pages/servicesPage";
 import { BaraholkaPage } from "../support/pages/baraholkaPage";
 import { ForumPage } from "../support/pages/forumPage";
+import { KursPage } from "../support/pages/kursPage";
+import { PogodaPage } from "../support/pages/pogodaPage";
+
 
 const mainPage = new MainPage();
 const headerPage = new HeaderPage();
 const servicesPage = new ServicesPage();
 const baraholkaPage = new BaraholkaPage();
 const forumPage = new ForumPage();
+const kursPage = new KursPage();
+const pogodaPage = new PogodaPage();
+
 describe('Navigations from Main page', () => {
   before(() => {
     cy.intercept('GET', 'https://s.onliner.by/api/tasks').as('tasks');
@@ -50,21 +56,34 @@ describe('Navigations from Main page', () => {
       cy.getTextFromElementIs(baraholkaPage.fleaMarketButton, buttonNames.BARAHOLKA_BUTTON);
     });
     cy.fixture('font-family.json').then((fontFamily) => {
-      cy.getCssValueFromElement(baraholkaPage.fleaMarketButton, 'font-family' ,fontFamily.BARAHOLKA_BUTTON);
+      cy.getCssValueFromElement(baraholkaPage.fleaMarketButton, 'font-family', fontFamily.BARAHOLKA_BUTTON);
     });
 
   });
+  it('Test 3: Navigation to forum page', () => {
+    cy.clickOnNavigationBarLink(headerPage.forumLink);
+    cy.checkThatUrlIs(forumPage.url);
+    cy.elementIsExistAndVisible(forumPage.importantTopics);
+    forumPage.checkAmountOfInportantTopicks(11);
+    cy.wait('@now').then((interception) => {
+      const { response } = interception;
+      expect(response.body.city).to.equal("Минске");
+    });
+  });
+  it('Test 4: Navigation to kurs page', () => {
+    cy.clickOnNavigationBarLink(headerPage.kursLink);
+    cy.checkThatUrlIs(kursPage.url);
+    cy.elementIsExistAndVisible(kursPage.currencySelector);
+    cy.elementIsExistAndVisible(kursPage.currencyConverter);
+    cy.elementIsExistAndVisible(kursPage.switcherBuy);
+    cy.elementIsExistAndVisible(kursPage.switcherSale);
+    kursPage.checkId(kursPage.inputForSaleSwitcher, 'sale')
+    kursPage.checkId(kursPage.inputForBuySwitcher, 'buy')
+    cy.fixture('attributeValue.json').then((attributeValue) => {
+      kursPage.checkAttributeValueInChildElements(kursPage.currencySelector, attributeValue.OPTION_ATTRIBUTE, 'option', 'value')
+    });
 
-  it.only('Test 3: Navigation to forum page', () => {
-        cy.clickOnNavigationBarLink(headerPage.forumLink);
-        cy.checkThatUrlIs(forumPage.url);
-        cy.elementIsExistAndVisible(forumPage.importantTopics);      
-        forumPage.checkAmountOfInportantTopicks(11);
-        cy.wait('@now').then((interception) => {
-          const { response } = interception;
-          expect(response.body.city).to.equal("Минске");
-        });
-  })
+  });
 
 
 
