@@ -12,6 +12,8 @@ const forumPage = new ForumPage();
 describe('Navigations from Main page', () => {
   before(() => {
     cy.intercept('GET', 'https://s.onliner.by/api/tasks').as('tasks');
+    cy.intercept('GET', 'https://forum.onliner.by/sdapi/pogoda/api/now').as('now');
+
   })
   beforeEach(() => {
     mainPage.openPage();
@@ -53,8 +55,16 @@ describe('Navigations from Main page', () => {
 
   });
 
-
-
+  it.only('Test 3: Navigation to forum page', () => {
+        cy.clickOnNavigationBarLink(headerPage.forumLink);
+        cy.checkThatUrlIs(forumPage.url);
+        cy.elementIsExistAndVisible(forumPage.importantTopics);      
+        forumPage.checkAmountOfInportantTopicks(11);
+        cy.wait('@now').then((interception) => {
+          const { response } = interception;
+          expect(response.body.city).to.equal("Минске");
+        });
+  })
 
 
 
@@ -62,8 +72,4 @@ describe('Navigations from Main page', () => {
 
 
 
-// it('Test 3: Navigation to forum page', () => {
-//   headerPage.clickOnNavigationBarLink(headerPage.forumLink);
-//   forumPage.checkThatUrlIs();
 
-// })

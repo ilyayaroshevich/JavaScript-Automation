@@ -10,4 +10,12 @@ export class ForumPage extends BasePage {
 
 }
     
+
+public checkAmountOfInportantTopicks(expectedCount:number){
+    cy.get(this.importantTopics)
+        .children()
+        .its('length')
+        .should('eq', expectedCount)
+}
+
 }
