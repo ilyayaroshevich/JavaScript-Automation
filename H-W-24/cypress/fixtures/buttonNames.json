@@ -2,5 +2,6 @@
 "CREATING_TASK_BUTTON": "Разместить заказ",
 "TASK_BUTTON": "Заказы",
 "PROFILES_BUTTON": "Исполнители",
-"BARAHOLKA_BUTTON": "Разместить объявлениев Барахолке!"
+"BARAHOLKA_BUTTON": "Разместить объявлениев Барахолке!",
+"WEATHER_CITY_BUTTON": ["Минске","Киеве"]
 }

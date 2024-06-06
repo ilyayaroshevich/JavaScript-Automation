@@ -6,7 +6,6 @@ import { ForumPage } from "../support/pages/forumPage";
 import { KursPage } from "../support/pages/kursPage";
 import { PogodaPage } from "../support/pages/pogodaPage";
 
-
 const mainPage = new MainPage();
 const headerPage = new HeaderPage();
 const servicesPage = new ServicesPage();
@@ -16,7 +15,6 @@ const kursPage = new KursPage();
 const pogodaPage = new PogodaPage();
 
 describe('Navigations from Main page', () => {
-
   beforeEach(() => {
     mainPage.openPage();
     cy.intercept('GET', 'https://s.onliner.by/api/tasks').as('tasks');
@@ -57,7 +55,6 @@ describe('Navigations from Main page', () => {
     cy.fixture('font-family.json').then((fontFamily) => {
       cy.getCssValueFromElement(baraholkaPage.fleaMarketButton, 'font-family', fontFamily.BARAHOLKA_BUTTON);
     });
-
   });
   it('Test 3: Navigation to forum page', () => {
     cy.clickOnElement(headerPage.forumLink);
@@ -83,21 +80,23 @@ describe('Navigations from Main page', () => {
     });
   });
   it('Test 5: Navigation to pogoda page', () => {
-    cy.clickOnElement(headerPage.pogodaLink);
-    cy.checkThatUrlIs(pogodaPage.url);
-    cy.elementIsExistAndVisible(pogodaPage.weatherCityButton);
-    cy.wait('@pogodaNow').then((interception) => {
-      const { response } = interception;
-      expect(response.body.city).to.equal("Минске");
-    });
-    pogodaPage.checkTextFromWeatherCity('Минске');
-    cy.clickOnElement(pogodaPage.weatherCityButton);
-    cy.elementIsExistAndVisible(pogodaPage.citiesDropDown);
-    pogodaPage.findAndClickOnKievCity();
-    pogodaPage.checkTextFromWeatherCity('Киеве');
-    cy.wait('@pogodaNow').then((interception) => {
-      const { response } = interception;
-      expect(response.body.city).to.equal("Киеве");
+    cy.fixture('buttonNames.json').then((cityName) => {
+      cy.clickOnElement(headerPage.pogodaLink);
+      cy.checkThatUrlIs(pogodaPage.url);
+      cy.elementIsExistAndVisible(pogodaPage.weatherCityButton);
+      cy.wait('@pogodaNow').then((interception) => {
+        const { response } = interception;
+        expect(response.body.city).to.equal(cityName.WEATHER_CITY_BUTTON[0]);
+      });
+      pogodaPage.checkTextFromWeatherCity(cityName.WEATHER_CITY_BUTTON[0]);
+      cy.clickOnElement(pogodaPage.weatherCityButton);
+      cy.elementIsExistAndVisible(pogodaPage.citiesDropDown);
+      pogodaPage.findAndClickOnKievCity();
+      pogodaPage.checkTextFromWeatherCity(cityName.WEATHER_CITY_BUTTON[1]);
+      cy.wait('@pogodaNow').then((interception) => {
+        const { response } = interception;
+        expect(response.body.city).to.equal(cityName.WEATHER_CITY_BUTTON[1]);
+      });
     });
   });
 });
