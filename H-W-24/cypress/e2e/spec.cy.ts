@@ -16,19 +16,17 @@ const kursPage = new KursPage();
 const pogodaPage = new PogodaPage();
 
 describe('Navigations from Main page', () => {
-  before(() => {
+
+  beforeEach(() => {
+    mainPage.openPage();
     cy.intercept('GET', 'https://s.onliner.by/api/tasks').as('tasks');
     cy.intercept('GET', 'https://forum.onliner.by/sdapi/pogoda/api/now').as('now');
     cy.intercept('GET', 'https://pogoda.onliner.by/api/forecast/*').as('pogodaNow');
-
-  })
-  beforeEach(() => {
-    mainPage.openPage();
   })
   it('Test 1: Navigation to services page', () => {
     cy.clickOnElement(headerPage.servicesLink);
     cy.checkThatUrlIs(servicesPage.url);
-    cy.elementIsExistAndVisible(servicesPage.serviceFilter_1);
+    cy.elementIsExistAndVisible1(servicesPage.serviceFilter_1);
     cy.elementIsExistAndVisible(servicesPage.serviceFilter_2);
     cy.elementIsExistAndVisible(servicesPage.taskButton);
     cy.elementIsExistAndVisible(servicesPage.createTaskLink);
@@ -103,6 +101,7 @@ describe('Navigations from Main page', () => {
     });
   });
 });
+
 
 
 
