@@ -8,6 +8,7 @@ import ListsPage from '../pageobjects/lists.page.ts';
 import MediaPage from '../pageobjects/media.page.ts';
 import OnlineCinemaPage from '../pageobjects/onlineCinema.page.ts';
 import SeriesPage from '../pageobjects/series.page.ts';
+import { logger } from '../helpers/logger.ts';
 
 export const pages = {
     login: LoginPage,
@@ -21,10 +22,12 @@ export const pages = {
 };
 
 Given(/^I am on the (\w+) page$/, async (pageName) => {
+    logger.info(`User is on the ${pageName} page`)
     await pages[pageName].open();
 });
 
 When(/^I click on the (\w+) button on the (\w+)$/, async (buttonName, pageName,) => {
+    logger.info(`Iser click on the ${buttonName} on the ${pageName}`)
     const page = pages[pageName];
     const buttonElement = page && page[buttonName];
     await clickOnButton(buttonElement);
