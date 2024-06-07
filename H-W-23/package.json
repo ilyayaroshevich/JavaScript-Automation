@@ -16,5 +16,8 @@
     "allure-commandline": "^2.29.0",
     "allure-playwright": "^3.0.0-beta.3",
     "expect-playwright": "^0.8.0"
+  },
+  "dependencies": {
+    "winston": "^3.13.0"
   }
 }
