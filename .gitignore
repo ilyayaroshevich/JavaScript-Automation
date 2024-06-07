@@ -7,5 +7,11 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/H-W-22/reports/
+/H-W-23/allure-report/
+/H-W-23/allure-results/
+/H-W-23/test-results/
 /H-W-24/cypress/screenshots/
 /H-W-24/cypress/videos/
+/H-W-24/cypress/downloads/
+/H-W-24/cypress/reports/
