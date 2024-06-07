@@ -1,1 +1,0 @@
-export const waitForUrlSEarch = '**\/search/#query=%D0%A1%D0%BC%D0%B0%D1%80%D1%82%D1%84%D0%BE%D0%BD%D1%8B&sdate=&edate=&action=search';
