@@ -8,8 +8,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /H-W-22/reports/
-/H-W-24/cypress/reports/allure-report/
-/H-W-24/cypress/reports/allure-results/
+/H-W-24/cypress/reports/
+/H-W-24/cypress/downloads/
 /H-W-24/cypress/screenshots/
 /H-W-24/cypress/videos/
 /H-W-23/allure-results/
