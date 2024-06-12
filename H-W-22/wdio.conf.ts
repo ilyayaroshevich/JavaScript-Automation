@@ -14,7 +14,7 @@ export const config: Options.Testrunner = {
             transpileOnly: true
         }
     },
-    
+
     //
     // ==================
     // Specify Test Files
@@ -119,7 +119,7 @@ export const config: Options.Testrunner = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'cucumber',
-    
+
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -183,8 +183,8 @@ export const config: Options.Testrunner = {
      * @param {Array.<Object>} capabilities list of capabilities details
      */
     onPrepare: function (config, capabilities) {
-        rmSync ('reports/allure-results', {recursive:true, force: true});
-        rmSync ('reports/allure-report', {recursive:true, force: true});
+        rmSync('reports/allure-results', { recursive: true, force: true });
+        rmSync('reports/allure-report', { recursive: true, force: true });
     },
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
@@ -270,7 +270,7 @@ export const config: Options.Testrunner = {
      * @param {object}             context          Cucumber World object
      */
     afterStep: async function (step, scenario, result, context) {
-        if(result.error) {
+        if (result.error) {
             await browser.takeScreenshot()
         }
     },
@@ -294,7 +294,7 @@ export const config: Options.Testrunner = {
      */
     // afterFeature: function (uri, feature) {
     // },
-    
+
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {string} commandName hook command name
