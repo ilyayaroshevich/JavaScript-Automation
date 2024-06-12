@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Jun 07 14:47:50 MSK 2024","Fri Jun 07 14:48:06 MSK 2024","16753","Mobile Chrome","example.spec.ts","3DNews.ru","","","Test 7: Counting subsections of the Games section",""
+"passed","Fri Jun 07 14:47:50 MSK 2024","Fri Jun 07 14:48:06 MSK 2024","15715","firefox","example.spec.ts","3DNews.ru","","","Test 7: Counting subsections of the Games section",""
+"passed","Fri Jun 07 14:47:50 MSK 2024","Fri Jun 07 14:48:09 MSK 2024","19273","chromium","example.spec.ts","3DNews.ru","","","Test 7: Counting subsections of the Games section",""
